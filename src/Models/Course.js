@@ -7,6 +7,12 @@ const courseSchema = new Schema({
     required: true,
     unique: true,
   },
+  rating:{
+    type:Number,
+    required:false,
+    unique:false
+  }
+  ,
   title: {
     type: String,
     required: true,
