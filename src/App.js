@@ -32,12 +32,12 @@ app.get("/home", (req, res) => {
 
 // #Routing to userController here
 
-const userrouter = require("./Routes/moo7a");
+const Hossamrouter = require("./Routes/moo7a");
 
+const userrouter = require("./Routes/creationAPI");
 
 const Hosnyrouter = require("./Routes/HosnyRoutes");
+app.use("/", Hossamrouter);
 
 app.use("/", Hosnyrouter);
 app.use("/", userrouter);
-
-
