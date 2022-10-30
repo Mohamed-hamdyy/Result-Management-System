@@ -23,7 +23,6 @@ const instructorSchema = new Schema({
   },
   ownedMoney: {
     type: Number,
-    required: true,
   },
   userName: {
     type: String,

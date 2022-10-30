@@ -13,8 +13,6 @@ const corporateUserSchema = new Schema({
   },
   country: {
     type: String,
-    required: true,
-    unique: true,
   },
   registeredCourses: [
     {

@@ -9,23 +9,18 @@ const individualUserSchema = new Schema({
   },
   firstName: {
     type: String,
-    required: true,
   },
   lastName: {
     type: String,
-    required: true,
   },
   gender: {
     type: String,
-    required: true,
   },
   card: {
     type: String,
-    required: true,
   },
   wallet: {
     type: String,
-    required: true,
   },
   password: {
     type: String,
@@ -33,8 +28,6 @@ const individualUserSchema = new Schema({
   },
   country: {
     type: String,
-    required: true,
-    unique: true,
   },
   registeredCourses: [
     {
