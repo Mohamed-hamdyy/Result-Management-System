@@ -34,4 +34,7 @@ app.get("/home", (req, res) => {
 
 const userrouter = require("./Routes/creationAPI");
 
+const Hosnyrouter = require("./Routes/HosnyRoutes");
+
+app.use("/", Hosnyrouter);
 app.use("/", userrouter);
