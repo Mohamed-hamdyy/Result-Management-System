@@ -112,22 +112,25 @@ creationRouter.get("/instructorCourses", async (req, res) => {
 
 
 creationRouter.get("/filtercourses", async (req, res) => {
-  const {price,title} = req.body;
+  const {userName,price,title} = req.body;
   var myArray = [];
   if (price==null){
     myArray = await course.find({
-      title:title,
+      instructorUsername:userName,
+      title:title
     });
   }
   else if(title==null){
     myArray = await course.find({
-      price:price,
+      instructorUsername:userName,
+      price:price
   
     });
 
   }
   else{
     myArray = await course.find({
+      instructorUsername:userName,
       price:price,
       title:title
   
