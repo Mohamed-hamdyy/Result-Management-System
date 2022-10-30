@@ -32,6 +32,9 @@ app.get("/home", (req, res) => {
 
 // #Routing to userController here
 
-const userrouter = require("./Routes/creationAPI");
+const userrouter = require("./Routes/moo7a");
+
 
 app.use("/", userrouter);
+
+
