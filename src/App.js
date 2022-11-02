@@ -39,6 +39,14 @@ const userrouter = require("./Routes/creationAPI");
 const Hosnyrouter = require("./Routes/HosnyRoutes");
 app.use("/", Hossamrouter);
 const Yehiarouter = require("./Routes/YehiaRoutes");
+
+const hamdyRouter = require("./Routes/HamdyRoutes");
+
+
 app.use("/", Yehiarouter);
 app.use("/", Hosnyrouter);
 app.use("/", userrouter);
+app.use("/", hamdyRouter);
+
+
+
