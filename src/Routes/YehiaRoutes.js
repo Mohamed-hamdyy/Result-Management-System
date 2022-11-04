@@ -34,4 +34,19 @@ creationRouter.get("/filterprice", async (req, res) => {
   for (i = 0; i < course.length; i++) console.log(course[i]);
 });
 
+creationRouter.get("/filtercoursesubjectinstructor", async (req, res) => {
+  const { title, subject, instructorUsername } = req.body;
+  var course;
+  if (subject == undefined && instructorUsername == undefined) {
+    course = Course.find({ title: title });
+  }
+  if (title == undefined && instructorUsername == undefined) {
+    course = Course.find({ subject: subject });
+  }
+  if (subject == undefined && title == undefined) {
+    course = Course.find({ instructorUsername: instructorUsername });
+  }
+  for (i = 0; i < course.length; i++) console.log(course[i]);
+});
+
 module.exports = creationRouter;
