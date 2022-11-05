@@ -6,6 +6,7 @@ const CorporateUser = require("../Models/CorporateUser");
 const IndividualUser = require("../Models/IndividualUser");
 const Admin = require("../Models/Admin");
 const individualUser = require("../Models/IndividualUser");
+const course = require("../Models/Course");
 
 const creationRouter = express.Router();
 
@@ -54,5 +55,13 @@ creationRouter.get("/filtercoursesubjectinstructor", async (req, res) => {
   
   for (i = 0; i < course.length; i++) console.log(course[i]);
 });
+
+creationRouter.get("/filtercoursebyid", async (req, res) => {
+  var { courseID } = req.body;
+  var course= await Course.findOne({courseID:courseID});
+  console.log(course.title);
+
+});
+
 
 module.exports = creationRouter;
