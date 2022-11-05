@@ -28,6 +28,7 @@ const individualUserSchema = new Schema({
   },
   country: {
     type: String,
+    required: false,
   },
   registeredCourses: [
     {

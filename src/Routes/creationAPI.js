@@ -12,6 +12,8 @@ const creationRouter = express.Router();
 
 creationRouter.use(express.urlencoded({ extended: false }));
 
+
+// Creating Course and checking that id is unique
 creationRouter.post("/createCourse", async (req, res) => {
   const { courseID, title, totalHours, price, subject, instructorUsername } =
     req.body;
@@ -27,15 +29,16 @@ if(myArray.length==0){
     subject: subject,
     instructorUsername: instructorUsername,
   });
+  console.log('course created successfully');
 }
 else{
   console.log("course already taken");
 }
-
-
   res.status(200);
 });
 
+
+// Creating an istructor and checking username is unique
 creationRouter.post("/createInstructor", async (req, res) => {
   const {
     firstName,
@@ -67,6 +70,7 @@ creationRouter.post("/createInstructor", async (req, res) => {
       numOfRatings: numOfRatings,
     });
     res.status(200).send("creating instructor");
+    console.log('instructor created successfully');
 
   }
   else{
@@ -76,6 +80,8 @@ creationRouter.post("/createInstructor", async (req, res) => {
   
 });
 
+
+// creating CorporateUser and checking that username is not in individuals or corporate users
 creationRouter.post("/createCorporateUser", async (req, res) => {
   const { userName, password, country } = req.body;
   myArray= await corporateUser.find({
@@ -90,6 +96,8 @@ creationRouter.post("/createCorporateUser", async (req, res) => {
       password: password,
       country: country
     });
+    console.log("User Created Successfully");
+
   }
   else{
     console.log("Username already taken!");
@@ -97,6 +105,8 @@ creationRouter.post("/createCorporateUser", async (req, res) => {
 
 });
 
+
+// creating IndividualUser and checking that username is not in individuals or corporate users
 creationRouter.post("/createIndividualUser", async (req, res) => {
   const {
     userName,
@@ -111,10 +121,10 @@ creationRouter.post("/createIndividualUser", async (req, res) => {
   myArray= await corporateUser.find({
     userName:userName
   })
-  myArray= await individualUser.find({
+  myArray2= await individualUser.find({
     userName:userName
   })
-  if(myArray.length==0){
+  if(myArray.length==0 && myArray2.length==0){
   const user = await IndividualUser.create({
     userName: userName,
     firstName: firstName,
@@ -125,6 +135,8 @@ creationRouter.post("/createIndividualUser", async (req, res) => {
     password: password,
     country: country,
   });
+  console.log("User Created Successfully");
+
 }
 else{
   console.log("Username already taken!");
@@ -134,7 +146,7 @@ else{
 
 
 
-
+// Creating Admin and checking username isnt available already
 creationRouter.post("/createAdmin", async (req, res) => {
   const { userName, password } = req.body;
 
@@ -146,6 +158,7 @@ creationRouter.post("/createAdmin", async (req, res) => {
       userName: userName,
       password: password,
     });
+    console.log("User craeted successfully");
   }
   else{
     console.log("Username already taken!");

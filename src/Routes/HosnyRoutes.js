@@ -20,20 +20,20 @@ creationRouter.put("/selectCountry",async(req,res)=>{
   const{userName,type,country}=req.body;
   if(type=='Instructor'){
   const instructor= await Instructor.findOneAndUpdate({userName:userName},{country:country})
- }
+}
  if(type=='IndividualUser'){
   const individualUser= await IndividualUser.findOneAndUpdate({userName:userName},{country:country})
  }
  if(type=='CorporateUser'){
   const corporateUser= await CorporateUser.findOneAndUpdate({userName:userName},{country:country})
  }
- 
+
  console.log('Country Selected')
 })
 
-//takes type as input and view courses available
+//takes instructorUsername as input and view courses available
 creationRouter.get("/viewCourses",async(req,res)=>{
-  const{title,totalHours,rating,type}=req.body;
+  const{title,totalHours,rating}=req.body;
   
   const filter={}
   const courseArr= await Course.find(filter)
@@ -45,13 +45,13 @@ creationRouter.get("/viewCourses",async(req,res)=>{
 
 //takes type as input and view courses prices
 creationRouter.get("/viewCoursesPrices",async(req,res)=>{
-  const{price,type}=req.body;
+  const{price,title}=req.body;
   
   const filter={}
   const courseArr= await Course.find(filter)
 
   for(i=0;i<courseArr.length;i++){
-  console.log('Course Price:'+ courseArr[i].price);
+  console.log('Course Title:'+courseArr[i].title+ '  Course Price:'+ courseArr[i].price);
 }})
 
 
