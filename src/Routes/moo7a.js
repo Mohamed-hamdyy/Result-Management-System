@@ -14,7 +14,7 @@ creationRouter.use(express.urlencoded({ extended: false }));
 
 //Taking Instructor's Name and returning their corresponding courses
 creationRouter.get("/instructorCourses", async (req, res) => {
-  const { userName } = req.body;
+  const { userName,passw } = req.body;
   var myArray = [];
   myArray = await course.find({
     instructorUsername: userName,

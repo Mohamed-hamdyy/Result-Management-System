@@ -7,12 +7,11 @@ const courseSchema = new Schema({
     required: true,
     unique: true,
   },
-  rating:{
-    type:Number,
-    required:false,
-    unique:false
-  }
-  ,
+  rating: {
+    type: Number,
+    required: false,
+    unique: false,
+  },
   title: {
     type: String,
     required: true,
@@ -33,6 +32,25 @@ const courseSchema = new Schema({
     type: String,
     required: true,
   },
+  discounts: [
+    {
+      type: Number,
+    },
+  ],
+  summary: {
+    type: String,
+  },
+
+  subtitles: [
+    {
+      type: Number,
+    },
+  ],
+  exercises: [
+    {
+      type: Number,
+    },
+  ],
 });
 
 const course = mongoose.model("course", courseSchema);
