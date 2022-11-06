@@ -12,49 +12,41 @@ const creationRouter = express.Router();
 
 creationRouter.use(express.urlencoded({ extended: false }));
 
-
 //Taking Instructor's Name and returning their corresponding courses
 creationRouter.get("/instructorCourses", async (req, res) => {
-  const { userName} = req.body;
+  const { userName } = req.body;
   var myArray = [];
   myArray = await course.find({
-    instructorUsername:userName,
+    instructorUsername: userName,
   });
   for (i = 0; i < myArray.length; i++)
-  console.log(myArray[i]);
+    console.log("Course Name:" + myArray[i].title);
+  res.send("got data");
 });
-
 
 creationRouter.get("/filtercourses", async (req, res) => {
-  const {userName,price,title} = req.body;
+  const { userName, price, subject } = req.body;
   var myArray = [];
-  if (price==null){
+  console.log("x");
+  if (price == null) {
     myArray = await course.find({
-      instructorUsername:userName,
-      title:title
+      instructorUsername: userName,
+      subject: subject,
+    });
+  } else if (subject == null) {
+    myArray = await course.find({
+      instructorUsername: userName,
+      price: price,
+    });
+  } else {
+    myArray = await course.find({
+      instructorUsername: userName,
+      price: price,
+      subject: subject,
     });
   }
-  else if(title==null){
-    myArray = await course.find({
-      instructorUsername:userName,
-      price:price
-  
-    });
 
-  }
-  else{
-    myArray = await course.find({
-      instructorUsername:userName,
-      price:price,
-      title:title
-  
-    });
-  }
- 
-  for (i = 0; i < myArray.length; i++)
-  console.log(myArray[i]);
+  for (i = 0; i < myArray.length; i++) console.log(myArray[i]);
 });
-
-
 
 module.exports = creationRouter;
