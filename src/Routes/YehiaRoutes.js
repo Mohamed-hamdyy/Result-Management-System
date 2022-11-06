@@ -6,6 +6,7 @@ const CorporateUser = require("../Models/CorporateUser");
 const IndividualUser = require("../Models/IndividualUser");
 const Admin = require("../Models/Admin");
 const individualUser = require("../Models/IndividualUser");
+const course = require("../Models/Course");
 
 const creationRouter = express.Router();
 
@@ -26,6 +27,8 @@ creationRouter.get("/filtersubjectrating", async (req, res) => {
     console.log("Course name :" + course[i].title);
 });
 
+
+// takes s input price and returns the courses with this price
 creationRouter.get("/filterprice", async (req, res) => {
   const { price } = req.body;
   var course;
@@ -36,20 +39,30 @@ creationRouter.get("/filterprice", async (req, res) => {
     console.log("Course name :" + course[i].title);
 });
 
+
+
+// search for courses using one of the following (subject or title or intructorUsername) not all
 creationRouter.get("/filtercoursesubjectinstructor", async (req, res) => {
   const { title, subject, instructorUsername } = req.body;
-  var course;
+  var course=[];
   if (subject == undefined && instructorUsername == undefined) {
-    course = Course.find({ title: title });
+    course = await Course.find({ title: title });
   }
   if (title == undefined && instructorUsername == undefined) {
-    course = Course.find({ subject: subject });
+    course = await Course.find({ subject: subject });
   }
-  if (subject == undefined && title == undefined) {
-    course = Course.find({ instructorUsername: instructorUsername });
+  if (subject ==  undefined && title == undefined) {
+    course = await Course.find({ instructorUsername: instructorUsername });
   }
-  for (i = 0; i < course.length; i++)
-    console.log("Course name :" + course[i].title);
+  for (i = 0; i < course.length; i++) console.log(course[i]);
 });
+
+creationRouter.get("/filtercoursebyid", async (req, res) => {
+  var { courseID } = req.body;
+  var course= await Course.findOne({courseID:courseID});
+  console.log(course.title);
+
+});
+
 
 module.exports = creationRouter;

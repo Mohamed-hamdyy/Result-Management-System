@@ -24,6 +24,7 @@ creationRouter.get("/instructorCourses", async (req, res) => {
   res.send("got data");
 });
 
+// view courses by filtering using username, title, price
 creationRouter.get("/filtercourses", async (req, res) => {
   const { userName, price, subject } = req.body;
   var myArray = [];
