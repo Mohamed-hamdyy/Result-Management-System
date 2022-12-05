@@ -42,11 +42,17 @@ const Yehiarouter = require("./Routes/YehiaRoutes");
 
 const hamdyRouter = require("./Routes/HamdyRoutes");
 
+const HosnyandHossamm2 = require("./Routes/HosnyandHossamm2");
+const HamdyandEyadm2 = require("./Routes/HamdyandEyadm2");
+
+
+app.use("/", HamdyandEyadm2);
 
 app.use("/", Yehiarouter);
 app.use("/", Hosnyrouter);
 app.use("/", userrouter);
 app.use("/", hamdyRouter);
+app.use("/", HosnyandHossamm2);
 
 
 

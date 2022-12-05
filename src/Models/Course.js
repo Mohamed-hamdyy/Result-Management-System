@@ -7,11 +7,7 @@ const courseSchema = new Schema({
     required: true,
     unique: true,
   },
-  rating: {
-    type: Number,
-    required: false,
-    unique: false,
-  },
+
   title: {
     type: String,
     required: true,
@@ -47,6 +43,32 @@ const courseSchema = new Schema({
     },
   ],
   exercises: [
+    {
+      type: Number,
+    },
+  ],
+  examExercises: [
+    {
+      type: Number,
+    },
+  ],
+  exams: [
+    {
+      type: Number,
+    },
+  ],
+
+  preview: {
+    type: String,
+  },
+  rating: {
+    type: Number,
+  },
+  numOfRatings: {
+    type: Number,
+  },
+  
+  review: [
     {
       type: Number,
     },

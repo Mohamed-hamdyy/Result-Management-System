@@ -15,6 +15,9 @@ const discountSchema = new Schema({
     type: String,
     required: true,
   },
+  endDate:{
+    type:Date,
+  }
 });
 
 const admin = mongoose.model("discount", discountSchema);

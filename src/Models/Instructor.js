@@ -38,7 +38,7 @@ const instructorSchema = new Schema({
   
   review: [
     {
-      type: String,
+      type: Number,
     },
   ],
 });

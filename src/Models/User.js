@@ -33,7 +33,11 @@ const userSchema = new Schema({
   Job: {
     type: String,
     required: true
-  }
+  } , registeredCourses: [
+    {
+      type: String,
+    },
+  ],
 }, { timestamps: true });
 
 const User = mongoose.model('User', userSchema);

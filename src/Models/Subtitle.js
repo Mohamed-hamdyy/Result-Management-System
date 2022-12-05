@@ -15,6 +15,12 @@ const subtitleSchema = new Schema({
     type: Number,
     required: true,
   },
+  videoLink: {
+    type: String,
+  },
+  description: {
+    type: String,
+  },
 });
 
 const admin = mongoose.model("Subtitle", subtitleSchema);

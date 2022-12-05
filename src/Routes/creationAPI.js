@@ -135,6 +135,7 @@ creationRouter.post("/createIndividualUser", async (req, res) => {
 
 // Creating Admin and checking username isnt available already
 creationRouter.post("/createAdmin", async (req, res) => {
+  console.log(req.body)
   const { userName, password } = req.body;
 
   myArray = await Admin.find({
@@ -170,15 +171,21 @@ creationRouter.post("/createSubtitle", async (req, res) => {
 });
 
 creationRouter.post("/createExercise", async (req, res) => {
-  const { exerciseID, question, answer } = req.body;
+  const {  question, chice1,choice2,choice3,choice4,answer } = req.body;
 
   myArray = await Exercise.find({
     exerciseID: exerciseID,
   });
+
+  myArray2=(await Exercise.find({})).length
   if (myArray.length == 0) {
     const exercise = await Exercise.create({
-      exerciseID: exerciseID,
+      exerciseID: ++myArray2,
       question: question,
+      choice1:choice1,
+      choice2:choice2,
+      choice3:choice3,
+      choice4:choice4,
       answer: answer,
     });
     console.log("Exercise craeted successfully");
@@ -188,7 +195,7 @@ creationRouter.post("/createExercise", async (req, res) => {
 });
 
 creationRouter.post("/createDiscount", async (req, res) => {
-  const { discountID, country, percentage } = req.body;
+  const { discountID, country, percentage ,date} = req.body;
 
   myArray = await Discount.find({
     discountID: discountID,
@@ -198,6 +205,7 @@ creationRouter.post("/createDiscount", async (req, res) => {
       discountID: discountID,
       country: country,
       percentage: percentage,
+      date:date
     });
     console.log("discount craeted successfully");
   } else {
