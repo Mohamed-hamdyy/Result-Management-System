@@ -45,6 +45,7 @@ creationRouter.get("/filterprice", async (req, res) => {
 creationRouter.get("/filtercoursesubjectinstructor", async (req, res) => {
   const { title, subject, instructorUsername } = req.body;
   var course = [];
+  var outputarr=[]
   if (subject == undefined && instructorUsername == undefined) {
     course = await Course.find({ title: title });
   }
@@ -54,7 +55,10 @@ creationRouter.get("/filtercoursesubjectinstructor", async (req, res) => {
   if (subject == undefined && title == undefined) {
     course = await Course.find({ instructorUsername: instructorUsername });
   }
-  for (i = 0; i < course.length; i++) console.log(course[i]);
+  for (i = 0; i < course.length; i++){
+    outputarr.push(course[i]);
+    res.json(outputarr)
+  } 
 });
 
 creationRouter.get("/filtercoursebyid", async (req, res) => {

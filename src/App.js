@@ -1,5 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
+var cors = require('cors')
+var bodyParser = require('body-parser')
+
+
 // THIS IS WRONG NEVER DO THAT !! Only for the task we put the DB Link here!! NEVER DO THAAAT AGAIN !!
 //Check db connection links in README file
 const MongoURI =
@@ -7,6 +11,9 @@ const MongoURI =
 
 //App variables
 const app = express();
+app.use(cors())
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 const port = process.env.PORT || "7000";
 const user = require("./Models/User");
 // #Importing the userController

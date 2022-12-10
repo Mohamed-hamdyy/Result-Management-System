@@ -14,14 +14,16 @@ creationRouter.use(express.urlencoded({ extended: false }));
 
 //Taking Instructor's Name and returning their corresponding courses
 creationRouter.get("/instructorCourses", async (req, res) => {
-  const { userName,passw } = req.body;
+  const { userName } = req.body;
   var myArray = [];
+  var outputarr = [];
+
   myArray = await course.find({
     instructorUsername: userName,
   });
   for (i = 0; i < myArray.length; i++)
-    console.log("Course Name:" + myArray[i].title);
-  res.send("got data");
+    outputarr.push("Course Name:" + myArray[i].title);
+  res.json(outputarr);
 });
 
 // view courses by filtering using username, title, price
@@ -46,8 +48,11 @@ creationRouter.get("/filtercourses", async (req, res) => {
       subject: subject,
     });
   }
-
-  for (i = 0; i < myArray.length; i++) console.log(myArray[i]);
+  const outputarr=[]
+  for (i = 0; i < myArray.length; i++) {
+    outputarr.push(myArray[i]);
+  }
+  res.json(outputarr)
 });
 
 module.exports = creationRouter;

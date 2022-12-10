@@ -64,10 +64,10 @@ creationRouter.post("/createInstructor", async (req, res) => {
       country: country,
       miniBio: miniBio,
       password: password,
-      ownedMoney: ownedMoney,
+      ownedMoney: 0,
       userName: userName,
-      rating: rating,
-      numOfRatings: numOfRatings,
+      rating: 1,
+      numOfRatings: 0,
     });
     res.status(200).send("creating instructor");
     console.log("instructor created successfully");
@@ -89,7 +89,6 @@ creationRouter.post("/createCorporateUser", async (req, res) => {
     const user = await CorporateUser.create({
       userName: userName,
       password: password,
-      country: country,
     });
     console.log("User Created Successfully");
   } else {
