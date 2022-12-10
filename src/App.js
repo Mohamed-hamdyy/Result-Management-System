@@ -37,7 +37,7 @@ const Hossamrouter = require("./Routes/moo7a");
 const userrouter = require("./Routes/creationAPI");
 
 const Hosnyrouter = require("./Routes/HosnyRoutes");
-app.use("/", Hossamrouter);
+app.use("/api", Hossamrouter);
 const Yehiarouter = require("./Routes/YehiaRoutes");
 
 const hamdyRouter = require("./Routes/HamdyRoutes");
@@ -46,13 +46,13 @@ const HosnyandHossamm2 = require("./Routes/HosnyandHossamm2");
 const HamdyandEyadm2 = require("./Routes/HamdyandEyadm2");
 
 
-app.use("/", HamdyandEyadm2);
+app.use("/api", HamdyandEyadm2);
 
-app.use("/", Yehiarouter);
-app.use("/", Hosnyrouter);
-app.use("/", userrouter);
-app.use("/", hamdyRouter);
-app.use("/", HosnyandHossamm2);
+app.use("/api", Yehiarouter);
+app.use("/api", Hosnyrouter);
+app.use("/api", userrouter);
+app.use("/api", hamdyRouter);
+app.use("/api", HosnyandHossamm2);
 
 
 
