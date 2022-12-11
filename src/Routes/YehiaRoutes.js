@@ -46,10 +46,10 @@ creationRouter.post("/filtercoursesubjectinstructor", async (req, res) => {
   const { title, subject, instructorUsername } = req.body;
   var course = [];
   var outputarr=[]
-  if (subject == undefined) {
+  if (subject == "") {
     course = await Course.find({ title: title , instructorUsername:instructorUsername});
   }
-  else if (title == undefined) {
+  else if (title == "") {
     course = await Course.find({ subject: subject , instructorUsername:instructorUsername});
   }
   else {
