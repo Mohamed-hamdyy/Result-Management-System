@@ -57,7 +57,7 @@ creationRouter.post("/filtercourses", async (req, res) => {
         {
 
         if(element.price>=from&&element.price<=to ){
-          outputarr.push(element)
+          outputarr.push(element.title)
         }
       });
   res.json(outputarr)
