@@ -42,23 +42,24 @@ creationRouter.get("/filterprice", async (req, res) => {
 });
 
 // search for courses using one of the following (subject or title or intructorUsername) not all
-creationRouter.get("/filtercoursesubjectinstructor", async (req, res) => {
+creationRouter.post("/filtercoursesubjectinstructor", async (req, res) => {
   const { title, subject, instructorUsername } = req.body;
   var course = [];
   var outputarr=[]
-  if (subject == undefined && instructorUsername == undefined) {
-    course = await Course.find({ title: title });
+  if (subject == undefined) {
+    course = await Course.find({ title: title , instructorUsername:instructorUsername});
   }
-  if (title == undefined && instructorUsername == undefined) {
-    course = await Course.find({ subject: subject });
+  else if (title == undefined) {
+    course = await Course.find({ subject: subject , instructorUsername:instructorUsername});
   }
-  if (subject == undefined && title == undefined) {
-    course = await Course.find({ instructorUsername: instructorUsername });
+  else {
+    course = await Course.find({ instructorUsername: instructorUsername,title: title, subject: subject });
   }
   for (i = 0; i < course.length; i++){
     outputarr.push(course[i]);
-    res.json(outputarr)
   } 
+  res.json(outputarr)
+
 });
 
 creationRouter.get("/filtercoursebyid", async (req, res) => {
