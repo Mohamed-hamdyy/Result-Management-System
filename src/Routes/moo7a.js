@@ -30,14 +30,16 @@ creationRouter.post("/filtercourses", async (req, res) => {
   const { userName, pricefrom, subject ,priceto} = req.body;
   var myArray = [];
   var outputarr = [];
+  var from = pricefrom
+  var to = priceto
 
   console.log("x");
 
   if (pricefrom == null){
-    pricefrom=0
+    from=0
   }
   if (priceto == null){
-    priceto=Math.max
+    to=Math.max
   }
 
   if (subject == null) {
@@ -52,7 +54,7 @@ creationRouter.post("/filtercourses", async (req, res) => {
       });
     }
       myArray.forEach(element => {
-        if(element.price>=pricefrom&&element.price<=priceto ){
+        if(element.price>=from&&element.price<=to ){
           outputarr.push(element)
         }
       });
