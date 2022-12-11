@@ -5,7 +5,6 @@ const Instructor = require("../Models/Instructor");
 const CorporateUser = require("../Models/CorporateUser");
 const IndividualUser = require("../Models/IndividualUser");
 const Admin = require("../Models/Admin");
-const individualUser = require("../Models/IndividualUser");
 const creationRoute= require("./creationAPI");
 
 
@@ -16,7 +15,7 @@ creationRouter.use(express.urlencoded({ extended: false }));
 
 
 /////getting course of a certain instructor
-creationRouter.get('/getInstructorCourses', (req,res)=>{
+creationRouter.get('/searchCourseByTiTle', (req,res)=>{
 const instName =req.body.name;
 const Title =req.body.title;
 const Subject= req.body.subject;
@@ -30,8 +29,8 @@ else
 x.exec((err,r)=>{
     if (err)
     throw err;
-    else 
-    for (i = 0; i < r.length; i++) console.log(r[i]);
+    
+    res.json(r);
 });
 
   
@@ -49,6 +48,27 @@ creationRouter.use('/addInstructor',creationRoute);
 /////adding corporate trainees 
 creationRouter.use('/addCorporate',creationRoute);
 
+creationRoute.get("/TraineeMyCourse/:id",async function(req,res){
+   var Id = req.params.id;
+   var query = await IndividualUser.findOne({id:Id})
+   var array = query.registeredCourses;
+   
+   var arrayCourse = []
+   for(var i = 0;i<array.length;i++){
+       var queryCourse = await Course.findOne({id:array[i].id})
+       arrayCourse = arrayCourse.concat([queryCourse])
+   }
+   res.json(arrayCourse)
+});
+creationRoute.get("/getAllcourses",function(req,res){
+    
+   var query=Course.find({});
+   // @ts-ignore
+   query.exec(function(err,result){
+       
+       res.json(result)
+   })
+})
 
 
 module.exports = creationRouter;

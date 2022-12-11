@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+var cors =require('cors');
+const bodyParser=require('body-parser')
 // THIS IS WRONG NEVER DO THAT !! Only for the task we put the DB Link here!! NEVER DO THAAAT AGAIN !!
 //Check db connection links in README file
 const MongoURI =
@@ -44,6 +46,11 @@ const hamdyRouter = require("./Routes/HamdyRoutes");
 
 const HosnyandHossamm2 = require("./Routes/HosnyandHossamm2");
 const HamdyandEyadm2 = require("./Routes/HamdyandEyadm2");
+
+
+app.use(cors());
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
 
 app.use("/", HamdyandEyadm2);
