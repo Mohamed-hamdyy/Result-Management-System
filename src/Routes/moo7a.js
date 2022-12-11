@@ -17,7 +17,6 @@ creationRouter.get("/instructorCourses", async (req, res) => {
   const { userName } = req.body;
   var myArray = [];
   var outputarr = [];
-
   myArray = await course.find({
     instructorUsername: userName,
   });
@@ -27,31 +26,36 @@ creationRouter.get("/instructorCourses", async (req, res) => {
 });
 
 // view courses by filtering using username, title, price
-creationRouter.get("/filtercourses", async (req, res) => {
-  const { userName, price, subject } = req.body;
+creationRouter.post("/filtercourses", async (req, res) => {
+  const { userName, pricefrom, subject ,priceto} = req.body;
   var myArray = [];
+  var outputarr = [];
+
   console.log("x");
-  if (price == null) {
-    myArray = await course.find({
-      instructorUsername: userName,
-      subject: subject,
-    });
-  } else if (subject == null) {
-    myArray = await course.find({
-      instructorUsername: userName,
-      price: price,
-    });
-  } else {
-    myArray = await course.find({
-      instructorUsername: userName,
-      price: price,
-      subject: subject,
-    });
+
+  if (pricefrom == null){
+    pricefrom=0
   }
-  const outputarr=[]
-  for (i = 0; i < myArray.length; i++) {
-    outputarr.push(myArray[i]);
+  if (priceto == null){
+    priceto=Math.max
   }
+
+  if (subject == null) {
+      myArray = await course.find({
+        instructorUsername: userName,
+  });
+    } 
+  else {
+      myArray = await course.find({
+        instructorUsername: userName,
+        subject: subject,
+      });
+    }
+      myArray.forEach(element => {
+        if(element.price>=pricefrom&&element.price<=priceto ){
+          outputarr.push(element)
+        }
+      });
   res.json(outputarr)
 });
 
