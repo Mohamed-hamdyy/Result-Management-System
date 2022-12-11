@@ -1,7 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
-var cors =require('cors');
-const bodyParser=require('body-parser')
+var cors = require('cors')
+var bodyParser = require('body-parser')
+
+
 // THIS IS WRONG NEVER DO THAT !! Only for the task we put the DB Link here!! NEVER DO THAAAT AGAIN !!
 //Check db connection links in README file
 const MongoURI =
@@ -9,6 +11,9 @@ const MongoURI =
 
 //App variables
 const app = express();
+app.use(cors())
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 const port = process.env.PORT || "7000";
 const user = require("./Models/User");
 // #Importing the userController
@@ -39,7 +44,7 @@ const Hossamrouter = require("./Routes/moo7a");
 const userrouter = require("./Routes/creationAPI");
 
 const Hosnyrouter = require("./Routes/HosnyRoutes");
-app.use("/", Hossamrouter);
+app.use("/api", Hossamrouter);
 const Yehiarouter = require("./Routes/YehiaRoutes");
 
 const hamdyRouter = require("./Routes/HamdyRoutes");
@@ -53,13 +58,13 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 
-app.use("/", HamdyandEyadm2);
+app.use("/api", HamdyandEyadm2);
 
-app.use("/", Yehiarouter);
-app.use("/", Hosnyrouter);
-app.use("/", userrouter);
-app.use("/", hamdyRouter);
-app.use("/", HosnyandHossamm2);
+app.use("/api", Yehiarouter);
+app.use("/api", Hosnyrouter);
+app.use("/api", userrouter);
+app.use("/api", hamdyRouter);
+app.use("/api", HosnyandHossamm2);
 
 
 

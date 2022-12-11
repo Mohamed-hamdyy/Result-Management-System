@@ -41,16 +41,8 @@ creationRouter.post("/createCourse", async (req, res) => {
 // Creating an istructor and checking username is unique
 creationRouter.post("/createInstructor", async (req, res) => {
   const {
-    firstName,
-    email,
-    lastName,
-    country,
-    miniBio,
     password,
-    ownedMoney,
     userName,
-    rating,
-    numOfRatings,
   } = req.body;
   myArray = await Instructor.find({
     userName: userName,
@@ -58,16 +50,16 @@ creationRouter.post("/createInstructor", async (req, res) => {
 
   if (myArray.length == 0) {
     const instructor = await Instructor.create({
-      firstName: firstName,
-      email: email,
-      lastName: lastName,
-      country: country,
-      miniBio: miniBio,
+      firstName: "",
+      email: "",
+      lastName: "",
+      country: "Morocco",
+      miniBio: "",
       password: password,
-      ownedMoney: ownedMoney,
+      ownedMoney: 0,
       userName: userName,
-      rating: rating,
-      numOfRatings: numOfRatings,
+      rating: 1,
+      numOfRatings: 0,
     });
     res.status(200).send("creating instructor");
     console.log("instructor created successfully");
@@ -78,7 +70,7 @@ creationRouter.post("/createInstructor", async (req, res) => {
 
 // creating CorporateUser and checking that username is not in individuals or corporate users
 creationRouter.post("/createCorporateUser", async (req, res) => {
-  const { userName, password, country } = req.body;
+  const { userName, password } = req.body;
   myArray = await corporateUser.find({
     userName: userName,
   });
@@ -89,7 +81,7 @@ creationRouter.post("/createCorporateUser", async (req, res) => {
     const user = await CorporateUser.create({
       userName: userName,
       password: password,
-      country: country,
+      country:"Morocco",
     });
     console.log("User Created Successfully");
   } else {
