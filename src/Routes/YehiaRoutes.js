@@ -93,12 +93,12 @@ creationRouter.get("/choosecourse", async (req, res) => {
     totalhrs += sub.hours;
     subtitlesarr.push(sub);
   }
-  console.log(course.title);
-  console.log(subtitlesarr);
-  console.log(exercisesarr);
-  console.log(totalhrs);
-  console.log(course.price);
-  console.log("price: " + (course.price - course.price * (discountval / 100)));
+  res.json({
+    totalhrs:totalhrs,
+    exercisesarr:exercisesarr,
+    subtitlesarr:subtitlesarr,
+    discount:discountval,
+  })
 });
 
 module.exports = creationRouter;
