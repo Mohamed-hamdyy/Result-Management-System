@@ -9,7 +9,7 @@ const individualUser = require("../Models/IndividualUser");
 const Review = require("../Models/Review");
 const Exam = require("../Models/Exam");
 const ExamExercise = require("../Models/ExamExercise");
-
+var nodemailer = require('nodemailer');
 
 
 
@@ -53,16 +53,20 @@ creationRouter.get("viewPersonalRatingsReviews",async(req,res)=>{
 
 
 
-creationRouter.post("/editEmail",async(req,res)=>{
-    const {instructorUsername,email}=req.body
-    const inst=await Instructor.findOneAndUpdate({instructorUsername:instructorUsername},{email:email})
-
-})
 
 
-creationRouter.post("/editbio",async(req,res)=>{
-    const {instructorUsername,miniBio}=req.body
-    const inst=await Instructor.findOneAndUpdate({instructorUsername:instructorUsername},{miniBio:miniBio})
+creationRouter.post("/editemailbio",async(req,res)=>{
+    const {instructorUsername,miniBio,email}=req.body
+    if (email==""){
+        const inst=await Instructor.findOneAndUpdate({instructorUsername:instructorUsername},{miniBio:miniBio})
+    }
+    else if(miniBio==""){
+        const inst=await Instructor.findOneAndUpdate({instructorUsername:instructorUsername},{email:email})
+    }
+    else{
+        const inst=await Instructor.findOneAndUpdate({instructorUsername:instructorUsername},{email:email,miniBio:miniBio})
+
+    }
 })
 
 
@@ -114,10 +118,58 @@ creationRouter.post("/createexamquestion",async(req,res)=>{
 })
 
 
-creationRouter.post("/forgetpassword",async(req,res)=>{
+creationRouter.post("/userforgetpassword",async(req,res)=>{
     const{email}=req.body
-    
-  
+    var result=""
+    var user=await IndividualUser.findOne({email:email})
+    if(user==null){
+        user=await CorporateUser.findOne({email:email})
+        if(user!=null){
+            result="C"
+        }
+    }
+    else{
+        result="I"
+    }
+    if(result=="I"|| result=="C"){
+        const link = `http://localhost:7000/resetpassword/${result}/${user.userName}`
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'ahmedyo2001@gmail.com',
+              pass: 'dbpgtwmfixruexif'
+            }
+          });
+          
+          var mailOptions = {
+            from: 'ahmedyo2001@gmail.com',
+            to: email,
+            subject: "reset link",
+            text: link
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' );
+            }
+          });
+    }
+    else{
+        res.send("not found")
+    }
+})
+
+creationRouter.post("/userresetpass",async(req,res)=>{
+    const{type,userName,password}=req.body
+    if(type=="I"){
+        var user=await IndividualUser.findOneAndUpdate({userName:userName},{password:password})
+    }
+    else{
+        var user=await CorporateUser.findOneAndUpdate({userName:userName},{password:password})
+
+    }
 })
 
 

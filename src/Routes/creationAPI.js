@@ -96,10 +96,8 @@ creationRouter.post("/createIndividualUser", async (req, res) => {
     firstName,
     lastName,
     gender,
-    card,
-    wallet,
+    email,
     password,
-    country,
   } = req.body;
   myArray = await corporateUser.find({
     userName: userName,
@@ -107,16 +105,23 @@ creationRouter.post("/createIndividualUser", async (req, res) => {
   myArray2 = await individualUser.find({
     userName: userName,
   });
-  if (myArray.length == 0 && myArray2.length == 0) {
+  myArray3 = await individualUser.find({
+    email: email,
+  });
+  myArray4 = await individualUser.find({
+    email: email,
+  });
+  
+  if (myArray.length == 0 && myArray2.length == 0&&myArray3.length == 0&&myArray4.length == 0) {
     const user = await IndividualUser.create({
       userName: userName,
       firstName: firstName,
       lastName: lastName,
       gender: gender,
-      card: card,
-      wallet: wallet,
+      email:email,
+      wallet: 0,
       password: password,
-      country: country,
+      country: "Morocco",
     });
     console.log("User Created Successfully");
   } else {
