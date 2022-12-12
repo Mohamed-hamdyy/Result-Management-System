@@ -42,23 +42,24 @@ creationRouter.get("/filterprice", async (req, res) => {
 });
 
 // search for courses using one of the following (subject or title or intructorUsername) not all
-creationRouter.get("/filtercoursesubjectinstructor", async (req, res) => {
+creationRouter.post("/filtercoursesubjectinstructor", async (req, res) => {
   const { title, subject, instructorUsername } = req.body;
   var course = [];
   var outputarr=[]
-  if (subject == undefined && instructorUsername == undefined) {
-    course = await Course.find({ title: title });
+  if (subject == "") {
+    course = await Course.find({ title: title , instructorUsername:instructorUsername});
   }
-  if (title == undefined && instructorUsername == undefined) {
-    course = await Course.find({ subject: subject });
+  else if (title == "") {
+    course = await Course.find({ subject: subject , instructorUsername:instructorUsername});
   }
-  if (subject == undefined && title == undefined) {
-    course = await Course.find({ instructorUsername: instructorUsername });
+  else {
+    course = await Course.find({ instructorUsername: instructorUsername,title: title, subject: subject });
   }
   for (i = 0; i < course.length; i++){
     outputarr.push(course[i]);
-    res.json(outputarr)
   } 
+  res.json(outputarr)
+
 });
 
 creationRouter.get("/filtercoursebyid", async (req, res) => {
@@ -67,7 +68,7 @@ creationRouter.get("/filtercoursebyid", async (req, res) => {
   console.log(course.title);
 });
 
-creationRouter.get("/choosecourse", async (req, res) => {
+creationRouter.post("/choosecourse", async (req, res) => {
   var { courseID, country } = req.body;
   var course = await Course.findOne({ courseID: courseID });
   var discountval = 0;
@@ -92,12 +93,11 @@ creationRouter.get("/choosecourse", async (req, res) => {
     totalhrs += sub.hours;
     subtitlesarr.push(sub);
   }
-  console.log(course.title);
-  console.log(subtitlesarr);
-  console.log(exercisesarr);
-  console.log(totalhrs);
-  console.log(course.price);
-  console.log("price: " + (course.price - course.price * (discountval / 100)));
+  res.json({
+    exercisesarr:exercisesarr,
+    subtitlesarr:subtitlesarr,
+    discount:discountval,
+  })
 });
 
 module.exports = creationRouter;

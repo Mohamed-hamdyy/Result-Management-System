@@ -13,7 +13,7 @@ const creationRouter = express.Router();
 creationRouter.use(express.urlencoded({ extended: false }));
 
 //Taking Instructor's Name and returning their corresponding courses
-creationRouter.get("/instructorCourses", async (req, res) => {
+creationRouter.post("/instructorCourses", async (req, res) => {
   const { userName } = req.body;
   var myArray = [];
   var outputarr = [];
@@ -39,7 +39,7 @@ creationRouter.post("/filtercourses", async (req, res) => {
     from=0
   }
   if (priceto == null){
-    to=Math.max
+    to=999999999999
   }
 
   if (subject == null) {
@@ -53,9 +53,11 @@ creationRouter.post("/filtercourses", async (req, res) => {
         subject: subject,
       });
     }
-      myArray.forEach(element => {
+      myArray.forEach(element => 
+        {
+
         if(element.price>=from&&element.price<=to ){
-          outputarr.push(element)
+          outputarr.push(element.title)
         }
       });
   res.json(outputarr)
