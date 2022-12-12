@@ -53,11 +53,6 @@ const HosnyandHossamm2 = require("./Routes/HosnyandHossamm2");
 const HamdyandEyadm2 = require("./Routes/HamdyandEyadm2");
 
 
-app.use(cors());
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
-
-
 app.use("/api", HamdyandEyadm2);
 
 app.use("/api", Yehiarouter);
