@@ -68,7 +68,7 @@ creationRouter.get("/filtercoursebyid", async (req, res) => {
   console.log(course.title);
 });
 
-creationRouter.get("/choosecourse", async (req, res) => {
+creationRouter.post("/choosecourse", async (req, res) => {
   var { courseID, country } = req.body;
   var course = await Course.findOne({ courseID: courseID });
   var discountval = 0;
@@ -94,7 +94,6 @@ creationRouter.get("/choosecourse", async (req, res) => {
     subtitlesarr.push(sub);
   }
   res.json({
-    totalhrs:totalhrs,
     exercisesarr:exercisesarr,
     subtitlesarr:subtitlesarr,
     discount:discountval,
