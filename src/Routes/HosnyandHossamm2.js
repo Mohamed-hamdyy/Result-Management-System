@@ -166,10 +166,79 @@ creationRouter.post("/userresetpass",async(req,res)=>{
     if(type=="I"){
         var user=await IndividualUser.findOneAndUpdate({userName:userName},{password:password})
     }
-    else{
+    else {
         var user=await CorporateUser.findOneAndUpdate({userName:userName},{password:password})
 
     }
+})
+
+
+
+creationRouter.post("/instructorforgetpassword",async(req,res)=>{
+    const{email}=req.body
+    var user=await Instructor.findOne({email:email})
+    
+    if(user!=null){
+        const link = `http://localhost:7000/resetpassword/${result}/${user.userName}`
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'ahmedyo2001@gmail.com',
+              pass: 'dbpgtwmfixruexif'
+            }
+          });
+          
+          var mailOptions = {
+            from: 'ahmedyo2001@gmail.com',
+            to: email,
+            subject: "reset link",
+            text: link
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' );
+            }
+          });
+    }
+    else{
+        res.send("not found")
+    }
+})
+
+creationRouter.post("/instructorresetpass",async(req,res)=>{
+    const{type,userName,password}=req.body
+        var user=await Instructor.findOneAndUpdate({userName:userName},{password:password})
+    
+
+})
+
+
+
+
+
+
+creationRouter.post("/userchangepass",async(req,res)=>{
+    const{type,userName,password}=req.body
+    if(type=="I"){
+        var user=await IndividualUser.findOneAndUpdate({userName:userName},{password:password})
+    }
+    else {
+        var user=await CorporateUser.findOneAndUpdate({userName:userName},{password:password})
+
+    }
+})
+
+
+
+
+creationRouter.post("/instructorchangepass",async(req,res)=>{
+    const{userName,password}=req.body
+
+    var user=await Instructor.findOneAndUpdate({userName:userName},{password:password})
+
 })
 
 
