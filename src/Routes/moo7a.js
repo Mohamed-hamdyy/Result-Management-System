@@ -21,7 +21,7 @@ creationRouter.post("/instructorCourses", async (req, res) => {
     instructorUsername: userName,
   });
   for (i = 0; i < myArray.length; i++)
-    outputarr.push("Course Name:" + myArray[i].title);
+    outputarr.push(myArray[i]);
   res.json(outputarr);
 });
 
