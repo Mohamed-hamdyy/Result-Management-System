@@ -194,7 +194,7 @@ creationRouter.post("/createExercise", async (req, res) => {
 creationRouter.post("/createDiscount", async (req, res) => {
   const {  courseID,country, percentage ,date} = req.body;
 
-  myArray = (await Discount.find({})).length++;
+  myArray = ++((await Discount.find({})).length);
 
     const exercise = await Discount.create({
       discountID: myArray,
