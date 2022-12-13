@@ -44,8 +44,11 @@ creationRouter.get("viewPersonalRatingsReviews",async(req,res)=>{
     arr.forEach (async element => {
         const reviewelement= await Review.findOne({reviewID:element})
         arroutput.push(reviewelement)
-        console.log(reviewelement)
     });
+    res.json({
+        rating:rating,
+        reviewarr:arroutput
+    })
 
 
 })
