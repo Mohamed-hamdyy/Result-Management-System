@@ -7,6 +7,8 @@ const IndividualUser = require("../Models/IndividualUser");
 const Admin = require("../Models/Admin");
 const individualUser = require("../Models/IndividualUser");
 const Review = require("../Models/Review");
+const InstructorReview = require("../Models/InstructorReview");
+
 const Exam = require("../Models/Exam");
 const ExamExercise = require("../Models/ExamExercise");
 var nodemailer = require('nodemailer');
@@ -38,14 +40,17 @@ creationRouter.get("/viewCourseRatingsReviews",async(req,res)=>{
 creationRouter.post("/viewPersonalRatingsReviews",async(req,res)=>{
     const{instructorUsername}=req.body
     console.log("abcde");
-    const inst = await Instructor.findOne({instructorUsername:instructorUsername})
+    const inst = await Instructor.findOne({userName:instructorUsername})
     const rating = inst.rating
     const arr= inst.review
     var arroutput=[]
-    arr.forEach (async element => {
-        const reviewelement= await Review.findOne({reviewID:element})
-        arroutput.push(reviewelement)
-    });
+    for (var i = 0; i < arr.length ;i++) {
+        const review = await InstructorReview.findOne({reviewID:arr[i]})
+
+        arroutput.push(review)
+    }
+    console.log(arroutput)
+
     res.json({
         rating:rating,
         reviewarr:arroutput
