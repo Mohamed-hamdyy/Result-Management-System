@@ -132,7 +132,7 @@ creationRouter.post("/userforgetpassword",async(req,res)=>{
         result="I"
     }
     if(result=="I"|| result=="C"){
-        const link = `http://localhost:7000/changepass/${result}/${user.userName}`
+        const link = `http://localhost:3000/changepass/${result}/${user.userName}`
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
