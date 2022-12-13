@@ -179,7 +179,7 @@ creationRouter.post("/instructorforgetpassword",async(req,res)=>{
     var user=await Instructor.findOne({email:email})
     
     if(user!=null){
-        const link = `http://localhost:7000/resetpassword/${result}/${user.userName}`
+        const link = `http://localhost:7000/changepass/${result}/${user.userName}`
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
