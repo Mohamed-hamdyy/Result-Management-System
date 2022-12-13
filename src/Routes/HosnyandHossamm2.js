@@ -35,8 +35,9 @@ creationRouter.get("/viewCourseRatingsReviews",async(req,res)=>{
 });
 
 
-creationRouter.post("viewPersonalRatingsReviews",async(req,res)=>{
-    const{instructorUsername}=req.body;
+creationRouter.post("/viewPersonalRatingsReviews",async(req,res)=>{
+    const{instructorUsername}=req.body
+    console.log("abcde");
     const inst = await Instructor.findOne({instructorUsername:instructorUsername})
     const rating = inst.rating
     const arr= inst.review
