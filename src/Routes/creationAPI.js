@@ -205,7 +205,7 @@ creationRouter.post("/createDiscount", async (req, res) => {
   })
 
   var course = await Course.findOne({courseID:courseID})
-  course.discounts.push(discountID)
+  course.discounts.push(myArray)
   var course2=await Course.findOneAndUpdate({courseID:courseID},{discounts:course.discounts})
 });
 
