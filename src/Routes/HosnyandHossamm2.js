@@ -28,13 +28,14 @@ creationRouter.post("/viewCourseRatingsReviews",async(req,res)=>{
     var rating = course1.rating
     var reviewARR=course1.review
     var resarr=[]
-    reviewARR.forEach(element => {
-        reviewelement=Review.findOne({})
+    for (let index = 0; index < reviewARR.length; index++) {
+        reviewelement=await Review.findOne({reviewID:reviewARR[index]})
         resarr.push(reviewelement)
-    });
+        
+    }
     res.json({
         rating:rating,
-        reviews:resarr,
+        reviews:resarr
     })
 });
 
