@@ -22,7 +22,7 @@ creationRouter.use(express.urlencoded({ extended: false }));
 
 //takes instructor as input and view ratings and reviews 
 // TODO: make review elements work
-creationRouter.get("/viewCourseRatingsReviews",async(req,res)=>{
+creationRouter.post("/viewCourseRatingsReviews",async(req,res)=>{
     const{instructorUsername,courseID}=req.body;
     const course1= await Course.findOne({courseID:courseID});
     var rating = course1.rating
@@ -32,8 +32,10 @@ creationRouter.get("/viewCourseRatingsReviews",async(req,res)=>{
         reviewelement=Review.findOne({})
         resarr.push(reviewelement)
     });
-
-    console.log(outputarr)
+    res.json({
+        rating:rating,
+        reviews:resarr,
+    })
 });
 
 
