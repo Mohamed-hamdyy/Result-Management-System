@@ -194,7 +194,7 @@ creationRouter.post("/createExercise", async (req, res) => {
 creationRouter.post("/createDiscount", async (req, res) => {
   const {  courseID,country, percentage ,date} = req.body;
 
-  myArray = (await Discount.find({})).length++;
+  myArray = ++((await Discount.find({})).length);
 
     const exercise = await Discount.create({
       discountID: myArray,
@@ -205,7 +205,7 @@ creationRouter.post("/createDiscount", async (req, res) => {
   })
 
   var course = await Course.findOne({courseID:courseID})
-  course.discounts.push(discountID)
+  course.discounts.push(myArray)
   var course2=await Course.findOneAndUpdate({courseID:courseID},{discounts:course.discounts})
 });
 

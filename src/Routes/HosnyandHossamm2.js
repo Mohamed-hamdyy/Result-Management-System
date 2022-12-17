@@ -7,6 +7,8 @@ const IndividualUser = require("../Models/IndividualUser");
 const Admin = require("../Models/Admin");
 const individualUser = require("../Models/IndividualUser");
 const Review = require("../Models/Review");
+const InstructorReview = require("../Models/InstructorReview");
+
 const Exam = require("../Models/Exam");
 const ExamExercise = require("../Models/ExamExercise");
 var nodemailer = require('nodemailer');
@@ -20,32 +22,41 @@ creationRouter.use(express.urlencoded({ extended: false }));
 
 //takes instructor as input and view ratings and reviews 
 // TODO: make review elements work
-creationRouter.get("/viewCourseRatingsReviews",async(req,res)=>{
+creationRouter.post("/viewCourseRatingsReviews",async(req,res)=>{
     const{instructorUsername,courseID}=req.body;
     const course1= await Course.findOne({courseID:courseID});
     var rating = course1.rating
     var reviewARR=course1.review
     var resarr=[]
-    reviewARR.forEach(element => {
-        reviewelement=Review.findOne({})
+    for (let index = 0; index < reviewARR.length; index++) {
+        reviewelement=await Review.findOne({reviewID:reviewARR[index]})
         resarr.push(reviewelement)
-    });
-
-    console.log(outputarr)
+        
+    }
+    res.json({
+        rating:rating,
+        reviews:resarr
+    })
 });
 
 
-creationRouter.get("viewPersonalRatingsReviews",async(req,res)=>{
-    const{instructorUsername}=req.body;
-    const inst = await Instructor.findOne({instructorUsername:instructorUsername})
+creationRouter.post("/viewPersonalRatingsReviews",async(req,res)=>{
+    const{instructorUsername}=req.body
+    const inst = await Instructor.findOne({userName:instructorUsername})
     const rating = inst.rating
     const arr= inst.review
     var arroutput=[]
-    arr.forEach (async element => {
-        const reviewelement= await Review.findOne({reviewID:element})
-        arroutput.push(reviewelement)
-        console.log(reviewelement)
-    });
+    for (var i = 0; i < arr.length ;i++) {
+        const review = await InstructorReview.findOne({reviewID:arr[i]})
+
+        arroutput.push(review)
+    }
+    console.log(arroutput)
+
+    res.json({
+        rating:rating,
+        reviewarr:arroutput
+    })
 
 
 })
@@ -132,7 +143,7 @@ creationRouter.post("/userforgetpassword",async(req,res)=>{
         result="I"
     }
     if(result=="I"|| result=="C"){
-        const link = `http://localhost:7000/resetpassword/${result}/${user.userName}`
+        const link = `http://localhost:3000/changepass/${result}/${user.userName}`
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -166,10 +177,79 @@ creationRouter.post("/userresetpass",async(req,res)=>{
     if(type=="I"){
         var user=await IndividualUser.findOneAndUpdate({userName:userName},{password:password})
     }
-    else{
+    else {
         var user=await CorporateUser.findOneAndUpdate({userName:userName},{password:password})
 
     }
+})
+
+
+
+creationRouter.post("/instructorforgetpassword",async(req,res)=>{
+    const{email}=req.body
+    var user=await Instructor.findOne({email:email})
+    
+    if(user!=null){
+        const link = `http://localhost:7000/changepass/${result}/${user.userName}`
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'ahmedyo2001@gmail.com',
+              pass: 'dbpgtwmfixruexif'
+            }
+          });
+          
+          var mailOptions = {
+            from: 'ahmedyo2001@gmail.com',
+            to: email,
+            subject: "reset link",
+            text: link
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' );
+            }
+          });
+    }
+    else{
+        res.send("not found")
+    }
+})
+
+creationRouter.post("/instructorresetpass",async(req,res)=>{
+    const{type,userName,password}=req.body
+        var user=await Instructor.findOneAndUpdate({userName:userName},{password:password})
+    
+
+})
+
+
+
+
+
+
+creationRouter.post("/userchangepass",async(req,res)=>{
+    const{type,userName,password}=req.body
+    if(type=="I"){
+        var user=await IndividualUser.findOneAndUpdate({userName:userName},{password:password})
+    }
+    else {
+        var user=await CorporateUser.findOneAndUpdate({userName:userName},{password:password})
+
+    }
+})
+
+
+
+
+creationRouter.post("/instructorchangepass",async(req,res)=>{
+    const{userName,password}=req.body
+
+    var user=await Instructor.findOneAndUpdate({userName:userName},{password:password})
+
 })
 
 
