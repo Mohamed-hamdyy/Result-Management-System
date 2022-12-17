@@ -6,7 +6,6 @@ const CorporateUser = require("../Models/CorporateUser");
 const IndividualUser = require("../Models/IndividualUser");
 const Admin = require("../Models/Admin");
 const creationRoute= require("./creationAPI");
-const User=require("../Models/User");
 
 const creationRouter = express.Router();
 
@@ -15,10 +14,10 @@ creationRouter.use(express.urlencoded({ extended: false }));
 
 
 /////getting course of a certain instructor
-creationRouter.get('/searchCourseBy/:instName/:Title/:Subject', (req,res)=>{
-const instName =req.params.instName;
-const Title =req.params.Title;
-const Subject= req.params.Subject;
+creationRouter.post('/searchCourseBy', (req,res)=>{
+const instName =req.body.instName;
+const Title =req.body.Title;
+const Subject= req.body.Subject;
 var x ;
 
 if (Title!=undefined )
@@ -51,14 +50,14 @@ creationRouter.use('/addInstructor',creationRoute);
 /////adding corporate trainees 
 creationRouter.use('/addCorporate',creationRoute);
 
-creationRouter.get("/TraineeMyCourse/:id",async function(req,res){
-   var Id = req.params.id;
-   var query = await IndividualUser.findOne({id:Id})
+creationRouter.post("/TraineeMyCourse",async function(req,res){
+   var userName = req.body.userName;
+   var query = await IndividualUser.findOne({userName:userName})
    var array = query.registeredCourses;
    
    var arrayCourse = []
    for(var i = 0;i<array.length;i++){
-       var queryCourse = await Course.findOne({id:array[i].id})
+       var queryCourse = await Course.findOne({courseID:array[i]})
        arrayCourse = arrayCourse.concat([queryCourse])
    }
    res.json(arrayCourse)
@@ -72,13 +71,11 @@ creationRoute.get("/getAllcourses",function(req,res){
        res.json(result)
    })
 })
-creationRoute.get('/getDetails/:id',function(req,res){
-    
-   const ID=req.params.id;
-   var query=User.find({id:ID});
+creationRoute.post('/getDetails',function(req,res){
+   const userName=req.body.userName;
+   var query=IndividualUser.findOne({userName:userName});
    // @ts-ignore
    query.exec(function(err,result){
-       
        res.json(result)
    })
 })

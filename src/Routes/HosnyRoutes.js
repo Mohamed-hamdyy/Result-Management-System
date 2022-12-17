@@ -12,7 +12,7 @@ const creationRouter = express.Router();
 creationRouter.use(express.urlencoded({ extended: false }));
 
 // takes as an input type and userName to select/change country
-creationRouter.put("/selectCountry",async(req,res)=>{
+creationRouter.post("/selectCountry",async(req,res)=>{
   const{userName,type,country}=req.body;
   if(type=='Instructor'){
   const instructor= await Instructor.findOneAndUpdate({userName:userName},{country:country})
@@ -24,7 +24,7 @@ creationRouter.put("/selectCountry",async(req,res)=>{
   const corporateUser= await CorporateUser.findOneAndUpdate({userName:userName},{country:country})
  }
  
- console.log('Country Selected')
+ res.json({data:'country Selected'})
 })
 
 //takes type as input and view courses available

@@ -16,29 +16,35 @@ const creationRouter = express.Router();
 creationRouter.use(express.urlencoded({ extended: false }));
 
 // takes as an input subject or rating or both and returns courses
-creationRouter.get("/filtersubjectrating", async (req, res) => {
+creationRouter.post("/filtersubjectrating", async (req, res) => {
   const { subject, rating } = req.body;
   var course;
-  if (subject == undefined) {
+  if (subject == "") {
     course = await Course.find({ rating: rating });
-  } else if (rating == undefined) {
+  } else if (rating == "") {
     course = await Course.find({ subject: subject });
   } else {
     course = await Course.find({ subject: subject, rating: rating });
   }
-  for (i = 0; i < course.length; i++)
-    console.log("Course name :" + course[i].title);
+  
+  res.json(course);
+
 });
 
 // takes s input price and returns the courses with this price
-creationRouter.get("/filterprice", async (req, res) => {
-  const { price } = req.body;
-  var course;
+creationRouter.post("/filterprice", async (req, res) => {
+  const { min,max } = req.body;
+  var course=[];
+  var output=[];
 
-  course = await Course.find({ price: price });
+  course = await Course.find({});
 
-  for (i = 0; i < course.length; i++)
-    console.log("Course name :" + course[i].title);
+  for (i = 0; i < course.length; i++){
+        if(course[i].price>=min && course[i].price<=max )
+            output.push(course[i]);
+  }
+   res.json(output);
+
 });
 
 // search for courses using one of the following (subject or title or intructorUsername) not all
@@ -62,13 +68,15 @@ creationRouter.post("/filtercoursesubjectinstructor", async (req, res) => {
 
 });
 
-creationRouter.get("/filtercoursebyid", async (req, res) => {
+creationRouter.post("/filtercoursebyid", async (req, res) => {
   var { courseID } = req.body;
   var course = await Course.findOne({ courseID: courseID });
-  console.log(course.title);
+  res.json(course);
 });
 
 creationRouter.post("/choosecourse", async (req, res) => {
+  console.log ("entered");
+
   var { courseID, country } = req.body;
   var course = await Course.findOne({ courseID: courseID });
   var discountval = 0;
