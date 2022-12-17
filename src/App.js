@@ -4,6 +4,14 @@ import SignIn from './pages/SignIn';
 import AddAdministrator from './pages/AddAdministrator';
 import AddInstructor from './pages/AddInstructor';
 import AddCorporateTrainees from './pages/AddCorporateTrainees';
+import CreateQuestion from './pages/CreateQuestion';
+import Exam from './pages/Exam';
+import InstructorExam from './pages/InstructorExam';
+import InstructorCourses from './pages/InstructorCourses';
+import InstructorCoursesTable from './pages/InstructorCoursesTable';
+import InstructorCoursesSearch from './pages/InstructorCoursesSearch';
+
+
 import TraineeHome from'./pages/Trainees/TraineeHome';
 import AllCourses from './pages/Trainees/AllCourses'
 import TraineeCourse from './pages/Trainees/TraineeCourse';
@@ -18,16 +26,10 @@ function App() {
         <Routes>
 
           <Route path ="/" element ={<SignIn />}/>
-          <Route path ="/AddAdministrator" element ={<AddAdministrator />}/>
+          <Route path ="/s" element ={<AddAdministrator />}/>
           <Route path ="/AddInstructor" element ={<AddInstructor />}/>
           <Route path ="/AddCorporateTrainees" element ={<AddCorporateTrainees />}/>
-          <Route path ="/TraineeHome" element ={<TraineeHome />}/>
-          <Route path ="/Trainee/AllCourses" element ={<AllCourses/>}/>
-          <Route path ="/TraineeCourse" element ={<TraineeCourse/>}/>
-          <Route path ="/SearchCourses" element ={<SearchCourses/>}/>
-          <Route path ="/Filter" element ={<CourseDetails/>}/>
-          
-          
+
 
 
 
