@@ -8,6 +8,9 @@ const Admin = require("../Models/Admin");
 const individualUser = require("../Models/IndividualUser");
 const Review = require("../Models/Review");
 const InstructorReview = require("../Models/InstructorReview");
+const Discount = require("../Models/Discount");
+const Subtitle = require("../Models/Subtitle");
+
 
 
 
@@ -48,6 +51,32 @@ creationRouter.get("/addinstructorrating",async(req,res)=>{
 
     abc.review.push(reviewID)
     abc2=await Instructor.updateOne({userName:instructorID},{review:abc.review,numOfRatings:num+1,rating:nrating})
+});
+
+
+creationRouter.post("/getcoursesembedded",async(req,res)=>{
+    const{courseID}=req.body;
+    var course= await Course.findOne({courseID:courseID})
+    var discountsarr=[]
+    var subtitlesarr=[]
+    for (let index = 0; index < course.discounts.length; index++) {
+        discountsarr.push( await Discount.findOne({discountID:course.discounts[index]}))
+        
+    }
+    for (let index = 0; index < course.subtitles.length; index++) {
+        subtitlesarr.push( await Subtitle.findOne({subtitleID:course.subtitles[index]}))
+        
+    }
+    course={
+        ...course._doc,
+        subtitlesarr:subtitlesarr,
+        discountsarr:discountsarr,
+
+    }
+    console.log(course)
+
+    res.json(course)
+
 });
 
 

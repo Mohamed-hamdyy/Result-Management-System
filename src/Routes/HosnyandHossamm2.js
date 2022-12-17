@@ -83,7 +83,9 @@ creationRouter.post("/editemailbio",async(req,res)=>{
 
 creationRouter.post("/editpreview",async(req,res)=>{
     const {courseID,preview}=req.body
-    const course=await Course.findOneAndUpdate({courseID:courseID},{preview:preview})
+    var course=await Course.findOneAndUpdate({courseID:courseID},{preview:preview})
+    course={...course,ahmed:"abcde"}
+    console.log(course)
 
 })
 
@@ -91,6 +93,7 @@ creationRouter.post("/editpreview",async(req,res)=>{
 creationRouter.post("/editsubtitle",async(req,res)=>{
     const {subtitleID,videoLink,description}=req.body
     const course=await Course.findOneAndUpdate({subtitleID:subtitleID},{videoLink:videoLink,description:description})
+    
 
 })
 
