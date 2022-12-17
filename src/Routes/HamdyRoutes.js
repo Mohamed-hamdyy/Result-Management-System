@@ -6,6 +6,7 @@ const CorporateUser = require("../Models/CorporateUser");
 const IndividualUser = require("../Models/IndividualUser");
 const Admin = require("../Models/Admin");
 const creationRoute= require("./creationAPI");
+const Exercise=require("../Models/Exercise")
 
 const creationRouter = express.Router();
 
@@ -80,4 +81,12 @@ creationRoute.post('/getDetails',function(req,res){
    })
 })
 
+creationRoute.post('/getExercise',function(req,res){
+   const exerciseID=req.body.exerciseID;
+   var query=Exercise.findOne({exerciseID:exerciseID});
+   // @ts-ignore
+   query.exec(function(err,result){
+       res.json(result)
+   })
+})
 module.exports = creationRouter;
