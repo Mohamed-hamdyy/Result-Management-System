@@ -6,7 +6,8 @@ const CorporateUser = require("../Models/CorporateUser");
 const IndividualUser = require("../Models/IndividualUser");
 const Admin = require("../Models/Admin");
 const creationRoute= require("./creationAPI");
-const Exercise=require("../Models/Exercise")
+const Exercise=require("../Models/Exercise");
+const course = require("../Models/Course");
 
 const creationRouter = express.Router();
 
@@ -15,26 +16,37 @@ creationRouter.use(express.urlencoded({ extended: false }));
 
 
 /////getting course of a certain instructor
-creationRouter.post('/searchCourseBy', (req,res)=>{
+creationRouter.post('/searchCourseBy', async (req,res)=>{
 const instName =req.body.instName;
 const Title =req.body.Title;
 const Subject= req.body.Subject;
-var x ;
+var courses ;
+var outputarray=[];
+courses =  await Course.find({});
 
-if (Title!=undefined )
-   x = Course.find({  title:Title });
+if (Title!=undefined ){
+   for(i=0;i<courses.length;i++){
+    if(courses[i].title.match(Title))
+         outputarray.push(courses[i]);
+
+   }
+
+}
 else if (Subject!=undefined ) 
-   x = Course.find({subject:Subject });
-else 
-x = Course.find({instructorUsername:instName});
-       
+for(i=0;i<courses.length;i++){
+   if(courses[i].subject.match(Subject))
+        outputarray.push(courses[i]);
 
-x.exec((err,r)=>{
-    if (err)
-    throw err;
+  }
+else {
+for(i=0;i<courses.length;i++){
+   if(courses[i].subject.match(instName))
+        outputarray.push(courses[i]);
 
-    res.json(r);
-});
+  }    
+}
+
+    res.json(outputarray);
 
   
 });
@@ -80,6 +92,7 @@ creationRoute.post('/getDetails',function(req,res){
        res.json(result)
    })
 })
+
 
 creationRoute.post('/getExercise',function(req,res){
    const exerciseID=req.body.exerciseID;

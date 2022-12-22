@@ -34,6 +34,7 @@ creationRouter.post("/addcourserating",async(req,res)=>{
     abc.review.push(reviewID)
     console.log(abc.review)
     abc2=await Course.updateOne({courseID:courseID},{review:abc.review,numOfRatings:num+1,rating:nrating})
+    res.json({data:"rated"});
 });
 
 
