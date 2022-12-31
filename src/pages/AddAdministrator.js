@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -13,121 +14,167 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+
+
+function AddAdministrator(){
+
+  const [password, setpassword] = useState('');
+  const [username, setusername] = useState('');
+
+ const handleSubmit = async(event) => {
+  
+        
+        fetch('http://localhost:7000/api/creatAdmin',
+          {
+          method:'POST',
+          headers:{
+            "Content-type":"application/json; charset=UTF-8"
+          },
+        
+          body: JSON.stringify({
+            userName:username,
+            password:password
+          })
+         
+            })
+            .then(res => {
+              return res.json()
+            })
+        
+              };
+return (
+  <div>
+
+<p1>
+ Enter New Username
+  </p1>
+  <Box
+  component="form"
+  sx={{
+  '& > :not(style)': { m: 1, width: '50ch' },
+  }}
+  noValidate
+  autoComplete="off"
+  >
+  <TextField
+                 margin="normal"
+                 required
+                 fullWidth
+                 name="username"
+                 label="username"
+                 type="username"
+                 id="username"
+                 autoComplete="current-username"
+                 value={username}
+                 onChange={(e)=>
+                 setusername(e.target.value)}
+               />
+  
+  </Box>
+  <p1>
+  Change your Password
+  </p1>
+  <Box
+  component="form"
+  sx={{
+  '& > :not(style)': { m: 1, width: '50ch' },
+  }}
+  noValidate
+  autoComplete="off"
+  >
+  <TextField
+                 margin="normal"
+                 required
+                 fullWidth
+                 name="password"
+                 label="Password"
+                 type="password"
+                 id="password"
+                 autoComplete="current-password"
+                 value={password}
+                 onChange={(e)=>
+                 setpassword(e.target.value)}
+               />
+  
+  </Box>
+  
+  <Button variant="contained" color="success" onClick={handleSubmit}>
+  Update
+  </Button>
+    </div>
+      );
+
 }
 
-const theme = createTheme();
 
-export default function SignUp() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      userName: data.get('username'),
-      password: data.get('password'),
-    });
-  };
+export default AddAdministrator
 
-  return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Add Administrator
-          </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            {/* <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid> */}
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="userName"
-                  label="User Name"
-                  name="userName"
-                  autoComplete="userName"
-                />
-              </Grid >
-              <Grid item xs={12}>
-                    <h1></h1>
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              {/* <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid> */}
-            {/* </Grid> */}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Add Administrator
-            </Button>
-            {/* <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </Grid>
-            </Grid> */}
-          </Box>
-        </Box>
-      </Container>
-    </ThemeProvider>
-  );
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function SignUp() {
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     const data = new FormData(event.currentTarget);
+//     console.log({
+//       userName: data.get('username'),
+//       password: data.get('password'),
+//     });
+//   };
+
+//   return (
+
+//   );
+// }

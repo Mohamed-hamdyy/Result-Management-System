@@ -14,7 +14,36 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-function Changepass() {
+function Forgetpass() {
+
+
+  const [email, setemail] = useState('');
+
+
+  const handleSubmit = async(event) => {
+   
+         
+         fetch('http://localhost:7000/api/userforgetpassword',
+           {
+           method:'POST',
+           headers:{
+             "Content-type":"application/json; charset=UTF-8"
+           },
+         
+           body: JSON.stringify({
+             email:email
+           })
+          
+             })
+         
+               };
+ 
+ 
+
+
+
+
+
     return (
 <div>
 <p1>
@@ -49,3 +78,6 @@ Send
   </div>
     );
 }
+
+
+export default Forgetpass

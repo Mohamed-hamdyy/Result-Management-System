@@ -13,8 +13,40 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useParams } from 'react-router-dom';
 
 function Changepass() {
+
+
+const {type}=useParams();
+const {username}=useParams();
+const [Password, setPassword] = useState('');
+
+const handleSubmit = async(event) => {
+  
+        
+  fetch('http://localhost:7000/api/userresetpass',
+    {
+    method:'POST',
+    headers:{
+      "Content-type":"application/json; charset=UTF-8"
+    },
+  
+    body: JSON.stringify({
+      userName:username,
+      type:type,
+      password:Password
+    })
+   
+      })
+      .then(res => {
+        return res.json()
+      })
+  
+              };
+
+
+
     return (
 <div>
 <p1>
@@ -28,22 +60,22 @@ sx={{
 noValidate
 autoComplete="off"
 >
-<TextField id="outlined-basic" label="New Password" variant="outlined" />
+<TextField
+               margin="normal"
+               required
+               fullWidth
+               name="password"
+               label="Password"
+               type="password"
+               id="password"
+               autoComplete="current-password"
+               value={Password}
+               onChange={(e)=>
+               setPassword(e.target.value)}
+             />
+
 </Box>
-<p1>
-Confirm your Password
-</p1>
-<Box
-component="form"
-sx={{
-'& > :not(style)': { m: 1, width: '50ch' },
-}}
-noValidate
-autoComplete="off"
->
-<TextField id="outlined-basic" label="Confirm New Password" variant="outlined" />
-</Box>
-<Button variant="contained" color="success">
+<Button variant="contained" color="success" onClick={handleSubmit}>
 Update
 </Button>
   </div>
