@@ -8,6 +8,7 @@ const Admin = require("../Models/Admin");
 const individualUser = require("../Models/IndividualUser");
 const Review = require("../Models/Review");
 const InstructorReview = require("../Models/InstructorReview");
+const Subtitle = require("../Models/Subtitle");
 
 const Exam = require("../Models/Exam");
 const ExamExercise = require("../Models/ExamExercise");
@@ -91,9 +92,12 @@ creationRouter.post("/editpreview",async(req,res)=>{
 
 
 creationRouter.post("/editsubtitle",async(req,res)=>{
+    console.log("abcde")
+
     const {subtitleID,videoLink,description}=req.body
-    const course=await Course.findOneAndUpdate({subtitleID:subtitleID},{videoLink:videoLink,description:description})
+    const course=await Subtitle.findOneAndUpdate({subtitleID:subtitleID},{videoLink:videoLink,description:description})
     
+    console.log("abcde")
 
 })
 
@@ -146,7 +150,7 @@ creationRouter.post("/userforgetpassword",async(req,res)=>{
         result="I"
     }
     if(result=="I"|| result=="C"){
-        const link = `http://localhost:3000/changepass/${result}/${user.userName}`
+        const link = `http://localhost:7000/changepass/${result}/${user.userName}`
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
