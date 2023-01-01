@@ -47,4 +47,146 @@ function createcourse(){
         
               };
 
+
+return (
+  
+  <div>
+
+  <p1>
+   Enter CourseID
+    </p1>
+    <Box
+    component="form"
+    sx={{
+    '& > :not(style)': { m: 1, width: '50ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
+    <TextField
+                   margin="normal"
+                   required
+                   fullWidth
+                   name="username"
+                   label="CourseID"
+                   type="username"
+                   id="username"
+                   autoComplete="current-username"
+                   value={CourseID}
+                   onChange={(e)=>
+                   setCourseID(e.target.value)}
+                 />
+    
+    </Box>
+    <p1>
+    Enter Title
+    </p1>
+    <Box
+    component="form"
+    sx={{
+    '& > :not(style)': { m: 1, width: '50ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
+    <TextField
+                   margin="normal"
+                   required
+                   fullWidth
+                   name="password"
+                   label="Title"
+                   type="password"
+                   id="password"
+                   autoComplete="current-password"
+                   value={title}
+                   onChange={(e)=>
+                   settitle(e.target.value)}
+                 />
+    
+    </Box>
+    <p1>
+   Enter TotalHours
+    </p1>
+    <Box
+    component="form"
+    sx={{
+    '& > :not(style)': { m: 1, width: '50ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
+    <TextField
+                   margin="normal"
+                   required
+                   fullWidth
+                   name="username"
+                   label="TotalHours"
+                   type="username"
+                   id="username"
+                   autoComplete="current-username"
+                   value={totalHours}
+                   onChange={(e)=>
+                   settotalHours(e.target.value)}
+                 />
+    
+    </Box>
+    <p1>
+    Enter Price
+    </p1>
+    <Box
+    component="form"
+    sx={{
+    '& > :not(style)': { m: 1, width: '50ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
+    <TextField
+                   margin="normal"
+                   required
+                   fullWidth
+                   name="password"
+                   label="Price"
+                   type="password"
+                   id="Price"
+                   autoComplete="current-password"
+                   value={price}
+                   onChange={(e)=>
+                   setprice(e.target.value)}
+                 />
+    
+    </Box>
+    <p1>
+   Enter Subject
+    </p1>
+    <Box
+    component="form"
+    sx={{
+    '& > :not(style)': { m: 1, width: '50ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
+    <TextField
+                   margin="normal"
+                   required
+                   fullWidth
+                   name="username"
+                   label="Subject"
+                   type="username"
+                   id="username"
+                   autoComplete="current-username"
+                   value={subject}
+                   onChange={(e)=>
+                   setsubject(e.target.value)}
+                 />
+    
+    </Box>
+    
+    <Button variant="contained" color="success" onClick={handleSubmit}>
+    Update
+    </Button>
+      </div>
+        );
+
 }

@@ -14,7 +14,7 @@ function CoursePreview(){
 
     const [Courses, setCourses] = useState('');
     const [CourseID, setCourseID] = useState('');
-    const [preview, setrasetpreviewtings] = useState('');
+    const [preview, setpreview] = useState('');
 
 
 
@@ -84,6 +84,32 @@ return (
 
       </RadioGroup>
     </FormControl>
+    <p1>
+    Preview Link
+    </p1>
+    <Box
+    component="form"
+    sx={{
+    '& > :not(style)': { m: 1, width: '50ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
+    <TextField
+                   margin="normal"
+                   required
+                   fullWidth
+                   name="preview"
+                   label="preview"
+                   type="preview"
+                   id="[preview]"
+                   autoComplete="current-password"
+                   value={preview}
+                   onChange={(e)=>
+                   setpreview(e.target.value)}
+                 />
+    
+    </Box>
     <Button variant="contained" color="success" onClick={handleSubmit}>
   Update
   </Button>

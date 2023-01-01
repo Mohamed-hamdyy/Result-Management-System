@@ -30,7 +30,68 @@ function Editbio(){
         
               };
 
+return (
+  
+  <div>
 
+  <p1>
+   Enter your New E-mail
+    </p1>
+    <Box
+    component="form"
+    sx={{
+    '& > :not(style)': { m: 1, width: '50ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
+    <TextField
+                   margin="normal"
+                   required
+                   fullWidth
+                   name="username"
+                   label="E-mail"
+                   type="username"
+                   id="username"
+                   autoComplete="current-username"
+                   value={email}
+                   onChange={(e)=>
+                   setemail(e.target.value)}
+                 />
+    
+    </Box>
+    <p1>
+    Change your miniBio
+    </p1>
+    <Box
+    component="form"
+    sx={{
+    '& > :not(style)': { m: 1, width: '50ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
+    <TextField
+                   margin="normal"
+                   required
+                   fullWidth
+                   name="password"
+                   label="Mini Bio"
+                   type="password"
+                   id="password"
+                   autoComplete="current-password"
+                   value={miniBio}
+                   onChange={(e)=>
+                   setminiBio(e.target.value)}
+                 />
+    
+    </Box>
+    
+    <Button variant="contained" color="success" onClick={handleSubmit}>
+    Update
+    </Button>
+      </div>
+        );
 
 
 }
