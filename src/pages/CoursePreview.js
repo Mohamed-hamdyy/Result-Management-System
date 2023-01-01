@@ -1,3 +1,14 @@
+import * as React from 'react';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import { useState } from 'react';
+import { useEffect } from 'react';
+
+
+
 
 function CoursePreview(){
 
@@ -8,7 +19,7 @@ function CoursePreview(){
 
 
     useEffect(() =>{
-   fetch('http://localhost:7000/api/filtercoursesubjectinstructor',
+   fetch('http://localhost:7000/api/instructorCourses',
      {
      method:'POST',
      headers:{
@@ -16,7 +27,7 @@ function CoursePreview(){
      },
    
      body: JSON.stringify({
-       instructoruUsername:"inst1",
+       userName:"inst1",
      })
     
        })
@@ -44,7 +55,7 @@ function CoursePreview(){
           },
         
           body: JSON.stringify({
-            courseID:courseID,
+            courseID:CourseID,
             preview:preview
           })
          
@@ -56,12 +67,36 @@ function CoursePreview(){
           
         
               };
+return (
+  <div>
+ <FormControl>
+      <FormLabel id="demo-controlled-radio-buttons-group">Courses</FormLabel>
+      <RadioGroup
+        aria-labelledby="demo-controlled-radio-buttons-group"
+        name="controlled-radio-buttons-group"
+        value={CourseID}
+        onChange={(e)=> setCourseID(e.target.value)}
+
+      >
+           {Courses && Courses.map((Course) => (
+        <FormControlLabel value={Course.courseID} control={<Radio />} label={Course.title}/>
+        ))}
+
+      </RadioGroup>
+    </FormControl>
+    <Button variant="contained" color="success" onClick={handleSubmit}>
+  Update
+  </Button>
+  </div>
+   
+      )
 
 
 }
 
 
 
+export default CoursePreview
 
 
 
@@ -97,28 +132,5 @@ function CoursePreview(){
 //       setAge(event.target.value);
 //     };
 
-// return (
-//     <div>
-// <Box sx={{ minWidth: 120 }}>
-   
-//     <FormControl fullWidth>
-//                 <InputLabel id="demo-simple-select-label">Please choose the Course. </InputLabel>
-//                 <Select
-//                     labelId="demo-simple-select-label"
-//                     id="demo-simple-select"
-//                     value={age}
-//                     label="Age"
-//                     onChange={handleChange}
-//                 >
-//                     <MenuItem value={10}>Ten</MenuItem>
-//                     <MenuItem value={20}>Twenty</MenuItem>
-//                     <MenuItem value={30}>Thirty</MenuItem>
-//                 </Select>
-//             </FormControl>
-//         </Box>
-//         <TextField id="outlined-basic" label="Link" variant="outlined" />
-//     </div>
-     
-//         )}
-//     export default CoursePreview
+
 //     //19

@@ -1,8 +1,17 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 function Contract() {
+  const navigate = useNavigate();
+  
+  const navigateToSignin = () => {
+    navigate('/');
+  };
+
+
+
   return (
     <div>
       <p>      
@@ -13,7 +22,7 @@ function Contract() {
       <Button variant="contained" color="success">
         Accept
       </Button>
-      <Button variant="outlined" color="error">
+      <Button variant="outlined" color="error" onClick={navigateToSignin}>
         Decline
       </Button>
     </Stack>

@@ -3,6 +3,8 @@ import SignIn from './pages/SignIn';
 import AddAdministrator from './pages/AddAdministrator';
 import AddInstructor from './pages/AddInstructor';
 import AddCorporateTrainees from './pages/AddCorporateTrainees';
+import Contract from './pages/Contract';
+import CoursePreview from './pages/CoursePreview';
 import CreateQuestion from './pages/CreateQuestion';
 import Exam from './pages/Exam';
 import InstructorExam from './pages/InstructorExam';
@@ -31,7 +33,8 @@ function App() {
           <Route path ="/AddInstructor" element ={<AddInstructor />}/>
           <Route path ="/AddCorporateTrainees" element ={<AddCorporateTrainees />}/>
           <Route path ="/addadmin" element ={<AddAdministrator />}/>
-
+          <Route path ="/contract" element ={<Contract />}/>
+          <Route path ="/coursepreview" element ={<CoursePreview />}/>
 
 
         </Routes>
