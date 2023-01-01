@@ -150,7 +150,7 @@ creationRouter.post("/userforgetpassword",async(req,res)=>{
         result="I"
     }
     if(result=="I"|| result=="C"){
-        const link = `http://localhost:7000/changepass/${result}/${user.userName}`
+        const link = `http://localhost:3000/changepass/${result}/${user.userName}`
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -197,7 +197,7 @@ creationRouter.post("/instructorforgetpassword",async(req,res)=>{
     var user=await Instructor.findOne({email:email})
     
     if(user!=null){
-        const link = `http://localhost:7000/changepass/${result}/${user.userName}`
+        const link = `http://localhost:3000/changepass/${result}/${user.userName}`
         var transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
