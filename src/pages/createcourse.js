@@ -1,4 +1,6 @@
+import * as React from 'react';
 import Button from '@mui/material/Button';
+
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -10,9 +12,10 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
 
 
-function createcourse(){
+function Createcourse(){
 
     const [CourseID, setCourseID] = useState('');
     const [title, settitle] = useState('');
@@ -33,7 +36,7 @@ function createcourse(){
         
           body: JSON.stringify({
             instructorUsername:"inst1",
-            CourseID:CourseID,
+            courseID:CourseID,
             title:title,
             totalHours:totalHours,
             price:price,
@@ -95,7 +98,7 @@ return (
                    fullWidth
                    name="password"
                    label="Title"
-                   type="password"
+                   type="mn,"
                    id="password"
                    autoComplete="current-password"
                    value={title}
@@ -147,7 +150,7 @@ return (
                    fullWidth
                    name="password"
                    label="Price"
-                   type="password"
+                   type="mnnbm"
                    id="Price"
                    autoComplete="current-password"
                    value={price}
@@ -190,3 +193,5 @@ return (
         );
 
 }
+
+export default Createcourse

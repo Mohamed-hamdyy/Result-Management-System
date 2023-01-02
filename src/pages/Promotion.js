@@ -1,5 +1,24 @@
-
-function Proomotion(){
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Radio from '@mui/material/Radio';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+function Promotion(){
 
   const [courses, setcourses] = useState('');
   const [courseID, setcourseID] = useState('');
@@ -53,18 +72,107 @@ function Proomotion(){
             .then(res => {
               return res.json()
             })
-            .then(data => {
-                settitles(data)
-                console.log(data)
-              })
+
           
         
               };
 
+return(
+  <div>
+    <box>
+    <FormControl>
+      <FormLabel id="demo-controlled-radio-buttons-group">Courses</FormLabel>
+      <RadioGroup
+        aria-labelledby="demo-controlled-radio-buttons-group"
+        name="controlled-radio-buttons-group"
+        value={courseID}
+        onChange={(e)=> setcourseID(e.target.value)}
+         
+      >
+           {courses && courses.map((course) => (
+        <FormControlLabel value={course.courseID} control={<Radio />} label={course.title}/>
+        ))}
 
+      </RadioGroup>
+    </FormControl>
+    </box>
+    <Box
+    component="form"
+    sx={{
+    '& > :not(style)': { m: 1, width: '50ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
+    <TextField
+                   margin="normal"
+                   required
+                   fullWidth
+                   name="username"
+                   label="Country"
+                   type="username"
+                   id="username"
+                   autoComplete="current-username"
+                   value={country}
+                   onChange={(e)=>
+                   setcountry(e.target.value)}
+                 />
+    
+    </Box>
+    <Box
+    component="form"
+    sx={{
+    '& > :not(style)': { m: 1, width: '50ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
+    <TextField
+                   margin="normal"
+                   required
+                   fullWidth
+                   name="username"
+                   label="Percentage"
+                   type="username"
+                   id="username"
+                   autoComplete="current-username"
+                   value={percentage}
+                   onChange={(e)=>
+                   setpercentage(e.target.value)}
+                 />
+    
+    </Box>
+    <Box
+    component="form"
+    sx={{
+    '& > :not(style)': { m: 1, width: '50ch' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
+    <TextField
+                   margin="normal"
+                   required
+                   fullWidth
+                   name="username"
+                   label="Date"
+                   type="username"
+                   id="username"
+                   autoComplete="current-username"
+                   value={date}
+                   onChange={(e)=>
+                   setdate(e.target.value)}
+                 />
+    
+    </Box>
+    <Button variant="contained" color="success" onClick={handleSubmit}>
+  Update
+  </Button>
+  </div>
+)
 
 }
-
+export default Promotion
 
 
 

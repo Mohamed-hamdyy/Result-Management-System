@@ -13,6 +13,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useState } from 'react';
 
 function Forgetpass() {
 
@@ -46,9 +47,7 @@ function Forgetpass() {
 
     return (
 <div>
-<p1>
-Change your Password
-</p1>
+
 <Box
 component="form"
 sx={{
@@ -57,22 +56,14 @@ sx={{
 noValidate
 autoComplete="off"
 >
-<TextField id="outlined-basic" label="New Password" variant="outlined" />
+<TextField id="outlined-basic"
+ label="Email" 
+ variant="outlined" 
+ value={email}
+ onChange={(e)=>
+ setemail(e.target.value)} />
 </Box>
-<p1>
-Confirm your Password
-</p1>
-<Box
-component="form"
-sx={{
-'& > :not(style)': { m: 1, width: '50ch' },
-}}
-noValidate
-autoComplete="off"
->
-<TextField id="outlined-basic" label="Confirm New Password" variant="outlined" />
-</Box>
-<Button variant="contained" color="success">
+<Button variant="contained" color="success" onClick={handleSubmit}>
 Send
 </Button>
   </div>

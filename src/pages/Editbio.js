@@ -1,5 +1,17 @@
 
-
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
 
 function Editbio(){
 
@@ -97,6 +109,7 @@ return (
 }
 
 
+export default Editbio
 
 
 
@@ -116,74 +129,3 @@ return (
 
 
 
-
-
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
-// import TextField from '@mui/material/TextField';
-// import Button from '@mui/material/Button';
-
-// function Editbio() {
-//   return (
-//     <div>
-//         <p1>
-//                  Enter your new Biography.
-//         </p1>
-//     <Box
-//       component="form"
-//       sx={{
-//         '& > :not(style)': { m: 1, width: '100ch' },
-//       }}
-//       noValidate
-//       autoComplete="off"
-//     >
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//        <TextField
-//           id="outlined-multiline-static"
-//           label="Multiline"
-//           multiline
-//           rows={4}
-//           defaultValue="Biography"
-//         />
-//     </Box>
-    
-//     <p1>
-//                  Enter your new Email.
-//         </p1>
-//     <Box
-//       component="form"
-//       sx={{
-//         '& > :not(style)': { m: 1, width: '50ch' },
-//       }}
-//       noValidate
-//       autoComplete="off"
-//     >
-//       <TextField id="outlined-basic" label="Email" variant="outlined" />
-//     </Box>
-
-//     <Button variant="contained" color="success">
-//         Update
-//       </Button>
-//     </div>
-
-//   );
-// }
-
-// export default Editbio
-
-// //23

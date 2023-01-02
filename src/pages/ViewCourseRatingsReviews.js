@@ -1,15 +1,46 @@
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Radio from '@mui/material/Radio';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import Label from '@mui/material/FormLabel';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 function ViewCourseRatingsReviews(){
 
 
-    const [Courses, setCourses] = useState('');
-    const [CourseID, setCourseID] = useState('');
+    const [courses, setCourses] = useState('');
+    const [courseID, setCourseID] = useState('');
     const [ratings, setratings] = useState('');
+    const [subject, setSubject] = useState('');
+    const [title, setTitle] = useState('');
+
 
 
 
     useEffect(() =>{
-   fetch('http://localhost:7000/api/filtercoursesubjectinstructor',
+   fetch('http://localhost:7000/api/instructorCourses',
      {
      method:'POST',
      headers:{
@@ -17,7 +48,7 @@ function ViewCourseRatingsReviews(){
      },
    
      body: JSON.stringify({
-       instructoruUsername:"inst1",
+       userName:"inst2",
      })
     
        })
@@ -26,7 +57,7 @@ function ViewCourseRatingsReviews(){
        })
        .then(data => {
          setCourses(data)
-         console.log(data)
+
          
   
        })
@@ -45,7 +76,7 @@ function ViewCourseRatingsReviews(){
           },
         
           body: JSON.stringify({
-            userName:"inst1",
+            instructorUsername:"inst1",
             courseID:courseID
           })
          
@@ -54,135 +85,72 @@ function ViewCourseRatingsReviews(){
               return res.json()
             })
             .then(data => {
-                setdata(data)
+                setratings(data)
                 console.log(data)
               })
           
         
               };
-   
+
+return (
+  <div>
+    <FormControl>
+      <FormLabel id="demo-controlled-radio-buttons-group">Courses</FormLabel>
+      <RadioGroup
+        aria-labelledby="demo-controlled-radio-buttons-group"
+        name="controlled-radio-buttons-group"
+        value={courseID}
+        onChange={(e)=> setCourseID(e.target.value)}
+
+      >
+           {courses && courses.map((course) => (
+        <FormControlLabel value={course.courseID} control={<Radio />} label={course.title}/>
+        ))}
+
+      </RadioGroup>
+    </FormControl>
+    <box>
+    <Button variant="contained" color="success" onClick={handleSubmit}>
+  Choose
+  </Button>
+
+  <h1>Rating
+        <h2></h2>
+      <Label>
+    {ratings.rating}
+  </Label>
+  </h1>
+    </box>
+
+    <><Box sx={{ minWidth: 120 }}>
+        </Box><TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Ratings</TableCell>
+                            <TableCell>Review</TableCell>
+
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {ratings.reviews&&ratings.reviews.map((rating) => (
+                            <TableRow
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell align="left">{rating.rating}</TableCell>
+                                <TableCell align="left">{rating.text}</TableCell>
+                                
+
+                            </TableRow>
+                        ))}
 
 
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import * as React from 'react';
-// import Box from '@mui/material/Box';
-// import InputLabel from '@mui/material/InputLabel';
-// import MenuItem from '@mui/material/MenuItem';
-// import FormControl from '@mui/material/FormControl';
-// import Select from '@mui/material/Select';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TableRow from '@mui/material/TableRow';
-// import Paper from '@mui/material/Paper';
-
-// function createData(name, calories, fat, carbs, protein) {
-//   return { name, calories, fat, carbs, protein };
-// }
-
-// const rows = [
-//   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-//   createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//   createData('Eclair', 262, 16.0, 24, 6.0),
-//   createData('Cupcake', 305, 3.7, 67, 4.3),
-//   createData('Gingerbread', 356, 16.0, 49, 3.9),
-// ];
-
-// function Ratingsandreviews() {
-//     const [age, setAge] = React.useState('');
-
-//     const handleChange = (event) => {
-//       setAge(event.target.value);
-//     };
+                    </TableBody>
+                </Table>
+            </TableContainer></>
+  </div>
   
-//     return (
-//       <><Box sx={{ minWidth: 120 }}>
-//             <FormControl fullWidth>
-//                 <InputLabel id="demo-simple-select-label">Age</InputLabel>
-//                 <Select
-//                     labelId="demo-simple-select-label"
-//                     id="demo-simple-select"
-//                     value={age}
-//                     label="Age"
-//                     onChange={handleChange}
-//                 >
-//                     <MenuItem value={10}>Ten</MenuItem>
-//                     <MenuItem value={20}>Twenty</MenuItem>
-//                     <MenuItem value={30}>Thirty</MenuItem>
-//                 </Select>
-//             </FormControl>
-//         </Box><TableContainer component={Paper}>
-//                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
-//                     <TableHead>
-//                         <TableRow>
-//                             <TableCell>Dessert (100g serving)</TableCell>
-//                             <TableCell align="right">Calories</TableCell>
-//                             <TableCell align="right">Fat&nbsp;(g)</TableCell>
-//                             <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-//                             <TableCell align="right">Protein&nbsp;(g)</TableCell>
-//                         </TableRow>
-//                     </TableHead>
-//                     <TableBody>
-//                         {rows.map((row) => (
-//                             <TableRow
-//                                 key={row.name}
-//                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-//                             >
-//                                 <TableCell component="th" scope="row">
-//                                     {row.name}
-//                                 </TableCell>
-//                                 <TableCell align="right">{row.calories}</TableCell>
-//                                 <TableCell align="right">{row.fat}</TableCell>
-//                                 <TableCell align="right">{row.carbs}</TableCell>
-//                                 <TableCell align="right">{row.protein}</TableCell>
-//                             </TableRow>
-//                         ))}
-//                     </TableBody>
-//                 </Table>
-//             </TableContainer></>
-//     );
-// }
-// export default Ratingsandreviews
-
-// // 17
+)}
+                    
+export default ViewCourseRatingsReviews
+ // 17

@@ -1,9 +1,31 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+//8
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import { useState } from "react";
-import { useEffect } from "react";
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Radio from '@mui/material/Radio';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 
 
@@ -37,14 +59,32 @@ function InstructorCourses(){
       })
   
     },[]);
-    return(
+    return (
+      <div>      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Titles</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {courses && courses.map((course) => (
+              <TableRow
+                key={course.courseID}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {course}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
 
-      <div>
-          <Button variant="outlined" color="error">
-        Decline
-      </Button>
-      </div>
-    )
+</div>
+
+    );
   
   
 
@@ -57,54 +97,5 @@ function InstructorCourses(){
 }
 
 
-// const styles = theme => ({
-//     root: {
-//       width: "100%",
-//       // maxWidth: 360,
-//       overflow: "auto",
-//       // maxHeight: 500,
-//       backgroundColor: theme.palette.background.paper
-//     }
-//   });
 
-//   class InstructorCourses extends React.Component {
-//     state = {
-//       checked: 0
-//     };
-  
-//     handleToggle = value => () => {
-//       this.setState({ checked: value });
-//     };
-  
-//     render() {
-//       const { classes } = this.props;
-
-//       return (
-//         <div>
-          
-//           <Button
-//                  type="submit"
-//                  variant="contained"
-//                  sx={{ mt: 3, mb: 2 }}
-//                >
-//                  View My Courses
-//                </Button>
-//                <h1></h1>
-//                <Button
-//                  type="submit"
-//                  variant="contained"
-//                  sx={{ mt: 3, mb: 2 }}
-//                >
-//                  Search My Courses
-//                </Button>
-//         </div>
-//       );
-//     }
-//   }
-
-//   InstructorCourses.propTypes = {
-//     classes: PropTypes.object.isRequired
-//   };
-  
-//   export default withStyles(styles)(InstructorCourses);
   

@@ -1,3 +1,4 @@
+//12
 import { useEffect, useState } from "react";
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
@@ -24,7 +25,7 @@ function AddAdministrator(){
  const handleSubmit = async(event) => {
   
         
-        fetch('http://localhost:7000/api/creatAdmin',
+        fetch('http://localhost:7000/api/createAdmin',
           {
           method:'POST',
           headers:{
