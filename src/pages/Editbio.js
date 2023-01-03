@@ -89,7 +89,7 @@ return (
                    fullWidth
                    name="password"
                    label="Mini Bio"
-                   type="password"
+                   type="mnmn"
                    id="password"
                    autoComplete="current-password"
                    value={miniBio}
