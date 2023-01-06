@@ -17,6 +17,10 @@ import CreateQuestion from './pages/CreateQuestion';
 import Createcourse from './pages/Createcourse';
 import Editbio from './pages/Editbio';
 import CoursesTitles from './pages/CoursesTitles';
+import Signup from './pages/Signup';
+import Policies from './pages/Policies';
+import Allcourses from './pages/Allcourses';
+import Pay from './pages/Pay';
 import Exam from './pages/Exam';
 import InstructorExam from './pages/InstructorExam';
 import InstructorCourses from './pages/InstructorCourses';
@@ -25,7 +29,7 @@ import InstructorCoursesSearch from './pages/InstructorCoursesSearch';
 
 
 import TraineeHome from'./pages/Trainees/TraineeHome';
-import AllCourses from './pages/Trainees/AllCourses'
+
 import TraineeCourse from './pages/Trainees/TraineeCourse';
 import SearchCourses from './pages/Trainees/SearchCourses';
 import CourseDetails from './pages/Course/CourseDetails';
@@ -49,6 +53,10 @@ function App() {
           <Route path ="/coursepreview" element ={<CoursePreview />}/>
           <Route path ="/Editsubtitle" element ={<Editsubtitle />}/>
           <Route path ="/editbio" element ={<Editbio />}/>
+          <Route path ="/signup" element ={<Signup />}/>
+          <Route path ="/allcourses" element ={<Allcourses />}/>
+          <Route path ="/pay" element ={<Pay />}/>
+          <Route path ="/Policies" element ={<Policies />}/>
           <Route path ="/filtercourses" element ={<Filtercourses />}/>
           <Route path ="/Filtercoursesubjectinstructor" element ={<Filtercoursesubjectinstructor />}/>
           <Route path ="/promotion" element ={<Promotion />}/>
