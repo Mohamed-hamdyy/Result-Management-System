@@ -10,6 +10,7 @@ const individualUser = require("../Models/IndividualUser");
 const Subtitle = require("../Models/Subtitle");
 const Exercise = require("../Models/Exercise");
 const Discount = require("../Models/Discount");
+const bcrypt= require("bcrypt")
 
 const creationRouter = express.Router();
 
@@ -47,6 +48,7 @@ creationRouter.post("/createInstructor", async (req, res) => {
   myArray = await Instructor.find({
     userName: userName,
   });
+  const password2= await bcrypt.hash(password,10)
 
   if (myArray.length == 0) {
     const instructor = await Instructor.create({
@@ -55,7 +57,7 @@ creationRouter.post("/createInstructor", async (req, res) => {
       lastName: "",
       country: "Morocco",
       miniBio: "",
-      password: password,
+      password: password2,
       ownedMoney: 0,
       userName: userName,
       rating: 1,
@@ -77,10 +79,12 @@ creationRouter.post("/createCorporateUser", async (req, res) => {
   myArray2 = await individualUser.find({
     userName: userName,
   });
+  const password2= await bcrypt.hash(password,10)
+
   if (myArray.length == 0 && myArray2.length == 0) {
     const user = await CorporateUser.create({
       userName: userName,
-      password: password,
+      password: password2,
       country:"Morocco",
     });
     console.log("User Created Successfully");
@@ -99,6 +103,8 @@ creationRouter.post("/createIndividualUser", async (req, res) => {
     email,
     password,
   } = req.body;
+  const password2= await bcrypt.hash(password,10)
+
   myArray = await corporateUser.find({
     userName: userName,
   });
@@ -120,7 +126,7 @@ creationRouter.post("/createIndividualUser", async (req, res) => {
       gender: gender,
       email:email,
       wallet: 0,
-      password: password,
+      password: password2,
       country: "Morocco",
     });
     console.log("User Created Successfully");
@@ -138,10 +144,12 @@ creationRouter.post("/createAdmin", async (req, res) => {
   myArray = await Admin.find({
     userName: userName,
   });
+  
   if (myArray.length == 0) {
+    const password2= await bcrypt.hash(password,10)
     const admin = await Admin.create({
       userName: userName,
-      password: password,
+      password: password2,
     });
     console.log("User craeted successfully");
   } else {
@@ -209,4 +217,18 @@ creationRouter.post("/createDiscount", async (req, res) => {
   var course2=await Course.findOneAndUpdate({courseID:courseID},{discounts:course.discounts})
 });
 
+
+creationRouter.post("/hashall", async (req, res) => {
+var password="123"
+password=  await bcrypt.hash(password,10)
+
+
+await Instructor.updateMany({},{password:password})
+await Admin.updateMany({},{password:password})
+
+await IndividualUser.updateMany({},{password:password})
+await CorporateUser.updateMany({},{password:password})
+console.log("done")
+
+});
 module.exports = creationRouter;
