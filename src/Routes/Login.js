@@ -60,21 +60,22 @@ creationRouter.post("/adminlogin", async (req, res) => {
 
   creationRouter.post("/adminverify", async (req, res) => {
     const { token} = req.body;
-
+    var instructor;
     if (token==null){
       res.json("redirect")
       return
     }
     const tok=token
     try{
-      const instructor=jwt.verify(tok,process.env.JWT_SECRET)
+       instructor=jwt.verify(tok,process.env.JWT_SECRET)
 
     }
     catch(e){
       res.json("redirect")
       return
     }
-    if(admin==null||instructor.role!="admin"){
+    if(instructor==null||instructor.role!="admin"){
+      console.log(instructor.role)
       res.json("redirect")
       return
     }else{
@@ -119,14 +120,14 @@ creationRouter.post("/adminlogin", async (req, res) => {
   });
   creationRouter.post("/instructorverify", async (req, res) => {
     const { token} = req.body;
-
+    var instructor
     if (token==null){
       res.json("redirect")
       return
     }
     const tok=token
     try{
-      const instructor=jwt.verify(tok,process.env.JWT_SECRET)
+       instructor=jwt.verify(tok,process.env.JWT_SECRET)
 
     }
     catch(e){
@@ -176,14 +177,14 @@ creationRouter.post("/adminlogin", async (req, res) => {
 
   creationRouter.post("/individualuserverify", async (req, res) => {
     const { token} = req.body;
-
+    var instructor
     if (token==null){
       res.json("redirect")
       return
     }
     const tok=token
     try{
-      const instructor=jwt.verify(tok,process.env.JWT_SECRET)
+       instructor=jwt.verify(tok,process.env.JWT_SECRET)
 
     }
     catch(e){
@@ -235,14 +236,14 @@ creationRouter.post("/adminlogin", async (req, res) => {
 
   creationRouter.post("/corporateuserverify", async (req, res) => {
     const { token} = req.body;
-
+    var instructor
     if (token==null){
       res.json("redirect")
       return
     }
     const tok=token
     try{
-      const instructor=jwt.verify(tok,process.env.JWT_SECRET)
+       instructor=jwt.verify(tok,process.env.JWT_SECRET)
 
     }
     catch(e){
