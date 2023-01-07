@@ -41,9 +41,9 @@ creationRouter.post("/adminlogin", async (req, res) => {
           if(err) {
             console.log(err)
   
-            return res.json({message:err})
+             res.json({message:err})
           }
-          return res.json({message:"Success",token:"Bearer "+token,role:"admin"})
+           res.json({message:"Success",token:"Bearer "+token,role:"admin"})
         }) 
         }
 
