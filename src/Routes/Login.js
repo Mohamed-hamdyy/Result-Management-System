@@ -65,7 +65,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
       return
     }
     const tok=token
-    const admin=jwt.verify(tok,process.env.JWT_PRIVATE)
+    const admin=jwt.verify(tok,process.env.JWT_SECRET)
 
     if(admin==null){
       res.json("redirect")
@@ -117,7 +117,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
       return
     }
     const tok=token
-    const instructor=jwt.verify(tok,process.env.JWT_PRIVATE)
+    const instructor=jwt.verify(tok,process.env.JWT_SECRET)
 
     if(instructor==null){
       res.json("redirect to home page")
@@ -167,7 +167,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
       return
     }
     const tok=token
-    const instructor=jwt.verify(tok,process.env.JWT_PRIVATE)
+    const instructor=jwt.verify(tok,process.env.JWT_SECRET)
 
     if(instructor==null){
       res.json("redirect to home page")
@@ -218,7 +218,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
       return
     }
     const tok=token
-    const instructor=jwt.verify(tok,process.env.JWT_PRIVATE)
+    const instructor=jwt.verify(tok,process.env.JWT_SECRET)
 
     if(instructor==null){
       res.json("redirect to home page")
