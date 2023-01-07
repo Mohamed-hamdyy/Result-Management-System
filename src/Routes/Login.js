@@ -43,7 +43,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
   
              res.json({message:err})
           }
-           res.json({message:"Success",token:"Bearer "+token,role:"admin"})
+           res.json({message:"Success",token:token,role:"admin"})
         }) 
         }
 
@@ -64,12 +64,15 @@ creationRouter.post("/adminlogin", async (req, res) => {
       res.json("redirect")
       return
     }
-    const tok=token.split(" ")[1]
+    const tok=token
     const admin=jwt.verify(tok,process.env.JWT_PRIVATE)
 
     if(admin==null){
-      res.json("redirect to home page")
+      res.json("redirect")
+    }else{
+      res.json("stay")
     }
+
 
   });
   
@@ -96,7 +99,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
   
             return res.json({message:err})
           }
-          return res.json({message:"Success",token:"Bearer "+token,role:"instructor",userName:userName})
+          return res.json({message:"Success",token:token,role:"instructor",userName:userName})
         }) 
         }
         else{
@@ -113,7 +116,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
       res.json("redirect")
       return
     }
-    const tok=token.split(" ")[1]
+    const tok=token
     const instructor=jwt.verify(tok,process.env.JWT_PRIVATE)
 
     if(instructor==null){
@@ -145,7 +148,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
   
             return res.json({message:err})
           }
-          return res.json({message:"Success",token:"Bearer "+token,role:"individual user",userName:userName})
+          return res.json({message:"Success",token:token,role:"individual user",userName:userName})
         }) 
         }
         else{
@@ -163,7 +166,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
       res.json("redirect")
       return
     }
-    const tok=token.split(" ")[1]
+    const tok=token
     const instructor=jwt.verify(tok,process.env.JWT_PRIVATE)
 
     if(instructor==null){
@@ -196,7 +199,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
   
             return res.json({message:err})
           }
-          return res.json({message:"Success",token:"Bearer "+token,role:"corporate user",userName:userName})
+          return res.json({message:"Success",token:token,role:"corporate user",userName:userName})
         }) 
         }
         else{
@@ -214,7 +217,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
       res.json("redirect")
       return
     }
-    const tok=token.split(" ")[1]
+    const tok=token
     const instructor=jwt.verify(tok,process.env.JWT_PRIVATE)
 
     if(instructor==null){
