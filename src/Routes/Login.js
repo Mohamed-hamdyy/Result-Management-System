@@ -30,6 +30,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
     const admin=await Admin.findOne({userName:userName})
     if(admin==null){
       res.sendStatus(404).json("username not found")
+      return
     }
    bcrypt.compare(password,admin.password).then(
       isCorrect=>{
@@ -43,14 +44,16 @@ creationRouter.post("/adminlogin", async (req, res) => {
             console.log(err)
   
              res.json({message:err})
+             return
           }
            res.json({message:"Success",token:token,role:"admin"})
+           return
         }) 
         }
 
         else{
           res.sendStatus(404).json("incorrect password ")
-
+          return
         }
              }
       
@@ -94,6 +97,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
     const admin=await Instructor.findOne({userName:userName})
     if(admin==null){
       res.sendStatus(404).json("username not found")
+      return
     }
    bcrypt.compare(password,admin.password).then(
       isCorrect=>{
@@ -107,12 +111,15 @@ creationRouter.post("/adminlogin", async (req, res) => {
             console.log(err)
   
             return res.json({message:err})
+            
+            
           }
           return res.json({message:"Success",token:token,role:"instructor",userName:userName})
         }) 
         }
         else{
           res.sendStatus(404).json("incorrect password ")
+          return
 
         }
              }  
@@ -149,6 +156,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
     const admin=await IndividualUser.findOne({userName:userName})
     if(admin==null){
       res.sendStatus(404).json("username not found")
+      return
     }
    bcrypt.compare(password,admin.password).then(
       isCorrect=>{
@@ -163,12 +171,15 @@ creationRouter.post("/adminlogin", async (req, res) => {
             console.log(err)
   
              res.json({message:err})
+             return
           }
            res.json({message:"Success",token:token,role:"individual user",userName:userName})
+           return
         }) 
         }
         else{
           res.sendStatus(404).json("incorrect password ")
+          return
 
         }
              }  
@@ -197,6 +208,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
       return
     }
     res.json({userName:instructor.userName})
+    return
 
   });
 
@@ -228,7 +240,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
         }
         else{
           res.sendStatus(404).json("incorrect password ")
-
+          return
         }
              }  
     )   
