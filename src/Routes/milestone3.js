@@ -53,6 +53,12 @@ creationRouter.post("/getwallet", async (req, res) => {
         var user =await CorporateUser.findOneAndUpdate({userName:userName},{requestedCourses:array})
         });
 
+
+    creationRouter.post("/getallrequests", async (req, res) => {
+        var request = await Request.create({})
+        res.json(request)
+        });
+
     creationRouter.post("/acceptrequest", async (req, res) => {
         const {userName,courseID}= req.body    
         var user =await CorporateUser.findOne({userName:userName})
@@ -78,8 +84,8 @@ creationRouter.post("/getwallet", async (req, res) => {
 
     creationRouter.post("/bestratings", async (req, res) => {
         var array = await Course.find({})
-        array.sort(function(a, b){return a.rating - b.rating})
-        console.log(array)
+        array.sort(function(a, b){return b.rating - a.rating})
+        res.send(array)
         });
             
 
