@@ -11,6 +11,7 @@ const IndividualUser = require("../Models/IndividualUser");
 const Admin = require("../Models/Admin");
 const individualUser = require("../Models/IndividualUser");
 const bcrypt= require("bcrypt")
+const instructor = require("../Models/Instructor")
 
 
 const creationRouter = express.Router();
@@ -65,10 +66,17 @@ creationRouter.post("/adminlogin", async (req, res) => {
       return
     }
     const tok=token
-    const admin=jwt.verify(tok,process.env.JWT_SECRET)
+    try{
+      const instructor=jwt.verify(tok,process.env.JWT_SECRET)
 
-    if(admin==null){
+    }
+    catch(e){
       res.json("redirect")
+      return
+    }
+    if(admin==null||instructor.role!="admin"){
+      res.json("redirect")
+      return
     }else{
       res.json("stay")
     }
@@ -117,10 +125,17 @@ creationRouter.post("/adminlogin", async (req, res) => {
       return
     }
     const tok=token
-    const instructor=jwt.verify(tok,process.env.JWT_SECRET)
+    try{
+      const instructor=jwt.verify(tok,process.env.JWT_SECRET)
 
-    if(instructor==null){
+    }
+    catch(e){
       res.json("redirect")
+      return
+    }
+    if(instructor==null||instructor.role!="instructor"){
+      res.json("redirect")
+      return
     }
     res.json({userName:instructor.userName})
 
@@ -146,9 +161,9 @@ creationRouter.post("/adminlogin", async (req, res) => {
           if(err) {
             console.log(err)
   
-            return res.json({message:err})
+             res.json({message:err})
           }
-          return res.json({message:"Success",token:token,role:"individual user",userName:userName})
+           res.json({message:"Success",token:token,role:"individual user",userName:userName})
         }) 
         }
         else{
@@ -167,10 +182,18 @@ creationRouter.post("/adminlogin", async (req, res) => {
       return
     }
     const tok=token
-    const instructor=jwt.verify(tok,process.env.JWT_SECRET)
+    try{
+      const instructor=jwt.verify(tok,process.env.JWT_SECRET)
 
-    if(instructor==null){
+    }
+    catch(e){
       res.json("redirect")
+      return
+    }
+
+    if(instructor==null||instructor.role!="individual user"){
+      res.json("redirect")
+      return
     }
     res.json({userName:instructor.userName})
 
@@ -218,10 +241,17 @@ creationRouter.post("/adminlogin", async (req, res) => {
       return
     }
     const tok=token
-    const instructor=jwt.verify(tok,process.env.JWT_SECRET)
+    try{
+      const instructor=jwt.verify(tok,process.env.JWT_SECRET)
 
-    if(instructor==null){
+    }
+    catch(e){
       res.json("redirect")
+      return
+    }
+    if(instructor==null||instructor.role!="corporate user"){
+      res.json("redirect")
+      return
     }
     res.json({userName:instructor.userName})
 
