@@ -14,6 +14,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useNavigate } from "react-router-dom";
+
 
 
 
@@ -21,6 +23,38 @@ function AddAdministrator(){
 
   const [password, setpassword] = useState('');
   const [username, setusername] = useState('');
+  const navigate = useNavigate()
+
+
+  function handleClick1() {
+      navigate("/AdminLogin");
+    }
+
+ useEffect(() =>{
+        fetch('http://localhost:7000/api/adminverify',
+          {
+          method:'POST',
+          headers:{
+            "Content-type":"application/json; charset=UTF-8"
+          },
+        
+          body: JSON.stringify({
+            token:window.localStorage.getItem('token')
+          })
+         
+            })
+            .then(res => {
+              return res.json()
+            })
+            .then(data => {
+              
+              if(data === "redirect"){
+                  handleClick1();
+              }
+       
+            })
+        
+          },[]);
 
  const handleSubmit = async(event) => {
   

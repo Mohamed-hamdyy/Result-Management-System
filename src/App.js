@@ -13,6 +13,7 @@ import Changepass from './pages/Changepass';
 import ViewCourseRatingsReviews from './pages/ViewCourseRatingsReviews';
 import ViewPersonalRatingsReviews from './pages/viewPersonalRatingsReviews';
 import Filtercoursesubjectinstructor from './pages/Filtercoursesubjectinstructor';
+import LandingPage from './pages/LandingPage';
 import CreateQuestion from './pages/CreateQuestion';
 import Createcourse from './pages/Createcourse';
 import Editbio from './pages/Editbio';
@@ -21,6 +22,12 @@ import Signup from './pages/Signup';
 import Policies from './pages/Policies';
 import Allcourses from './pages/Allcourses';
 import Pay from './pages/Pay';
+import Welcome from './pages/Welcome';
+import AdminLogin from './pages/AdminLogin';
+import IndividualLogin from './pages/IndividualLogin';
+import InstructorLogin from './pages/InstructorLogin';
+import CorporateLogin from './pages/CorporateLogin';
+import Requests from './pages/Requests';
 import Exam from './pages/Exam';
 import InstructorExam from './pages/InstructorExam';
 import InstructorCourses from './pages/InstructorCourses';
@@ -43,11 +50,17 @@ function App() {
       <div className='pages'>
         <Routes>
 
-          <Route path ="/" element ={<SignIn />}/>
+          <Route path ="/" element ={<Welcome />}/>
+          <Route path ="/AdminLogin" element ={<AdminLogin />}/>
+          <Route path ="/CorporateLogin" element ={<CorporateLogin />}/>
+          <Route path ="/IndividualLogin" element ={<IndividualLogin />}/>
+          <Route path ="/InstructorLogin" element ={<InstructorLogin />}/>
           <Route path ="/AddInstructor" element ={<AddInstructor />}/>
           <Route path ="/AddCorporateTrainees" element ={<AddCorporateTrainees />}/>
           <Route path ="/addadmin" element ={<AddAdministrator />}/>
           <Route path ="/contract" element ={<Contract />}/>
+          <Route path ="/requests" element ={<Requests />}/>
+          <Route path ="/landingpage" element ={<LandingPage />}/>
           <Route path ="/CoursesTitles" element ={<CoursesTitles />}/>
           <Route path ="/createcourse" element ={<Createcourse />}/>
           <Route path ="/coursepreview" element ={<CoursePreview />}/>

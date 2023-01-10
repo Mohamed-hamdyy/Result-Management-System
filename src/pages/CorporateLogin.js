@@ -15,7 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function InstructorLogin(){
+function CorporateLogin(){
 
     const [password, setpassword] = useState('');
     const [username, setusername] = useState('');
@@ -26,14 +26,14 @@ function InstructorLogin(){
 
 
     function handleClick1() {
-        navigate("/forgetpass");
+        navigate("/addadmin");
       }
 
   
    const handleSubmit = async(event) => {
     
           
-          fetch('http://localhost:7000/api/instructorlogin',
+          fetch('http://localhost:7000/api/corporateuserlogin',
             {
             method:'POST',
             headers:{
@@ -50,7 +50,6 @@ function InstructorLogin(){
                 return res.json()
               })
               .then(data => {
-                console.log(data)
                 setdata(data)
                 token=data.token;
                 role= data.role;
@@ -129,4 +128,4 @@ function InstructorLogin(){
         );
   
   }
-export default InstructorLogin
+export default CorporateLogin
