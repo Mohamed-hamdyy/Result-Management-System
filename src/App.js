@@ -51,6 +51,10 @@ const hamdyRouter = require("./Routes/HamdyRoutes");
 
 const HosnyandHossamm2 = require("./Routes/HosnyandHossamm2");
 const HamdyandEyadm2 = require("./Routes/HamdyandEyadm2");
+const Login = require("./Routes/Login");
+const m3 = require("./Routes/milestone3");
+
+
 
 
 app.use("/api", HamdyandEyadm2);
@@ -60,6 +64,10 @@ app.use("/api", Hosnyrouter);
 app.use("/api", userrouter);
 app.use("/api", hamdyRouter);
 app.use("/api", HosnyandHossamm2);
+app.use("/api", Login);
+app.use("/api", m3);
+
+
 
 
 

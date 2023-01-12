@@ -158,7 +158,7 @@ creationRouter.post("/getcoursesembeddedIndividual",async(req,res)=>{
 
 
 
-creationRouter.post("/getcoursesembeddedCO0rporate",async(req,res)=>{
+creationRouter.post("/getcoursesembeddedCorporate",async(req,res)=>{
     const{userName}=req.body;
 
     var indviduser= await corporateUser.findOne({userName:userName})
