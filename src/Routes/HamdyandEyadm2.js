@@ -123,7 +123,7 @@ creationRouter.post("/getcoursesembeddedall",async(req,res)=>{
 
 
 creationRouter.post("/getcoursesembeddedIndividual",async(req,res)=>{
-    const{userName}=req.body;
+    const{userName}=req.body.userName;
 
     var indviduser= await individualUser.findOne({userName:userName})
     var coursesarr= indviduser.registeredCourses
