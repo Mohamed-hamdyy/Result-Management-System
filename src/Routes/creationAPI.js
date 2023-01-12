@@ -176,7 +176,7 @@ creationRouter.post("/createSubtitle", async (req, res) => {
 });
 
 creationRouter.post("/createExercise", async (req, res) => {
-  const {  question, chice1,choice2,choice3,choice4,answer } = req.body;
+  const {  question, choice1,choice2,choice3,choice4,answer } = req.body;
 
   myArray = await Exercise.find({
     exerciseID: exerciseID,
