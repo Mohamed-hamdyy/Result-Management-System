@@ -16,7 +16,8 @@ background-color:aliceblue ;
 width:80vh;
 border-radius: 20px;
 padding-left: 10px;
-
+margin-left: 20px;
+padding-bottom: 10px;
 }
 .ratetext{
 color:blueviolet;
@@ -88,7 +89,7 @@ li {
   margin: 0 auto;
 
   /* Dimensions  */
-  width: 50%; /* Can be in percentage also. */
+  width: 70%; /* Can be in percentage also. */
   height: auto;
   margin-top: 64px;
 
@@ -101,17 +102,31 @@ li {
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 
-button {
+/* button {
   background-color: red; /* Green */
-  border: none;
+  /* border: none;
   color: white;
   padding: 16px 24px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  font-weight: bold;
-.CountryDiv{
+  font-weight: bold; 
+}
+  */
+
+ */
+.columnExercise{
+display:flex ;
+flex-direction: column;
+
+
+}
+.Answers{
+  display:flex;
+  flex-direction: row;
+}
+ .CountryDiv{
 width:30%;
 height:auto;
 padding:2rem 2rem ;
@@ -128,3 +143,4 @@ font-weight: 400;
 color:blueviolet;
 border-radius: 20px;
 
+}

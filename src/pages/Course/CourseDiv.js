@@ -5,6 +5,7 @@ import {BiDownArrow} from 'react-icons/bi';
 import starImg from "../../images/star.png"
 import './Course.css';
 import { ContentCutOutlined } from '@mui/icons-material';
+import Star from '../../components/Star';
 
 export function CourseDiv(props) {
      const navigate = useNavigate();
@@ -94,12 +95,19 @@ export function CourseDiv(props) {
           
                   { <div className="NewCourse_Prices">
                   <h2 className='NewCourse_price'>{  Math.floor(props.course.price*fares[chosenCountry])} {currency[chosenCountry]}</h2>
-                  {/* <h2 className='NewCourse_price2'>   {dis} %</h2>  */}
+                 {/* {<h2 className='NewCourse_price2'>   {props.course.discountsarr[0].percentage} %</h2>  } */}
                 </div> } 
            
               <div className="NewCourse_StarsHoursPrice">
                 <div className="starImgDiv">
-                  {stars(props.course.rating).map((num)=> <img className="starImg" src={starImg} alt="."/>)}
+                  {  <span>
+      {[1, 2, 3, 4, 5].map((value) => (
+        <Star
+          key={value}
+          filled={value <= props.course.rating}
+        />
+      ))}
+           </span>}
                 </div>
 
               <div className="NewCourse_Data_Price_Hours">

@@ -3,9 +3,12 @@ import Star from "./Star";
 import { useState } from "react";
 
 function RateCourse({ onChange },props) {
-  const[id,setID]=useState(1);
+  const[id,setID]=useState(20);
   const [rating, setRating] = useState(0);
   const[review,setReview]=useState("");
+  const [rated,setrated]=useState(false);
+
+
   const changeRating = (newRating) => {
     setRating(newRating);
     onChange?.(newRating);
@@ -40,7 +43,7 @@ const rateCourse= async (a,b,c)=>{
 const handleRateCourse=async (event)=>{
   event.preventDefault();
   await(rateCourse(id,rating,review))
-
+  setrated(true);
 
 }
 
@@ -80,7 +83,10 @@ const handleRateCourse=async (event)=>{
           Submit
         </button>
         </div>
-</div>
+
+      {  rated && <h1 className="ratetext">course Rated successfully</h1> }
+
+                </div>
   );
 }
 
