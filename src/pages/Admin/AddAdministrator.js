@@ -27,7 +27,7 @@ function AddAdministrator(){
 
 
   function handleClick1() {
-      navigate("/AdminLogin");
+      navigate("/");
     }
 
  useEffect(() =>{

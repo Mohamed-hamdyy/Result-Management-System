@@ -22,6 +22,38 @@ function AddInstructor(){
 
   const [password, setpassword] = useState('');
   const [username, setusername] = useState('');
+  const navigate = useNavigate()
+
+  function handleClick1() {
+    navigate("/");
+  }
+
+useEffect(() =>{
+      fetch('http://localhost:7000/api/adminverify',
+        {
+        method:'POST',
+        headers:{
+          "Content-type":"application/json; charset=UTF-8"
+        },
+      
+        body: JSON.stringify({
+          token:window.localStorage.getItem('token')
+        })
+       
+          })
+          .then(res => {
+            return res.json()
+          })
+          .then(data => {
+            
+            if(data === "redirect"){
+                handleClick1();
+            }
+     
+          })
+      
+        },[]);
+
 
 
 
