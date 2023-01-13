@@ -28,6 +28,7 @@ import IndividualLogin from './pages/Login/IndividualLogin';
 import InstructorLogin from './pages/Login/InstructorLogin';
 import CorporateLogin from './pages/Login/CorporateLogin';
 import Requests from './pages/Requests';
+import NestedList from './pages/Admin/Adminpage';
 import Exam from './pages/Exam';
 import InstructorExam from './pages/InstructorExam';
 import InstructorCourses from './pages/InstructorCourses';
@@ -57,6 +58,7 @@ function App() {
         <Routes>
 
           <Route path ="/" element ={<Welcome />}/>
+          <Route path ="/adminpage" element ={<NestedList />}/>
           <Route path ="/AdminLogin" element ={<AdminLogin />}/>
           <Route path ="/CorporateLogin" element ={<CorporateLogin />}/>
           <Route path ="/IndividualLogin" element ={<IndividualLogin />}/>
