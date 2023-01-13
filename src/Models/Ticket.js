@@ -9,8 +9,9 @@ const ticketSchema = new Schema({
       },
 
     ticketStatus:{
-        type:Boolean,
+        type:String,
         required:true,
+        default:"unseen",
     },
 
     ticketType:{
