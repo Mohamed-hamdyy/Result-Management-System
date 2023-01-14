@@ -26,8 +26,21 @@ function AdminLogin(){
 
 
     function handleClick1() {
-        navigate("/forgetpass");
+      window.localStorage.clear();
+        navigate("/");
       }
+      function handleClick12() {
+        if(window.localStorage.getItem('role')=== "individual user")
+          navigate("/Individualpage");
+          else if(window.localStorage.getItem('role')=== "admin")
+          navigate("/adminpage");
+         else if(window.localStorage.getItem('role')=== "instructor")
+          navigate("/Instructorpage");
+         else if(window.localStorage.getItem('role')=== "corporate user")
+          navigate("/Corporatepage");
+          else
+          navigate("/");
+        }
 
   
    const handleSubmit = async(event) => {
@@ -67,10 +80,23 @@ function AdminLogin(){
                 };
   return (
     <div>
-  
+       <div>
+       <Button variant="contained" style={{float: 'right'}} color="primary" className="float-right" onClick={handleClick1}>
+  Log Out
+  </Button>
+      <Button variant="contained" style={{float: 'left'}} color="primary" className="float-right" onClick={handleClick12}>
+  Home
+  </Button>
+       </div>
+       <br>
+       </br>
+  <div>
+    <br>
+    </br>
   <p1>
-   Enter New Username
+   Enter Username
     </p1>
+  </div>
     <Box
     component="form"
     sx={{
@@ -95,7 +121,7 @@ function AdminLogin(){
     
     </Box>
     <p1>
-    Change your Password
+    Enter Password
     </p1>
     <Box
     component="form"
@@ -122,7 +148,7 @@ function AdminLogin(){
     </Box>
     
     <Button variant="contained" color="success" onClick={handleSubmit}>
-    Update
+    Login
     </Button>
       </div>
         );

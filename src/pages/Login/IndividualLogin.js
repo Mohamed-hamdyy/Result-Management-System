@@ -22,18 +22,18 @@ function IndividualLogin(){
     const [data, setdata] = useState('');
     let token='';
     let role = '';
+    let userName ='';
     const navigate = useNavigate()
 
-
     function handleClick1() {
-        navigate("/addadmin");
+        navigate("/Individualpage");
       }
 
   
    const handleSubmit = async(event) => {
     
           
-          fetch('http://localhost:7000/api/instructorlogin',
+          fetch('http://localhost:7000/api/individualuserlogin',
             {
             method:'POST',
             headers:{
@@ -53,10 +53,12 @@ function IndividualLogin(){
                 setdata(data)
                 token=data.token;
                 role= data.role;
+                userName= data.userName
                 if(data.message === "Success"){
                     window.localStorage.setItem('token', token);
                     window.localStorage.setItem('role', role);
                     window.localStorage.setItem('id', 'null');
+                    window.localStorage.setItem('userName', userName);
                     handleClick1();
                 }
              
@@ -69,7 +71,7 @@ function IndividualLogin(){
     <div>
   
   <p1>
-   Enter New Username
+   Enter Username
     </p1>
     <Box
     component="form"
@@ -95,7 +97,7 @@ function IndividualLogin(){
     
     </Box>
     <p1>
-    Change your Password
+    Enter Password
     </p1>
     <Box
     component="form"

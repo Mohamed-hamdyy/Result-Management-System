@@ -10,12 +10,29 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useState } from 'react';
 import { useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 function ViewPersonalRatingsReviews(){
 
     const [ratings, setratings] = useState('');
     const [userName, setUserName] = useState('');
 
+    const navigate = useNavigate();
+    function handleClick1() {
+      if(window.localStorage.getItem('role')=== "individual user")
+        navigate("/Individualpage");
+        else if(window.localStorage.getItem('role')=== "admin")
+        navigate("/adminpage");
+       else if(window.localStorage.getItem('role')=== "instructor")
+        navigate("/Instructorpage");
+       else if(window.localStorage.getItem('role')=== "corporate user")
+        navigate("/Corporatepage");
+        else
+        navigate("/");
+      }
+    function handleClick2() {
+      window.localStorage.clear();
+        navigate("/");
+      }
 
 
     useEffect(() =>{
@@ -27,7 +44,7 @@ function ViewPersonalRatingsReviews(){
           },
         
           body: JSON.stringify({
-            instructorUsername:"OMARK",
+            instructorUsername:window.localStorage.getItem('userName'),
           })
          
             })

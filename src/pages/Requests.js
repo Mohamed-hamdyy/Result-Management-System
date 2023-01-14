@@ -18,11 +18,18 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { useNavigate } from 'react-router-dom';
 
 function Requests(){
 
     const [requests, setrequests] = useState('');
     const [current, setcurrent] = useState('');
+    const navigate = useNavigate();
+    
+    function handleClick1() {
+      window.localStorage.clear();
+        navigate("/");
+      }
 
     useEffect(() =>{
       fetch('http://localhost:7000/api/getallrequests',

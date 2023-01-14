@@ -29,6 +29,8 @@ import InstructorLogin from './pages/Login/InstructorLogin';
 import CorporateLogin from './pages/Login/CorporateLogin';
 import Requests from './pages/Requests';
 import NestedList from './pages/Admin/Adminpage';
+import Instructorpage from './pages/Instructor/Instructorpage';
+import MostViewed from './pages/MostViewed';
 import Exam from './pages/Exam';
 import InstructorExam from './pages/InstructorExam';
 
@@ -51,6 +53,7 @@ function App() {
 
           <Route path ="/" element ={<Welcome />}/>
           <Route path ="/adminpage" element ={<NestedList />}/>
+          <Route path ="/instructorpage" element ={<Instructorpage />}/>
           <Route path ="/AdminLogin" element ={<AdminLogin />}/>
           <Route path ="/CorporateLogin" element ={<CorporateLogin />}/>
           <Route path ="/IndividualLogin" element ={<IndividualLogin />}/>
@@ -58,6 +61,7 @@ function App() {
           <Route path ="/AddInstructor" element ={<AddInstructor />}/>
           <Route path ="/AddCorporateTrainees" element ={<AddCorporateTrainees />}/>
           <Route path ="/addadmin" element ={<AddAdministrator />}/>
+          <Route path ="/mostviewed" element ={<MostViewed />}/>
           <Route path ="/contract" element ={<Contract />}/>
           <Route path ="/requests" element ={<Requests />}/>
           <Route path ="/landingpage" element ={<LandingPage />}/>

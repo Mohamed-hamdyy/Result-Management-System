@@ -22,11 +22,12 @@ function InstructorLogin(){
     const [data, setdata] = useState('');
     let token='';
     let role = '';
+    let userName ='';
     const navigate = useNavigate()
 
 
     function handleClick1() {
-        navigate("/forgetpass");
+        navigate("/Instructorpage");
       }
 
   
@@ -50,14 +51,15 @@ function InstructorLogin(){
                 return res.json()
               })
               .then(data => {
-                console.log(data)
                 setdata(data)
                 token=data.token;
                 role= data.role;
+                userName= data.userName
                 if(data.message === "Success"){
                     window.localStorage.setItem('token', token);
                     window.localStorage.setItem('role', role);
                     window.localStorage.setItem('id', 'null');
+                    window.localStorage.setItem('userName', userName);
                     handleClick1();
                 }
              
@@ -70,7 +72,7 @@ function InstructorLogin(){
     <div>
   
   <p1>
-   Enter New Username
+   Enter Username
     </p1>
     <Box
     component="form"
@@ -96,7 +98,7 @@ function InstructorLogin(){
     
     </Box>
     <p1>
-    Change your Password
+    Enter Password
     </p1>
     <Box
     component="form"

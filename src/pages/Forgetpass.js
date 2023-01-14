@@ -25,6 +25,18 @@ function Forgetpass() {
 
 
   function handleClick1() {
+    if(window.localStorage.getItem('role')=== "individual user")
+      navigate("/Individualpage");
+      if(window.localStorage.getItem('role')=== "admin")
+      navigate("/adminpage");
+      if(window.localStorage.getItem('role')=== "instructor")
+      navigate("/Instructorpage");
+      if(window.localStorage.getItem('role')=== "corporate user")
+      navigate("/Corporatepage");
+
+    }
+  function handleClick2() {
+    window.localStorage.clear();
       navigate("/");
     }
 
@@ -74,10 +86,6 @@ useEffect(() =>{
       )
       .then(([dataadmin,datacorporate,datainstructor]) => {
 
-
-        if(dataadmin === "redirect" && datacorporate === "redirect" && datainstructor === "redirect"){
-          handleClick1();
-        }
       })
   
     },[]);

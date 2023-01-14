@@ -12,12 +12,27 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 function Editbio(){
 
   const [miniBio, setminiBio] = useState('');
   const [email, setemail] = useState('');
+  const navigate = useNavigate();
+  function handleClick1() {
+    if(window.localStorage.getItem('role')=== "individual user")
+      navigate("/Individualpage");
+      if(window.localStorage.getItem('role')=== "admin")
+      navigate("/adminpage");
+      if(window.localStorage.getItem('role')=== "instructor")
+      navigate("/Instructorpage");
+      if(window.localStorage.getItem('role')=== "corporate user")
+      navigate("/Corporatepage");
 
+    }
+  function handleClick2() {
+    window.localStorage.clear();
+      navigate("/");
+    }
 
  const handleSubmit = async(event) => {
   
@@ -30,7 +45,7 @@ function Editbio(){
           },
         
           body: JSON.stringify({
-            instructorUsername:"inst1",
+            instructorUsername:window.localStorage.getItem('userName'),
             miniBio:miniBio,
             email:email
           })

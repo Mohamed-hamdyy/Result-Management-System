@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-
+import { useNavigate } from 'react-router-dom';
 
 function Filtercoursesubjectinstructor(){
 
@@ -22,7 +22,22 @@ function Filtercoursesubjectinstructor(){
     const [title, settitle] = useState('');
     const [data, setdata] = useState('');
 
+    const navigate = useNavigate();
+    function handleClick1() {
+      if(window.localStorage.getItem('role')=== "individual user")
+        navigate("/Individualpage");
+        if(window.localStorage.getItem('role')=== "admin")
+        navigate("/adminpage");
+        if(window.localStorage.getItem('role')=== "instructor")
+        navigate("/Instructorpage");
+        if(window.localStorage.getItem('role')=== "corporate user")
+        navigate("/Corporatepage");
 
+      }
+    function handleClick2() {
+      window.localStorage.clear();
+        navigate("/");
+      }
     
 
 
@@ -37,7 +52,7 @@ function Filtercoursesubjectinstructor(){
               },
             
               body: JSON.stringify({
-                instructorUsername:"inst1",
+                instructorUsername:window.localStorage.getItem('userName'),
                 title:title,
                 subject:subject
              

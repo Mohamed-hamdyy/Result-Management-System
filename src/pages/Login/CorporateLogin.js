@@ -22,6 +22,7 @@ function CorporateLogin(){
     const [data, setdata] = useState('');
     let token='';
     let role = '';
+    let userName ='';
     const navigate = useNavigate()
 
 
@@ -53,10 +54,12 @@ function CorporateLogin(){
                 setdata(data)
                 token=data.token;
                 role= data.role;
+                userName= data.userName
                 if(data.message === "Success"){
                     window.localStorage.setItem('token', token);
                     window.localStorage.setItem('role', role);
                     window.localStorage.setItem('id', 'null');
+                    window.localStorage.setItem('userName', userName);
                     handleClick1();
                 }
              

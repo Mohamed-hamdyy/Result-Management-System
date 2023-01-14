@@ -13,6 +13,7 @@ import Button from '@mui/material/Button';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
+import { useNavigate } from 'react-router-dom';
 function Signup(){
 
     const [username, setusername] = useState('');
@@ -21,24 +22,18 @@ function Signup(){
     const [firstname, setfirstname] = useState('');
     const [lastname, setlastname] = useState('');
     const [gender, setgender] = useState('');
-    const [checked, setChecked] = useState(true);
-  
-
+    const [checked, setChecked] = useState(false);
+    const navigate = useNavigate()
     const handleChange = (event) => {
       setChecked(event.target.checked);
     };
-
-
     const handleSubmit = async(event) => {
-   
-         
       fetch('http://localhost:7000/api/createIndividualUser',
         {
         method:'POST',
         headers:{
           "Content-type":"application/json; charset=UTF-8"
         },
-      
         body: JSON.stringify({
           userName:username,
           firstName:firstname,
@@ -56,6 +51,8 @@ function Signup(){
       if(checked)
       {
           handleSubmit();
+          navigate("/");
+
       }
       return false;
       }

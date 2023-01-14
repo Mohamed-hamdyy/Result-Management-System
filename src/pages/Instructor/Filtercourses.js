@@ -13,7 +13,7 @@ import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -25,7 +25,22 @@ function Filtercourses(){
     const [priceto, setpriceto] = useState('');
     const [courses, setcourses] = useState('');
     const [titles, settitles] = useState('');
+    const navigate = useNavigate();
+    function handleClick1() {
+      if(window.localStorage.getItem('role')=== "individual user")
+        navigate("/Individualpage");
+        if(window.localStorage.getItem('role')=== "admin")
+        navigate("/adminpage");
+        if(window.localStorage.getItem('role')=== "instructor")
+        navigate("/Instructorpage");
+        if(window.localStorage.getItem('role')=== "corporate user")
+        navigate("/Corporatepage");
 
+      }
+    function handleClick2() {
+      window.localStorage.clear();
+        navigate("/");
+      }
           const handleSubmit = async(event) => {
   
         
@@ -37,7 +52,7 @@ function Filtercourses(){
               },
             
               body: JSON.stringify({
-                userName:"inst1",
+                userName:window.localStorage.getItem('userName'),
                 pricefrom:pricefrom,
                 priceto:priceto,
                 subject:subject

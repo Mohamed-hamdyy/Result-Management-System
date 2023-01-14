@@ -26,6 +26,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useNavigate } from 'react-router-dom';
 
 function ViewCourseRatingsReviews(){
 
@@ -36,6 +37,22 @@ function ViewCourseRatingsReviews(){
     const [subject, setSubject] = useState('');
     const [title, setTitle] = useState('');
 
+    const navigate = useNavigate();
+    function handleClick1() {
+      if(window.localStorage.getItem('role')=== "individual user")
+        navigate("/Individualpage");
+        if(window.localStorage.getItem('role')=== "admin")
+        navigate("/adminpage");
+        if(window.localStorage.getItem('role')=== "instructor")
+        navigate("/Instructorpage");
+        if(window.localStorage.getItem('role')=== "corporate user")
+        navigate("/Corporatepage");
+
+      }
+    function handleClick2() {
+      window.localStorage.clear();
+        navigate("/");
+      }
 
 
 
@@ -48,7 +65,7 @@ function ViewCourseRatingsReviews(){
      },
    
      body: JSON.stringify({
-       userName:"inst2",
+       userName:window.localStorage.getItem('userName'),
      })
     
        })
@@ -76,7 +93,7 @@ function ViewCourseRatingsReviews(){
           },
         
           body: JSON.stringify({
-            instructorUsername:"inst1",
+            instructorUsername:window.localStorage.getItem('userName'),
             courseID:courseID
           })
          

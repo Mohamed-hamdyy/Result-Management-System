@@ -26,6 +26,23 @@ function Allcourses(){
     const [Courses, setCourses] = useState('');
     const [current, setcurrent] = useState('');
     const navigate = useNavigate();
+  
+    function handleClick1() {
+      if(window.localStorage.getItem('role')=== "individual user")
+        navigate("/Individualpage");
+        if(window.localStorage.getItem('role')=== "admin")
+        navigate("/adminpage");
+        if(window.localStorage.getItem('role')=== "instructor")
+        navigate("/Instructorpage");
+        if(window.localStorage.getItem('role')=== "corporate user")
+        navigate("/Corporatepage");
+
+      }
+
+    function handleClick2() {
+      window.localStorage.clear();
+        navigate("/");
+      }
 
     useEffect(() =>{
         fetch('http://localhost:7000/api/instructorCourses',
@@ -36,7 +53,7 @@ function Allcourses(){
           },
         
           body: JSON.stringify({
-            userName:"inst1",
+            userName:window.localStorage.getItem('userName'),
           })
          
             })
@@ -46,8 +63,6 @@ function Allcourses(){
             .then(data => {
               setCourses(data)
               console.log(data)
-              
-       
             })
         
           },[]);

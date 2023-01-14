@@ -18,12 +18,27 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-
+import { useNavigate } from 'react-router-dom';
 
 function CoursesTitles(){
 
     const [Courses, setCourses] = useState('');
+    const navigate = useNavigate();
+    function handleClick1() {
+      if(window.localStorage.getItem('role')=== "individual user")
+        navigate("/Individualpage");
+        if(window.localStorage.getItem('role')=== "admin")
+        navigate("/adminpage");
+        if(window.localStorage.getItem('role')=== "instructor")
+        navigate("/Instructorpage");
+        if(window.localStorage.getItem('role')=== "corporate user")
+        navigate("/Corporatepage");
 
+      }
+    function handleClick2() {
+      window.localStorage.clear();
+        navigate("/");
+      }
 
     useEffect(() =>{
         fetch('http://localhost:7000/api/instructorCourses',
@@ -34,7 +49,7 @@ function CoursesTitles(){
           },
         
           body: JSON.stringify({
-            userName:"inst1",
+            userName:window.localStorage.getItem('userName')
           })
          
             })
