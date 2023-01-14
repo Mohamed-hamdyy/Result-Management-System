@@ -33,6 +33,13 @@ import Instructorpage from './pages/Instructor/Instructorpage';
 import MostViewed from './pages/MostViewed';
 import Exam from './pages/Exam';
 import InstructorExam from './pages/InstructorExam';
+import InstructorCourses from './pages/InstructorCourses';
+import InstructorCoursesTable from './pages/InstructorCoursesTable';
+import InstructorCoursesSearch from './pages/InstructorCoursesSearch';
+import Exercise from './components/Exercise'
+import CourseVideo from './pages/Course/CourseVideo';
+import Certificate from './pages/Course/Certificate';
+import CourseSub from './pages/Course/CourseSub';
 
 
 
@@ -41,6 +48,7 @@ import TraineeHome from'./pages/Trainees/TraineeHome';
 import TraineeCourse from './pages/Trainees/TraineeCourse';
 import SearchCourses from './pages/Trainees/SearchCourses';
 import CourseDetails from './pages/Course/CourseDetails';
+import { red } from '@mui/material/colors';
 
 
 
@@ -60,6 +68,16 @@ function App() {
           <Route path ="/InstructorLogin" element ={<InstructorLogin />}/>
           <Route path ="/AddInstructor" element ={<AddInstructor />}/>
           <Route path ="/AddCorporateTrainees" element ={<AddCorporateTrainees />}/>
+          <Route path ="/CourseExercise" element ={<Exercise />}/>
+          <Route path ="/TraineeCourse" element ={<TraineeCourse />}/>
+          <Route path ="/TraineeHome" element ={<TraineeHome />}/>
+          <Route path ="/AllCourses" element ={<AllCourses />}/>
+          <Route path ="/SearchCourse" element ={<SearchCourses />}/>
+          <Route path ="/CourseSub" element ={<CourseSub />}/>
+          <Route path ="/CourseVideo" element ={<CourseVideo />}/>
+                    
+
+
           <Route path ="/addadmin" element ={<AddAdministrator />}/>
           <Route path ="/mostviewed" element ={<MostViewed />}/>
           <Route path ="/contract" element ={<Contract />}/>

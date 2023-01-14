@@ -1,5 +1,4 @@
 import CourseDiv from "../Course/CourseDiv";
-import {AiOutlineSearch} from 'react-icons/ai'; 
 // import { Slider } from "@mui/material";
 import Slider from '@mui/material/Slider';
 import Box from '@mui/material/Box';
@@ -23,7 +22,15 @@ export function AllCourses(){
     useEffect(()=>{
         const api="http://localhost:7000"
         const fetchCourses = async ()=>{
-            const response = await fetch('http://localhost:7000/api/getAllcourses')
+            const response = await fetch('http://localhost:7000/api/getcoursesembeddedall',{
+            method:"POST",
+            headers:{
+               "content-type":"application/json; charset=UTF-8"
+        
+        
+            }
+           
+            });
             const json = await response.json()
 
             if(response.ok){
@@ -36,7 +43,7 @@ export function AllCourses(){
      },[])
 
      const handleSearchClick=()=>{
-       navigate('/SearchCourses');   
+       navigate('/SearchCourse');   
 
      }
 

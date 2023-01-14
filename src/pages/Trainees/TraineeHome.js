@@ -85,10 +85,10 @@ useEffect(()=>{
 
  
     return(
-        <div className = "TraineeHomeMain">
+        <div className = "Whole">
           
   
-          <h2>My Courses</h2>
+          <h2 className='headerHome'>My Courses</h2>
         <div className="mainDetailsTrainee">
         <div className="homeCoursesTrainee">
           {courses.map((course) => <CourseDiv course={course}   country={0}/>)}

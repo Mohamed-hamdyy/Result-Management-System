@@ -29,16 +29,46 @@ export function SearchCourses(){
       }
       
       const handleChecked1=(event)=>{
-        setChecked1(!checked1);
+        if (!checked1){
+           setChecked1(true);
+           setChecked2(false);
+           setChecked3(false);
+
+
+        }
+        else
+        setChecked1(false);
+          
       }
       const handleChecked2=(event)=>{
-        setChecked2(!checked2);
+        if (!checked2){
+          setChecked1(false);
+          setChecked2(true);
+          setChecked3(false);
+
+
+       }
+       else
+       setChecked2(false);
       }
       const handleChecked3=(event)=>{
-        setChecked3(!checked3);
-      }
+        if (!checked3){
+          setChecked1(false);
+          setChecked2(false);
+          setChecked3(true);
+
+
+       }
+       else
+       setChecked3(false);   
+        }
+
       const handleSearchClick=async (event)=>{
         console.log(search);
+        console.log(checked1);
+        console.log(checked2);
+        console.log(checked3);
+
         if(checked1)
         setSubject(search);
         if(checked2)
@@ -47,12 +77,12 @@ export function SearchCourses(){
         setinstName(search);
 
 
-        console.log(title);
-        console.log(subject);
-        console.log(instName); 
+        console.log("title"+title);
+        console.log("subject"+subject);
+        console.log("instNmae"+instName); 
         console.log("search entered")
         await fetchSerach(instName,title,subject)
-       
+        
 
 
         
