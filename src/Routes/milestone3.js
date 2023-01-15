@@ -11,7 +11,6 @@ const Subtitle = require("../Models/Subtitle");
 const Exercise = require("../Models/Exercise");
 const Discount = require("../Models/Discount");
 const Request = require("../Models/Request");
-const Request = require("../Models/Ticket");
 
 
 const bcrypt= require("bcrypt");
