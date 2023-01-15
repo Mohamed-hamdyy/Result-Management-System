@@ -20,8 +20,8 @@ import FormControl from '@mui/material/FormControl'
 import FormLabel from '@mui/material/FormLabel'
 import { useNavigate } from 'react-router-dom'
 
-function Allcourses () {
-  const [Courses, setCourses] = useState('')
+function Requests () {
+  const [requests, setrequests] = useState('')
   const [current, setcurrent] = useState('')
   const navigate = useNavigate()
 
@@ -34,7 +34,7 @@ function Allcourses () {
   }
 
   useEffect(() => {
-    fetch('http://localhost:7000/api/instructorCourses',
+    fetch('http://localhost:7000/api/getallrequests',
       {
         method: 'POST',
         headers: {
@@ -42,7 +42,7 @@ function Allcourses () {
         },
 
         body: JSON.stringify({
-          userName: window.localStorage.getItem('userName')
+
         })
 
       })
@@ -50,41 +50,78 @@ function Allcourses () {
         return res.json()
       })
       .then(data => {
-        setCourses(data)
+        setrequests(data)
         console.log(data)
       })
   }, [])
 
-  const pay = () => {
-    navigate('/Pay',
+  const handleSubmit1 = async (event) => {
+    fetch('http://localhost:7000/api/acceptrequest',
       {
-        state: { id: current }
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        },
+
+        body: JSON.stringify({
+          All: 'yes',
+          courseID: cxczxc
+        })
+
       })
-    console.log(current)
+      .then(res => {
+        return res.json()
+      })
+  }
+
+  const handleSubmit2 = async (event) => {
+    fetch('http://localhost:7000/api/rejectrequest',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        },
+
+        body: JSON.stringify({
+
+          userName: current.userName,
+          courseID: current.courseID
+        })
+
+      })
+      .then(res => {
+        return res.json()
+      })
   }
 
   return (
 
     <div>
+
       <FormControl>
-        <FormLabel id='demo-controlled-radio-buttons-group'>Courses</FormLabel>
+        <FormLabel id='demo-controlled-radio-buttons-group'>Requests</FormLabel>
         <RadioGroup
           aria-labelledby='demo-controlled-radio-buttons-group'
           name='controlled-radio-buttons-group'
           value={current}
+
           onChange={(e) => setcurrent(e.target.value)}
         >
-          {Courses && Courses.map((Course) => (
-            <FormControlLabel value={Course.courseID} control={<Radio />} label={Course.title} />
+          {requests && requests.map((request) => (
+            <FormControlLabel value={request} control={<Radio />} label={request.userName} />
           ))}
 
         </RadioGroup>
       </FormControl>
-      <Button variant='contained' color='success' onClick={pay}>
-        Choose
-      </Button>
+      <div><Button variant='contained' color='success' onClick={handleSubmit1}>
+        Accept
+           </Button>
+        <Button variant='contained' color='success' onClick={handleSubmit2}>
+          Reject
+        </Button>
+      </div>
     </div>
 
   )
 }
-export default Allcourses
+export default Requests
