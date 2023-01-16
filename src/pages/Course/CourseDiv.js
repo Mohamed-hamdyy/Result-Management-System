@@ -1,5 +1,9 @@
+import { MusicNote } from '@mui/icons-material';
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Star from '../../components/Star';
+import { BiDownArrow } from "react-icons/bi";
+import './Course.css';
 
 export function CourseDiv(props) {
      const navigate = useNavigate();
@@ -63,7 +67,7 @@ export function CourseDiv(props) {
       }
    
   return (
-
+ 
     <div className={courseDetails ? 'newCourse-After' : 'newCourse'}>
       <div className={courseDetails ? 'newCourse-After-Content' : 'newCourse-content'}>
 

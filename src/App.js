@@ -38,9 +38,6 @@ import Certificate from './pages/Course/Certificate';
 import CourseSub from './pages/Course/CourseSub';
 import RefundDiv from './components/Refund/RefundDiv';
 
-import InstructorCourses from './pages/InstructorCourses';
-import InstructorCoursesTable from './pages/InstructorCoursesTable';
-import InstructorCoursesSearch from './pages/InstructorCoursesSearch';
 import Ticket from './components/Ticket';
 
 import TraineeHome from'./pages/Trainees/TraineeHome';
