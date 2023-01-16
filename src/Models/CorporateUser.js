@@ -19,6 +19,11 @@ const corporateUserSchema = new Schema({
       type: String,
     },
   ],
+  requestedCourses: [
+    {
+      type: String,
+    },
+  ],
 });
 
 const corporateUser = mongoose.model("corporateUser", corporateUserSchema);

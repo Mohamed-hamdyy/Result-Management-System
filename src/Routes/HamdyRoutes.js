@@ -8,6 +8,7 @@ const Admin = require("../Models/Admin");
 const creationRoute= require("./creationAPI");
 const Exercise=require("../Models/Exercise");
 const course = require("../Models/Course");
+const Subtitle=require("../Models/Subtitle");
 const Ticket=require("../Models/Ticket");
 
 const creationRouter = express.Router();
@@ -123,4 +124,24 @@ creationRoute.post('/getExercise',function(req,res){
        res.json(result)
    })
 })
+
+creationRouter.post('/getSubtitles',async function(req,res){
+   const subtitles=req.body.subtitles;
+
+    
+
+   var subtitlesarr=[]
+   for (let index = 0; index < subtitles.length; index++) {
+      var sub= parseInt(subtitles[index]);
+      subtitlesarr.push( await Subtitle.findOne({ subtitleID: sub  }))
+      
+  }
+
+  res.json(subtitlesarr);
+
+
+});
+
+
+
 module.exports = creationRouter;
