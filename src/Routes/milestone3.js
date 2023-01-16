@@ -55,7 +55,7 @@ creationRouter.post("/getwallet", async (req, res) => {
 
 
     creationRouter.post("/getallrequests", async (req, res) => {
-        var request = await Request.create({})
+        var request = await Request.find({})
         res.json(request)
         });
 

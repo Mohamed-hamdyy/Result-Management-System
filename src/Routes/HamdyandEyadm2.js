@@ -4,7 +4,7 @@ const Course = require("../Models/Course");
 const Instructor = require("../Models/Instructor");
 const CorporateUser = require("../Models/CorporateUser");
 const Admin = require("../Models/Admin");
-const individualUser = require("../Models/IndividualUser");
+const IndividualUser = require("../Models/IndividualUser");
 const Review = require("../Models/Review");
 const InstructorReview = require("../Models/InstructorReview");
 const Discount = require("../Models/Discount");
@@ -98,7 +98,9 @@ creationRouter.post("/getcoursesembeddedall",async(req,res)=>{
         var discountsarr=[]
         var subtitlesarr=[]
         for (let index = 0; index < course.discounts.length; index++) {
+            const x= await Discount.findOne({discountID:course.discounts[index]})
             discountsarr.push( await Discount.findOne({discountID:course.discounts[index]}))
+            console.log(x.percentage);
             
         }
         for (let index = 0; index < course.subtitles.length; index++) {
@@ -111,7 +113,6 @@ creationRouter.post("/getcoursesembeddedall",async(req,res)=>{
             discountsarr:discountsarr,
 
         }
-        console.log(course)
         outputarr.push(course)
 
     }
@@ -123,9 +124,8 @@ creationRouter.post("/getcoursesembeddedall",async(req,res)=>{
 
 
 creationRouter.post("/getcoursesembeddedIndividual",async(req,res)=>{
-    const{userName}=req.body.userName;
-
-    var indviduser= await individualUser.findOne({userName:userName})
+    const userName=req.body.userName;
+    var indviduser= await IndividualUser.findOne({userName:userName})
     var coursesarr= indviduser.registeredCourses
     var outputarr=[]
     for (let index = 0; index < coursesarr.length; index++) {
@@ -146,8 +146,7 @@ creationRouter.post("/getcoursesembeddedIndividual",async(req,res)=>{
             discountsarr:discountsarr,
 
         }
-        console.log(course)
-        outputarr.push(course)
+        outputarr.push(course);
 
     }
     
