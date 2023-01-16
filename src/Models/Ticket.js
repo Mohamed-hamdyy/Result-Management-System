@@ -19,7 +19,7 @@ const ticketSchema = new Schema({
     },
 
     ticketText:{
-        type:Text,
+        type:String,
     },
 
     courseID: {
