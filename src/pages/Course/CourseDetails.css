@@ -7,13 +7,12 @@ width:50%;
 border-radius: 20px;
 height: auto;
 justify-content: space-between;
-
+padding-left: 10px;
 }
-.row{
+.rowD{
 display: flex;
 flex-direction: row;
 justify-content: space-between;
-
 }
 .headers{
 font-weight: 400;
@@ -30,4 +29,5 @@ color: aliceblue;
 .values{
     font-weight: 300;
     color: aliceblue;
+    padding-left:5vw;
 }

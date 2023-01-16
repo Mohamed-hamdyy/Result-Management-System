@@ -1,40 +1,33 @@
-import { useEffect , useState} from "react"
-import AdminForm from '../components/UserForm';
+import { useEffect, useState } from 'react'
+import AdminForm from '../components/UserForm'
 
+const Home = () => {
+  const [admins, setAdmins] = useState(null)
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await fetch('/createadmin')
+      const json = await response.json()
 
-const Home= ()=>{
+      if (response.ok) {
+        setAdmins(json)
+      }
+    }
+    fetchUsers()
+  }, [])
 
-    const[admins, setAdmins] = useState(null)
-    useEffect(()=>{
-        const fetchUsers = async ()=>{
-            const response = await fetch("/createadmin")
-            const json = await response.json()
+  return (
+    <div className='home'>
+      <div>
+        {admins && admins.map((admin) => (
+          <p key={admin.userName}>
+            {admin.userName}
+          </p>
+        ))}
 
-            if(response.ok){
-                setAdmins(json)
-            }
+      </div>
 
-
-        }
-        fetchUsers()
-    },[])
-
-
-    return(
-        <div className='home'>
-           <div>
-                {admins && admins.map((admin)=>(
-                    <p key={admin.userName}>
-                        {admin.userName}
-                    </p>
-                ))}
-
-           </div>
-
-        </div>
-    )
-
+    </div>
+  )
 }
-
 
 export default Home

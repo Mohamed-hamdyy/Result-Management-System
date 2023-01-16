@@ -14,8 +14,18 @@
      background-color:aliceblue; 
      
  }
- .NewCourse-button-OpenCourse{
-     font-size: 13px;
+ .openCourseButton{
+background-color: black;
+width:10px;
+height:20vh
+
+
+
+ }
+ .openCourseBut{
+background-color:bisque;
+border-radius: 10px;
+
  }
  
  .buttonCourse Button{
