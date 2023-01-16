@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "../index.css";
 import { useLocation, useEffect } from "react";
 
+
 function Exercise() {
   // Properties
+
   const [showResults, setShowResults] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -11,7 +13,9 @@ function Exercise() {
 
   /////use location to get the exercise id
    const [id,setid]=useState(localStorage.getItem("ExerciseId"));
-
+   const [Cid,setCid]=useState(localStorage.getItem("ExCourseId"));
+   const [user,setuser]=useState("ahmedyo2001");
+   
 
   const fetchExercise= async (a)=>{
     const response = await fetch('http://localhost:7000/api/getExercise',{
@@ -30,7 +34,26 @@ function Exercise() {
         const json = await response.json()
         return json;
     }
-   
+
+    const fetchProgress= async (a,b,c)=>{
+      const response = await fetch('http://localhost:7000/api/addProgress',{
+        method:"POST",   
+        headers:{
+           "content-type":"application/json; charset=UTF-8"
+    
+    
+        },
+        body:JSON.stringify({
+           userName:a,
+           courseId:b,
+           exe:c
+    
+        } )
+      });
+          const json = await response.json()
+          console.log(json);
+          return json;
+      }
 
 
     useEffect(()=>{
@@ -103,6 +126,13 @@ if (Exercise){
     setCurrentQuestion(0);
     setShowResults(false);
   };
+  const handleFinish= async()=> {
+   const success= score / questions.length;
+   if(success>0.5)
+   await fetchProgress(user,Cid,id);
+   
+
+  };
 
   return (
     <div className="App">
@@ -121,7 +151,7 @@ if (Exercise){
             {score} out of {questions.length} correct - (
             {(score / questions.length) * 100}%)
           </h2>
-          <button onClick={() => restartGame()}>Restart</button>
+          <button onClick={handleFinish}>Finish</button>
           <div className="Answers">
            <div className="columnExercise">
            <ul>

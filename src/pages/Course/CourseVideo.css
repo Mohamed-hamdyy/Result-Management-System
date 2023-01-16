@@ -5,7 +5,7 @@
     background-color:aliceblue;
     background-image: linear-gradient(-90deg,rgba(9, 117, 185, 0.9),rgba(3, 35, 46, 0.9)),url('../../images/BackCourse.jpg');
     width:50%;
-    height:90vh;
+    height:100vh;
     border-radius: 20px;
     justify-content: space-between;
     margin-left: 20vw;
@@ -14,6 +14,13 @@
 font-weight: 500;
 padding-left: 15vw;
 color: aliceblue;
+
+    }
+    .CloseButton{
+    margin-left:10px;
+    border-radius: 10px;
+
+
 
     }
 .title2{
@@ -48,5 +55,10 @@ border-radius: 20px;
 margin-left: 5vw;
 width:40vw;
 height:25vh;
+
+}
+.ImageCer{
+margin-left:5vw;
+margin-top:2vw;
 
 }

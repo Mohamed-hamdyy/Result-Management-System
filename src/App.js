@@ -20,7 +20,7 @@ import Editbio from './pages/Instructor/Editbio';
 import CoursesTitles from './pages/Instructor/CoursesTitles';
 import Signup from './pages/Signup';
 import Policies from './pages/Policies';
-import Allcourses from './pages/Allcourses';
+import Allcourses from './pages/Trainees/AllCourses';
 import Pay from './pages/Individual/Pay';
 import Welcome from './pages/Welcome';
 import AdminLogin from './pages/Login/AdminLogin';
@@ -31,14 +31,11 @@ import Requests from './pages/Requests';
 import NestedList from './pages/Admin/Adminpage';
 import Exam from './pages/Exam';
 import InstructorExam from './pages/InstructorExam';
-import InstructorCourses from './pages/InstructorCourses';
-import InstructorCoursesTable from './pages/InstructorCoursesTable';
-import InstructorCoursesSearch from './pages/InstructorCoursesSearch';
 import Exercise from './components/Exercise'
 import CourseVideo from './pages/Course/CourseVideo';
 import Certificate from './pages/Course/Certificate';
 import CourseSub from './pages/Course/CourseSub';
-
+import RefundDiv from './components/Refund/RefundDiv';
 
 
 import TraineeHome from'./pages/Trainees/TraineeHome';
@@ -68,11 +65,12 @@ function App() {
           <Route path ="/CourseExercise" element ={<Exercise />}/>
           <Route path ="/TraineeCourse" element ={<TraineeCourse />}/>
           <Route path ="/TraineeHome" element ={<TraineeHome />}/>
-          <Route path ="/AllCourses" element ={<AllCourses />}/>
+          <Route path ="/AllCourses" element ={<Allcourses />}/>
           <Route path ="/SearchCourse" element ={<SearchCourses />}/>
           <Route path ="/CourseSub" element ={<CourseSub />}/>
           <Route path ="/CourseVideo" element ={<CourseVideo />}/>
-                    
+          <Route path ="/Certificate" element ={<Certificate />}/>
+         
 
 
           <Route path ="/addadmin" element ={<AddAdministrator />}/>

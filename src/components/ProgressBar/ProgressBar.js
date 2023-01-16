@@ -11,7 +11,7 @@ function ProgressBar(props){
          <div className='mainP'>
             <div className='colomnn'>
          <h2 className='headerPbar'>Course Progress</h2>
-           <h3 className='headerPbar1'>Percentage Covered :{props.value}</h3>
+           <h3 className='headerPbar1'>Percentage Covered :{props.value} %</h3>
 
 
            </div>

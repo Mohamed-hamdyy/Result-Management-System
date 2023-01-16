@@ -23,7 +23,7 @@ export function TraineeHome (){
 
 
     const getCourses= async (user)=>{
-     const response = await fetch('http://localhost:7000/api/TraineeMyCourse',{
+     const response = await fetch('http://localhost:7000/api/getcoursesembeddedIndividual',{
        method:"POST",
        headers:{
           "content-type":"application/json; charset=UTF-8"

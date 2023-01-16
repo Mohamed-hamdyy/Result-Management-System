@@ -22,7 +22,12 @@ export function CourseDiv(props) {
     const [chosenCountry,setChosenCountry] = useState(0);
 
 
-  
+     const handleOpen=(event)=>{
+      localStorage.setItem("NavCourseId",event.target.id);
+      navigate('/TraineeCourse');
+
+
+     }
   
 
 
@@ -68,7 +73,6 @@ export function CourseDiv(props) {
       // setTime(false);
       // }
 
-    
 
 
 
@@ -95,7 +99,7 @@ export function CourseDiv(props) {
           
                   { <div className="NewCourse_Prices">
                   <h2 className='NewCourse_price'>{  Math.floor(props.course.price*fares[chosenCountry])} {currency[chosenCountry]}</h2>
-                 {/* {<h2 className='NewCourse_price2'>   {props.course.discountsarr[0].percentage} %</h2>  } */}
+                 {<h2 className='NewCourse_price2'>   {props.course.discountsarr[0].percentage} %</h2>  }
                 </div> } 
            
               <div className="NewCourse_StarsHoursPrice">
@@ -129,18 +133,18 @@ export function CourseDiv(props) {
             
         { <div className={courseDetails?"NewData-NewCourse":"nonNewData-NewCourse"}>
 
-               {/* <div className="Course-subTitles">
-                {sub.map((subt,i)=>  <h4 >{i+1}  -  {subt.title}</h4>)}
+              <div className="Course-subTitles">
+                {props.course.subtitlesarr.map((subt,i)=>  <h4 >{i+1}  -  {subt.title}</h4>)}
             </div> 
             <div className="Course-subTitles">
-                 {sub.map((subt)=>  <h4 > {subt.hours} Hours</h4>)}
+                 {props.course.subtitlesarr.map((subt)=>  <h4 > {subt.hours} Hours</h4>)}
             </div>
             <div class="vl"></div>
 
-
+              
             <div className="Course-subTitles">
-                  {props.course.exercises.map((exer,i)=>  <h4 >Exercise {exer} </h4>)}
-            </div>  */}
+                  {props.course.exercises.map((exer,i)=>  <h4 >Exercise {i+1} </h4>)}
+            </div> 
              
         </div> }
           </div>
@@ -150,12 +154,8 @@ export function CourseDiv(props) {
           <h5 onClick={handleCourseDetails}>view details</h5>
           </div>
         <BiDownArrow className="icon" style={{marginRight: '1rem' , transform:'translate(0 ,0.4rem)'}} onClick={handleCourseDetails}></BiDownArrow>
-      <button className="openCourse"
-       onClick={()=>{ if(!props.inst){navigate("/TraineeCourse",{state:{id:props.course.id,View:"Overview"}})
-    
-    }else{
-      navigate("/instructorViewCourse",{state:{id:props.course.id,View:"Overview"}})
-    }}}>Open Course</button>
+      <button className="openCourseBut" id={props.course.courseID} onClick={handleOpen}
+     >Open Course</button>
     </div>  
   )
 

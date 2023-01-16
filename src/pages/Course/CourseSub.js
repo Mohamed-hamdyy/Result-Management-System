@@ -3,6 +3,7 @@ import './CourseSub.css'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
+
 export function CourseSub(props){
 
     const array= props.course.subtitles;
@@ -23,7 +24,6 @@ export function CourseSub(props){
       });
           console.log(a);
           const json = await response.json()
-          console.log(json);
           return json;
       }
 
@@ -37,17 +37,16 @@ export function CourseSub(props){
 
    },[]);
 
-
-
-
-
-
-
-
-
-
-
 const navigate =useNavigate()
+
+const handleWatch=(event)=>{
+   localStorage.setItem("TraineeSubtitleId",event.target.id);
+   navigate('/CourseVideo');
+
+
+
+}
+
 
 return (
 <div className='mainS'>
@@ -55,10 +54,10 @@ return (
  
   <ul>     
      {sub &&
-      sub.map(subt=>{
+      sub.map((subt,i)=>{
           return  <div className='rowS'>
-             <h2 className='subText'>{subt.title} </h2>
-            <button className="subButton">watch</button>
+             <h2 className='subText'>{i+1}- {subt.title} </h2>
+            <button className="subButton" id={subt.subtitleID} onClick={handleWatch}>watch</button>
              </div> 
           }
          )

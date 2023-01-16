@@ -22,6 +22,11 @@ height:20vh
 
 
  }
+ .openCourseBut{
+background-color:bisque;
+border-radius: 10px;
+
+ }
  
  .buttonCourse Button{
      font-size:20px;

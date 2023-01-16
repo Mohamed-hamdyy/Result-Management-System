@@ -4,7 +4,10 @@ import Pdf from 'react-to-pdf';
 
 function CourseVideo(){
 
-const ref=React.createRef();
+ console.log(localStorage.getItem("TraineeSubtitleId"));
+
+
+ const ref=React.createRef();
 
  return (
     <>

@@ -7,8 +7,11 @@ export function CourseExercises(props){
 
 const navigate =useNavigate()
 
+
 const handleExe=(event)=>{
    localStorage.setItem("ExerciseId",event.target.id);
+   localStorage.setItem("ExCourseId",props.course.courseID);
+
    navigate('/CourseExercise');
 
 }
@@ -19,9 +22,9 @@ return (
  
   <ul>     
      {
-      props.course.exercises.map(exe=>{
+      props.course.exercises.map((exe,i)=>{
           return  <div className='row'>
-             <h2 className='Exercise'>Exercise </h2>
+             <h2 className='Exercise'>Exercise {i+1} </h2>
             <button className="ExeButton" id={exe} onClick={handleExe}>solve</button>
              </div> 
           }
