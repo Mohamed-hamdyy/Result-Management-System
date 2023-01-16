@@ -1,4 +1,5 @@
 import {BrowserRouter , Routes , Route}  from 'react-router-dom'
+  
 import SignIn from './pages/SignIn';
 import AddAdministrator from './pages/AddAdministrator';
 import AddInstructor from './pages/AddInstructor';
@@ -11,7 +12,7 @@ import InstructorExam from './pages/InstructorExam';
 import InstructorCourses from './pages/InstructorCourses';
 import InstructorCoursesTable from './pages/InstructorCoursesTable';
 import InstructorCoursesSearch from './pages/InstructorCoursesSearch';
-
+import Ticket from './components/Ticket';
 
 import TraineeHome from'./pages/Trainees/TraineeHome';
 import AllCourses from './pages/Trainees/AllCourses'
@@ -35,6 +36,7 @@ function App() {
           <Route path ="/addadmin" element ={<AddAdministrator />}/>
           <Route path ="/contract" element ={<Contract />}/>
           <Route path ="/coursepreview" element ={<CoursePreview />}/>
+          <Route path ="/ticket" element ={<Ticket />}/>
 
 
         </Routes>
