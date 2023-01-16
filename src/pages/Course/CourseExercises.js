@@ -1,7 +1,9 @@
 import React from 'react'
 import './CourseExercises.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
+export function CourseExercises (props) {
+  const navigate = useNavigate()
 
 export function CourseExercises(props){
 
@@ -30,15 +32,9 @@ return (
           }
          )
          }
-       </ul>  
+      </ul>
 
-
-
-
-
-</div>
-);
-
-
+    </div>
+  )
 }
-export default CourseExercises;
+export default CourseExercises

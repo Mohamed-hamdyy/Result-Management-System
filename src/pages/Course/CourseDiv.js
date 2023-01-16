@@ -1,11 +1,5 @@
-import React,{useState} from 'react'
-import { useEffect } from 'react';
-import {useNavigate} from 'react-router-dom';
-import {BiDownArrow} from 'react-icons/bi';
-import starImg from "../../images/star.png"
-import './Course.css';
-import { ContentCutOutlined } from '@mui/icons-material';
-import Star from '../../components/Star';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export function CourseDiv(props) {
      const navigate = useNavigate();
@@ -14,12 +8,11 @@ export function CourseDiv(props) {
      const[dis,setdis]=useState();
      const[time,setTime]=useState(true);
 
-    const [courseDetails,setcourseDetails] = useState(false)
+    const [courseDetails,setcourseDetails] = useState(false);
 
-    const handleCourseDetails = async() => {
+    const handleCourseDetails= async() => {
       setcourseDetails(!courseDetails);
     }
-    const [chosenCountry,setChosenCountry] = useState(0);
 
 
      const handleOpen=(event)=>{
@@ -30,49 +23,30 @@ export function CourseDiv(props) {
      }
   
 
+  const [chosenCountry, setChosenCountry] = useState(0)
 
-          // const api="http://localhost:7000"
-          const getSub= async (cid,c)=>{
-            const response =  await fetch('http://localhost:7000/api/choosecourse',{
-            method:"POST",
-            headers:{
-               "content-type":"application/json; charset=UTF-8"
+  // const api="http://localhost:7000"
+  const getSub = async (cid, c) => {
+    const response = await fetch('http://localhost:7000/api/choosecourse', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json; charset=UTF-8'
 
+      },
+      body: JSON.stringify({
+        courseID: cid,
+        country: c
 
-            },
-            body:JSON.stringify({
-               courseID:cid,
-               country:c
+      })
+    })
+    const json = await response.json()
+    //    console.log(json);
+    //    setdis(json.discount);
+    //    setexe(json.exercisesarr);
+    //     setsub(json.subtitlesarr);
+  }
 
-
-            })
-          });
-              const json = await response.json()
-          //    console.log(json);
-          //    setdis(json.discount);
-          //    setexe(json.exercisesarr);
-         //     setsub(json.subtitlesarr);
-          }
-      
-              
-     
-      const getSubtitles=async()=>{
-        (await getSub(20,0));
-        
-               
-       // console.log(dis);
-       // console.log(exe);
-      //  console.log(sub);
-        
-      
-      }
-      
-      
-      // if (time){
-       getSubtitles();
-      // setTime(false);
-      // }
-
+  
 
 
 
@@ -90,8 +64,8 @@ export function CourseDiv(props) {
    
   return (
 
-    <div className={courseDetails? "newCourse-After":"newCourse"}  >
-        <div className={courseDetails? "newCourse-After-Content":"newCourse-content"}>
+    <div className={courseDetails ? 'newCourse-After' : 'newCourse'}>
+      <div className={courseDetails ? 'newCourse-After-Content' : 'newCourse-content'}>
 
           <div className="newCourse_title">
               <h3 >{props.course.title}</h3>
@@ -114,24 +88,23 @@ export function CourseDiv(props) {
            </span>}
                 </div>
 
-              <div className="NewCourse_Data_Price_Hours">
-                
-                <h2 className='totalhours'>{props.course.totalHours} Hours</h2>
-              </div>
+          <div className='NewCourse_Data_Price_Hours'>
 
-              </div>
-          
+            <h2 className='totalhours'>{props.course.totalHours} Hours</h2>
+          </div>
 
-        <div className={courseDetails?"Large-NewData-NewCourse":"nonNewData-NewCourse"}>
-              <div class="vl2"></div>
-            <div style={{display:"flex" , flexDirection:"row"}}>
+        </div>
 
-            <h3 style={{fontSize:"20px"}}>Course Content :</h3>
-            <h3 style={{fontSize:"20px", marginLeft:"8rem"}}>Excercises:</h3>
+        <div className={courseDetails ? 'Large-NewData-NewCourse' : 'nonNewData-NewCourse'}>
+          <div class='vl2' />
+          <div style={{ display: 'flex', flexDirection: 'row' }}>
 
-            </div>
-            
-        { <div className={courseDetails?"NewData-NewCourse":"nonNewData-NewCourse"}>
+            <h3 style={{ fontSize: '20px' }}>Course Content :</h3>
+            <h3 style={{ fontSize: '20px', marginLeft: '8rem' }}>Excercises:</h3>
+
+          </div>
+
+          {<div className={courseDetails ? 'NewData-NewCourse' : 'nonNewData-NewCourse'}>
 
               <div className="Course-subTitles">
                 {props.course.subtitlesarr.map((subt,i)=>  <h4 >{i+1}  -  {subt.title}</h4>)}
@@ -149,7 +122,8 @@ export function CourseDiv(props) {
         </div> }
           </div>
         </div>
-          <div className="ViewMoreH55">
+    
+      <div className='ViewMoreH55'>
 
           <h5 onClick={handleCourseDetails}>view details</h5>
           </div>
@@ -158,7 +132,6 @@ export function CourseDiv(props) {
      >Open Course</button>
     </div>  
   )
-
 }
 
 export default CourseDiv;

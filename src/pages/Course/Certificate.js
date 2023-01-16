@@ -28,7 +28,7 @@ setShow(false);
     <Pdf targetRef={ref} filename="Certificate.pdf" >
        {({ toPdf})=>   <button className="dButton" onClick={toPdf}>Download as PDF</button>}
 
-   </Pdf> 
+        </Pdf>
 
     <button className="CloseButton" onClick={handleFinish}>Finish</button>
 
@@ -41,4 +41,4 @@ setShow(false);
 
 
 }
-export default Certificate;
+export default Certificate

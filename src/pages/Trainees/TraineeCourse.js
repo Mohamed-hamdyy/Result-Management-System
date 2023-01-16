@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react'
 import './TraineeCourse.css'
 import CourseDetails from '../Course/CourseDetails';
 import CourseExercises from '../Course/CourseExercises';
@@ -121,10 +121,7 @@ export function TraineeCourse(){
 }
        </div>
 
-
-
-    );
-
+  )
 }
 
-export default TraineeCourse;
+export default TraineeCourse

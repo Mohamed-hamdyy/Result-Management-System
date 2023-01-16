@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './CourseSub.css'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -27,15 +27,15 @@ export function CourseSub(props){
           return json;
       }
 
-   useEffect(()=>{
- async function getThesub(){
-   setSub(await (getsubtitles(array)));
-   //console.log(Course);
+  useEffect(() => {
+    async function getThesub () {
+      setSub(await (getsubtitles(array)))
+      // console.log(Course);
+    }
+    getThesub()
+  }, [])
 
-   }
-   getThesub();
-
-   },[]);
+   
 
 const navigate =useNavigate()
 
@@ -64,13 +64,7 @@ return (
          }
        </ul>  
 
-
-
-
-
-</div>
-);
-
-
+    </div>
+  )
 }
-export default CourseSub;
+export default CourseSub
