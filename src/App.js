@@ -40,6 +40,16 @@ import RefundDiv from './components/Refund/RefundDiv';
 import CourseTickets from './pages/Course/CourseTickets';
 
 import Ticket from './components/Ticket';
+import CourseVideo from './pages/Course/CourseVideo'
+import Certificate from './pages/Course/Certificate'
+import CourseSub from './pages/Course/CourseSub'
+import TraineeHome from './pages/Trainees/TraineeHome'
+import Allecourses from './pages/Allecourses'
+import TraineeCourse from './pages/Trainees/TraineeCourse'
+import SearchCourses from './pages/Trainees/SearchCourses'
+import Tickets from './pages/Tickets'
+import CourseDetails from './pages/Course/CourseDetails'
+import { red } from '@mui/material/colors'
 
 import TraineeHome from'./pages/Trainees/TraineeHome';
 
@@ -85,6 +95,35 @@ function App() {
           <Route path ="/createcourse" element ={<Createcourse />}/>
           <Route path ="/coursepreview" element ={<CoursePreview />}/>
           <Route path ="/ticket" element ={<Ticket />}/>
+            <Route path='/' element={<Welcome />} />
+            <Route path='/adminpage' element={<NestedList />} />
+            <Route path='/instructorpage' element={<Instructorpage />} />
+            <Route path='/AdminLogin' element={<AdminLogin />} />
+            <Route path='/CorporateLogin' element={<CorporateLogin />} />
+            <Route path='/IndividualLogin' element={<IndividualLogin />} />
+            <Route path='/InstructorLogin' element={<InstructorLogin />} />
+            <Route path='/AddInstructor' element={<AddInstructor />} />
+            <Route path='/AddCorporateTrainees' element={<AddCorporateTrainees />} />
+            <Route path='/allecourses' element={<Allecourses />} />
+            <Route path='/tickets' element={<Tickets />} />
+            <Route path='/CourseExercise' element={<Exercise />} />
+            <Route path='/TraineeCourse' element={<TraineeCourse />} />
+            <Route path='/TraineeHome' element={<TraineeHome />} />
+            <Route path='/AllCourses' element={<AllCourses />} />
+            <Route path='/SearchCourse' element={<SearchCourses />} />
+            <Route path='/CourseSub' element={<CourseSub />} />
+            <Route path='/CourseVideo' element={<CourseVideo />} />
+            <Route path='/addadmin' element={<AddAdministrator />} />
+            <Route path='/mostviewed' element={<MostViewed />} />
+            <Route path='/contract' element={<Contract />} />
+            <Route path='/requests' element={<Requests />} />
+            <Route path='/landingpage' element={<LandingPage />} />
+            <Route path='/CoursesTitles' element={<CoursesTitles />} />
+            <Route path='/createcourse' element={<Createcourse />} />
+            <Route path='/coursepreview' element={<CoursePreview />} />
+            <Route path='/Editsubtitle' element={<Editsubtitle />} />
+            <Route path='/editbio' element={<Editbio />} />
+            <Route path='/signup' element={<Signup />} />
 
           <Route path ="/Editsubtitle" element ={<Editsubtitle />}/>
           <Route path ="/editbio" element ={<Editbio />}/>
