@@ -31,6 +31,16 @@ creationRouter.post("/createCourse", async (req, res) => {
       price: price,
       subject: subject,
       instructorUsername: instructorUsername,
+      discounts:[],
+      summary:"",
+      subtitles:[],
+      exercises:[],
+      examExercises:[],
+      exams:[],
+      preview:"",
+      rating:0,
+      numOfRatings:0,
+      review:[],
     });
     console.log("course created successfully");
   } else {
@@ -60,8 +70,9 @@ creationRouter.post("/createInstructor", async (req, res) => {
       password: password2,
       ownedMoney: 0,
       userName: userName,
-      rating: 1,
+      rating: 0,
       numOfRatings: 0,
+      review:[]
     });
     res.status(200).send("creating instructor");
     console.log("instructor created successfully");
@@ -131,6 +142,7 @@ creationRouter.post("/createIndividualUser", async (req, res) => {
       wallet: 0,
       password: password2,
       country: "Morocco",
+      registeredCourses:[]
     });
     console.log("User Created Successfully");
   } else {
@@ -154,9 +166,9 @@ creationRouter.post("/createAdmin", async (req, res) => {
       userName: userName,
       password: password2,
     });
-    console.log("User craeted successfully");
+    res.json({message:"created sucessfully"})
   } else {
-    console.log("Username already taken!");
+    res.json({message:"username taken"})
   }
 });
 
