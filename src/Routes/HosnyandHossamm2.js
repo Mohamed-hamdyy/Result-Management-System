@@ -12,7 +12,9 @@ const Subtitle = require("../Models/Subtitle");
 
 const Exam = require("../Models/Exam");
 const ExamExercise = require("../Models/ExamExercise");
-var nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer')
+const bcrypt= require("bcrypt")
+;
 
 
 
@@ -181,11 +183,13 @@ creationRouter.post("/userforgetpassword",async(req,res)=>{
 
 creationRouter.post("/userresetpass",async(req,res)=>{
     const{type,userName,password}=req.body
+    const password2= await bcrypt.hash(password,10)
+
     if(type=="I"){
-        var user=await IndividualUser.findOneAndUpdate({userName:userName},{password:password})
+        var user=await IndividualUser.findOneAndUpdate({userName:userName},{password:password2})
     }
     else {
-        var user=await CorporateUser.findOneAndUpdate({userName:userName},{password:password})
+        var user=await CorporateUser.findOneAndUpdate({userName:userName},{password:password2})
 
     }
 })
@@ -228,7 +232,9 @@ creationRouter.post("/instructorforgetpassword",async(req,res)=>{
 
 creationRouter.post("/instructorresetpass",async(req,res)=>{
     const{type,userName,password}=req.body
-        var user=await Instructor.findOneAndUpdate({userName:userName},{password:password})
+    const password2= await bcrypt.hash(password,10)
+
+        var user=await Instructor.findOneAndUpdate({userName:userName},{password:password2})
     
 
 })
