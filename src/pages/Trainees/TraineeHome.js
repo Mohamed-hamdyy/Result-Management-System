@@ -16,7 +16,11 @@ export function TraineeHome () {
   const handleCountryNumber = (x) => {
     setCountryNumber(x)
   }
+  const handleAll=()=>{
+   navigate('/AllCourses');
 
+  }
+  
 
     const getCourses= async (user)=>{
      const response = await fetch('http://localhost:7000/api/getcoursesembeddedIndividual',{
@@ -57,20 +61,24 @@ export function TraineeHome () {
     async function getCoursess () {
       setCourses((await getCourses('ahmedyo2001')))
     }
-    getCoursess()
-  })
-
-  useEffect(() => {
     async function getDetailss () {
       setDetails(await getDetails('ahmedyo2001'))
     }
+    getCoursess()
     getDetailss()
-  })
+  },[courses,details] );
+
+
+
+
+
 
   return (
     <div className='Whole'>
-
+      <div className='rowHomeTrainee'>
       <h2 className='headerHome'>My Courses</h2>
+      <button className='buttonAll' onClick={handleAll}>view All Courses</button>
+      </div>
       <div className='mainDetailsTrainee'>
         <div className='homeCoursesTrainee'>
           {courses.map((course) => <CourseDiv course={course} country={0} Details={true}/>)}
