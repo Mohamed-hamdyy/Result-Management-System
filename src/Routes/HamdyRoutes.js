@@ -9,6 +9,7 @@ const creationRoute= require("./creationAPI");
 const Exercise=require("../Models/Exercise");
 const course = require("../Models/Course");
 const Subtitle=require("../Models/Subtitle");
+const Ticket=require("../Models/Ticket");
 
 const creationRouter = express.Router();
 
@@ -84,6 +85,26 @@ creationRoute.get("/getAllcourses",function(req,res){
        
        res.json(result)
    })
+})
+creationRoute.post("/createTicket", async function(req,res){
+   const Tickets= await Ticket.find({});
+   const n =Tickets.length+1; 
+   const ticketID=n+"";
+   const status=req.body.status;
+   const type=req.body.type;
+   const text=req.body.text;
+   const courseId=req.body.courseID;
+
+   var query=  await Ticket.create({
+     ticketID:ticketID,
+     ticketStatus:status,
+     ticketType:type,
+     ticketText:text,
+     courseID:courseId
+
+   
+   });
+  res.json({data:"created"});
 })
 creationRoute.post('/getDetails',function(req,res){
    const userName=req.body.userName;
