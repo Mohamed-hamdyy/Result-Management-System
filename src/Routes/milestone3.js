@@ -65,8 +65,10 @@ creationRouter.post("/getwallet", async (req, res) => {
         });
 
     creationRouter.post("/acceptrequest", async (req, res) => {
-        const {userName,courseID}= req.body 
-        console.log(userName)   
+        const {current}= req.body 
+        var userName=current.split(" ")[1]
+        var courseID=current.split(" ")[0]
+
         var user =await CorporateUser.findOne({userName:userName})
         var array= user.registeredCourses  
         array.push(courseID)
@@ -78,7 +80,9 @@ creationRouter.post("/getwallet", async (req, res) => {
         });
 
     creationRouter.post("/rejectrequest", async (req, res) => {
-        const {userName,courseID}= req.body    
+        const {current}= req.body 
+        var userName=current.split(" ")[1]
+        var courseID=current.split(" ")[0]
         var user =await CorporateUser.findOne({userName:userName})
         var array2= user.requestedCourses
         var index=array2.indexOf(courseID)

@@ -21,9 +21,6 @@ const individualUserSchema = new Schema({
   gender: {
     type: String,
   },
-  card: {
-    type: String,
-  },
   wallet: {
     type: String,
   },
