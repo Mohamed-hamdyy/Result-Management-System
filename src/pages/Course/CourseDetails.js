@@ -20,7 +20,7 @@ export function CourseDetails (props) {
           </div>
           <div className='rowD'>
             <h2 className='headers'>Rating:</h2>
-            <h2 className='values'>{props.course.rating}</h2>
+            <h2 className='values'>{Math.floor(props.course.rating)}</h2>
           </div>
           <div className='rowD'>
             <h2 className='headers'>Total Hours:</h2>

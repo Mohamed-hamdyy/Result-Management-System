@@ -9,7 +9,7 @@ function Exercise () {
   const [showResults, setShowResults] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const[Exercise,setExercise]=useState()
+  const [Exercise,setExercise]=useState()
 
   /////use location to get the exercise id
    const [id,setid]=useState(localStorage.getItem("ExerciseId"));

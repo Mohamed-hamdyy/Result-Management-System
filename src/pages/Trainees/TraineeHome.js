@@ -73,7 +73,7 @@ export function TraineeHome () {
       <h2 className='headerHome'>My Courses</h2>
       <div className='mainDetailsTrainee'>
         <div className='homeCoursesTrainee'>
-          {courses.map((course) => <CourseDiv course={course} country={0} />)}
+          {courses.map((course) => <CourseDiv course={course} country={0} Details={true}/>)}
 
         </div>
 
