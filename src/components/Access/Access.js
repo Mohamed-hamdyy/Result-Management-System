@@ -1,17 +1,17 @@
 import React from 'react'
-import './Refund.css'
+import './Access.css'
 import { useState } from 'react';
 
 
 
 
-function RefundDiv(props){
+function Access(props){
     
     const[res,setRes]=useState();
     const[show,setShow]=useState(false);
 
     const fetchRequest= async (a,b)=>{
-        const response = await fetch('http://localhost:7000/api/addRequest',{
+        const response = await fetch('http://localhost:7000/api/createrequest',{
           method:"POST",
           headers:{
              "content-type":"application/json; charset=UTF-8"
@@ -20,7 +20,7 @@ function RefundDiv(props){
           },
           body:JSON.stringify({
           userName:a,
-          courseId:b
+          courseID:b
 
       
           } )
@@ -41,9 +41,11 @@ function RefundDiv(props){
   
         return (
          <div className='mainR'>
-            <h2 className='RefTitle'>Refund Requests</h2>
+            <div className='ContReq'>
+            <h2 className='RefTitle'>Request Access</h2>
+            </div>
             <div className='rowRef'>
-         <h2 className='RefText1'>Request a Refund</h2>
+         <h2 className='RefText1'>Request access to this course</h2>
          <button className='RefButton' onClick={handleReq} >request</button>
         
            </div>
@@ -53,7 +55,7 @@ function RefundDiv(props){
       };
       
 
-export default RefundDiv;
+export default Access;
 
 
 

@@ -37,6 +37,7 @@ import CourseVideo from './pages/Course/CourseVideo';
 import Certificate from './pages/Course/Certificate';
 import CourseSub from './pages/Course/CourseSub';
 import RefundDiv from './components/Refund/RefundDiv';
+import CourseTickets from './pages/Course/CourseTickets';
 
 import Ticket from './components/Ticket';
 
@@ -72,7 +73,8 @@ function App() {
           <Route path ="/CourseSub" element ={<CourseSub />}/>
           <Route path ="/CourseVideo" element ={<CourseVideo />}/>
           <Route path ="/Certificate" element ={<Certificate />}/>
-         
+          <Route path ="/AllTickets" element ={<CourseTickets />}/>
+
 
 
           <Route path ="/addadmin" element ={<AddAdministrator />}/>

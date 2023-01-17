@@ -8,6 +8,9 @@ import { Progress } from 'reactstrap';
 import CourseSub from '../Course/CourseSub';
 import RefundDiv from '../../components/Refund/RefundDiv';
 import Certificate from '../Course/Certificate';
+import TicketDiv from '../../components/ticketDiv/TicketDiv';
+import Access from '../../components/Access/Access';
+import CoursePreview from '../Course/CoursePreview';
 
 export function TraineeCourse(){
    
@@ -15,6 +18,12 @@ export function TraineeCourse(){
     const [Course,setCourse]=useState();
     const [Progress,setProgress]=useState();
     const[user,setUser]=useState("ahmedyo2001");
+    const [Ind,setInd]=useState(true);
+    const [Cor,setCor]=useState(false);
+    const [type,setType]=useState("Individual");
+    const [registered,setRegistered]=useState(true);
+   
+    
 
     const getCourse= async (a)=>{
       const response = await fetch('http://localhost:7000/api/filtercoursebyid',{
@@ -50,6 +59,26 @@ export function TraineeCourse(){
              const json = await response.json()
              return json;
          }
+         const fetchRegistered= async (a, b,c )=>{
+            const response = await fetch('http://localhost:7000/api/registeredCourse',{
+              method:"POST",
+              headers:{
+                 "content-type":"application/json; charset=UTF-8"
+          
+          
+              },
+              body:JSON.stringify({
+                 userName:a,
+                 courseId:b,
+                 type:c
+                    
+              })
+            });
+                const json = await response.json()
+                return json;
+            }
+
+
 
    useEffect(()=>{
  async function getTheCourse(){
@@ -62,8 +91,13 @@ export function TraineeCourse(){
       setProgress(await (getProgress(user,id)));
    
    }
+   async function getR(){
+     
+     // setRegistered(await (fetchRegistered(user,id,type)));
+   }
    getTheCourse();
    getTheProgress();
+   getR();
 
    },[Course]);
 
@@ -77,17 +111,20 @@ export function TraineeCourse(){
       <h1 className='detailsTitle'>Course Details</h1>
       <div className='row'>
          {Course && <CourseDetails course={Course}/>}   
-         <div className='pBar'>
-        {Progress && <ProgressBar value={Progress.data.p}/>}
-         </div>
+       {registered ? (<div className='pBar'>
+        { Progress && <ProgressBar value={Progress.data.p}/>}
+       </div> ):
+       (<div>
+        {!registered &&  Course && <CoursePreview course={Course}/> }
+         </div>)}
          </div>
          <h1 className='detailsTitle'>Course Exercises</h1>
          <div className='row'>
-       {Course && <CourseExercises course={Course}/>}
+       {Course && <CourseExercises course={Course} reg={registered} Exer={true}/>}
        </div>
        <h1 className='detailsTitle'>Course Subtitles</h1>
          <div className='row'>
-       {Course && <CourseSub course={Course}/>}
+       {Course && <CourseSub course={Course} reg={registered}/>}
        </div>
       <h1 className='detailsTitle'>Course Rate</h1>
        
@@ -96,13 +133,21 @@ export function TraineeCourse(){
       
        {Course && <RateCourse />}
        </div>
+       <h1 className='detailsTitle'>Tickets</h1>
+       
+      <div className='row'>
+       
+      
+       { <TicketDiv />}
+       </div>
        { Progress && Progress.data.p<50 && <div>
-      <h1 className='detailsTitle'>Course Refund</h1>
+      <h1 className='detailsTitle'>Request</h1>
 
        <div className='row'>
         
        
-        {Course && <RefundDiv user={user} course={id}/>}
+        { Ind && Course && <RefundDiv user={user} course={id}/>}
+        {Cor && Course && <Access user={user} course={id}/>}
         </div> </div>}
         
         { Progress && Progress.data.p==100 && <div>

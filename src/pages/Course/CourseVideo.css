@@ -5,16 +5,59 @@
     background-color:aliceblue;
     background-image: linear-gradient(-90deg,rgba(9, 117, 185, 0.9),rgba(3, 35, 46, 0.9)),url('../../images/BackCourse.jpg');
     width:50%;
-    height:100vh;
+    height:auto;
     border-radius: 20px;
     justify-content: space-between;
     margin-left: 20vw;
     }
+    .mainPre{
+        margin-left: 6px;
+        top: 0px;
+        background-color:aliceblue;
+        background-image: linear-gradient(-90deg,rgba(9, 117, 185, 0.9),rgba(3, 35, 46, 0.9)),url('../../images/BackCourse.jpg');
+        width:90%;
+        height:auto;
+        border-radius: 20px;
+        margin-left: 6vw;
+        margin-bottom: 3vh;
+        margin-top: 6.5vh;
+        }
+
+
+
     .title{
 font-weight: 500;
 padding-left: 15vw;
 color: aliceblue;
 
+    }
+    .titlePre{
+        font-weight: 500;
+        padding-left: 10vw;
+        color: aliceblue;
+        
+            }
+    .videoDiv{
+        margin-left:7vw;
+    
+    }
+    .videoCont{
+     width:35vw;   
+     margin-left: 7.5vw; 
+     border-radius: 10px;
+     background-color: aquamarine;
+    }
+    .videoCont2{
+        width:35vw;   
+        margin-left: 3vw; 
+        border-radius: 10px;
+        background-color: aquamarine;
+       }
+    .textSum{
+   color:aliceblue;
+   font-weight: 300;
+
+        
     }
     .CloseButton{
     margin-left:10px;

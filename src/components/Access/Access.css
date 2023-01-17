@@ -1,0 +1,62 @@
+.mainR{
+    margin-left: 10px;
+    margin-top: 20px;
+    background-color:aliceblue;
+    background-image: linear-gradient(-90deg,rgba(9, 117, 185, 0.9),rgba(3, 35, 46, 0.9)),url('../../images/BackCourse.jpg');
+    width:70vw;
+    height:10%;
+    border-radius: 20px;
+    height: auto;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    
+    }
+    .rowRef{
+    display: flex;
+    flex-direction: row;
+    width:70vw;
+
+
+    }
+    .RefText1{
+     padding-left: 10px;
+     padding-top: 10px;
+     color:aquamarine;
+     font-weight: 400px;
+     font-size: 2vw;
+        
+
+
+    }
+    .RefText2{
+        margin-left: 150px;
+        padding-top: 10px;
+        color:aquamarine;
+        font-weight: 400px;
+        font-size: 2vw;
+           
+   
+   
+       }
+    .RefTitle{
+    width:12vw;
+    margin-left: 27vw;
+    margin-top: 4vh;
+    font-weight: 700;
+    color: blueviolet;
+
+    }
+    .ContReq{
+        width:12vw;
+
+    }
+    .RefButton{
+        width:8vw;
+        height:5vh;
+    border-radius: 10px;
+    margin-top: 4.3vh;
+    margin-left: 12vw;
+
+
+    }

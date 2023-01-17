@@ -9,6 +9,10 @@
     justify-content: space-between;
     
     }
+    .TickHead{
+     margin-left: 35vw;
+     color :aliceblue;
+    }
     .rowS{
         display: flex;
         flex-direction: row;
@@ -22,6 +26,24 @@ color: bisque;
 width:60vw;
 
 }
+.subText1{
+    font-weight: 300;
+    font-family: Arial, Helvetica, sans-serif;
+    color:darkcyan;
+    width:10vw;
+    margin-left: 5vw;
+    
+    }
+    .subText2{
+        font-weight: 300;
+        font-family: Arial, Helvetica, sans-serif;
+        color:aliceblue;
+        width:60vw;
+        margin-left: 7vw;
+        }
+    
+
+
 .subButton{
 width:15vw;
 height:5vh;

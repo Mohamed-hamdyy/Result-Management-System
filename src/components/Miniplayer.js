@@ -5,8 +5,8 @@ const Miniplayer = (props) => {
     return (
         <ReactPlayer
             url= {props.url}
-            width="50%"
-            height="40vh"
+            width="80%"
+            height="30vh"
             controls
         />
     )

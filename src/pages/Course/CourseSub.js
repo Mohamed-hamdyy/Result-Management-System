@@ -56,7 +56,7 @@ return (
       sub.map((subt,i)=>{
           return  <div className='rowS'>
              <h2 className='subText'>{i+1}- {subt.title} </h2>
-            <button className="subButton" id={subt.subtitleID} onClick={handleWatch}>watch</button>
+           {props.reg && <button className="subButton" id={subt.subtitleID} onClick={handleWatch}>watch</button>}
              </div> 
           }
          )
