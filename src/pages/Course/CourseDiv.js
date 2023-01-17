@@ -77,7 +77,7 @@ export function CourseDiv(props) {
           
                   { <div className="NewCourse_Prices">
                   <h2 className='NewCourse_price'>{  Math.floor(props.course.price*fares[chosenCountry])} {currency[chosenCountry]}</h2>
-                 {<h2 className='NewCourse_price2'>   {props.course.discountsarr[0].percentage} %</h2>  }
+                 {props.Details && <h2 className='NewCourse_price2'>   {props.course.discountsarr[0].percentage} %</h2>  }
                 </div> } 
            
               <div className="NewCourse_StarsHoursPrice">
@@ -111,16 +111,16 @@ export function CourseDiv(props) {
           {<div className={courseDetails ? 'NewData-NewCourse' : 'nonNewData-NewCourse'}>
 
               <div className="Course-subTitles">
-                {props.course.subtitlesarr.map((subt,i)=>  <h4 >{i+1}  -  {subt.title}</h4>)}
+                {props.Details && props.course.subtitlesarr.map((subt,i)=>  <h4 >{i+1}  -  {subt.title}</h4>)}
             </div> 
             <div className="Course-subTitles">
-                 {props.course.subtitlesarr.map((subt)=>  <h4 > {subt.hours} Hours</h4>)}
+                 { props.Details && props.course.subtitlesarr.map((subt)=>  <h4 > {subt.hours} Hours</h4>)}
             </div>
             <div class="vl"></div>
 
               
             <div className="Course-subTitles">
-                  {props.course.exercises.map((exer,i)=>  <h4 >Exercise {i+1} </h4>)}
+                  { props.Details && props.course.exercises.map((exer,i)=>  <h4 >Exercise {i+1} </h4>)}
             </div> 
              
         </div> }

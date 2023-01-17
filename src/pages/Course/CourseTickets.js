@@ -51,7 +51,7 @@ return (
           return <div> 
             
             <div className='rowS'>
-            <h2 className='subText1'> {Tick.ticketID}- </h2>
+            <h2 className='subText1'> {i+1}- </h2>
 
                          <h2 className='subText1'> Ticket Type: </h2>
              <h2 className='subText2'> {Tick.ticketType} </h2>

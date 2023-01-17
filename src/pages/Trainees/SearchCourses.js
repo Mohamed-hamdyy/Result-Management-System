@@ -129,7 +129,7 @@ export function SearchCourses () {
         <ul>
           {
                   courses.map(course => {
-                    return <CourseDiv course={course} countryNumber={0} inst={false} />
+                    return <CourseDiv course={course} countryNumber={0} inst={false} Details={false} />
                   }
                   )
                 }

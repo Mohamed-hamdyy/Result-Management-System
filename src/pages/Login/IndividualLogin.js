@@ -27,7 +27,8 @@ function IndividualLogin () {
   const navigate = useNavigate()
 
   function handleClick1 () {
-    navigate('/Individualpage')
+    console.log("entered");
+    navigate('/TraineeHome')
   }
 
   const handleSubmit = async (event) => {
@@ -57,6 +58,7 @@ function IndividualLogin () {
           window.localStorage.setItem('role', role)
           window.localStorage.setItem('id', 'null')
           window.localStorage.setItem('userName', userName)
+
           handleClick1()
         }
         else if(data.message === 'username not found'){

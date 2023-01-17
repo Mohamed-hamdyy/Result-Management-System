@@ -1,6 +1,6 @@
 .wholeTic{
 width:40%;
-height:50vh;
+height:60vh;
 background-color:aliceblue;
 border-radius: 10px;
 margin-left: 10px;
@@ -10,7 +10,7 @@ padding-left: 5px;
 }
 .rep{
 font-weight: 1000;
-margin-left: 180px;
+margin-left: 50px;
 
 }
 .RepText{
