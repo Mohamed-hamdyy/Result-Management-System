@@ -48,11 +48,13 @@ creationRouter.post("/getwallet", async (req, res) => {
     
     creationRouter.post("/createrequest", async (req, res) => {
         const {userName,courseID}= req.body    
-        var request = await Request.create({userName:userName,courseID:courseID})
+      
+        var request = await Request.create({userName:userName,CourseID:courseID})
         var user =await CorporateUser.findOne({userName:userName})
         var array= user.requestedCourses
         array.push(courseID)
         var user =await CorporateUser.findOneAndUpdate({userName:userName},{requestedCourses:array})
+        res.json({data:"request made "});
         });
 
 
@@ -64,7 +66,7 @@ creationRouter.post("/getwallet", async (req, res) => {
     creationRouter.post("/acceptrequest", async (req, res) => {
         const {userName,courseID}= req.body    
         var user =await CorporateUser.findOne({userName:userName})
-        var array= user.registeredCourses
+        var array= user.registeredCourses  
         array.push(courseID)
         var array2= user.requestedCourses
         var index=array2.indexOf(courseID)
