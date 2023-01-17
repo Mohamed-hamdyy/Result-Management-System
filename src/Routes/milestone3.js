@@ -32,13 +32,9 @@ creationRouter.post("/payforcourse", async (req, res) => {
     usercourses.push(courseID)
     const course= await Course.findOne({courseID:courseID})
     var instructor= await Instructor.findOne({userName:course.instructorUsername})
-    var globalDiscount= GlobalDiscount.find({})
-    if(globalDiscount.length==0){
-        var wallet = instructor.ownedMoney + course.price
-    }
-    else{
-        var wallet = instructor.ownedMoney + course.price*(1-(globalDiscount[0].percentage/100))
-    }
+
+    var wallet = instructor.ownedMoney + course.price
+   
     instructor= await Instructor.findOneAndUpdate({userName:instructor.userName},{ownedMoney:wallet})
 
 
