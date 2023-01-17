@@ -29,35 +29,38 @@ creationRouter.post("/adminlogin", async (req, res) => {
 
     const admin=await Admin.findOne({userName:userName})
     if(admin==null){
-      res.sendStatus(404).json("username not found")
-      return
-    }
-   bcrypt.compare(password,admin.password).then(
-      isCorrect=>{
-        if(isCorrect){
-          payload={
-            userName:userName,
-            role:"admin"
-        }
-        jwt.sign(payload,process.env.JWT_SECRET,(err,token)=>{
-          if(err) {
-            console.log(err)
-  
-             res.json({message:err})
-             return
-          }
-           res.json({message:"Success",token:token,role:"admin"})
-           return
-        }) 
-        }
-
-        else{
-          res.sendStatus(404).json("incorrect password ")
-          return
-        }
-             }
+       res.json({message:"username not found"}).status(404)
       
-    )   
+    }
+    else{
+      bcrypt.compare(password,admin.password).then(
+        isCorrect=>{
+          if(isCorrect){
+            payload={
+              userName:userName,
+              role:"admin"
+          }
+          jwt.sign(payload,process.env.JWT_SECRET,(err,token)=>{
+            if(err) {
+              console.log(err)
+    
+               res.json({message:err})
+               return
+            }
+             res.json({message:"Success",token:token,role:"admin"})
+             return
+          }) 
+          }
+  
+          else{
+            res.status(404).json({message:"incorrect password "})
+            return
+          }
+               }
+        
+      )   
+    }
+
   });
 
 
@@ -96,34 +99,37 @@ creationRouter.post("/adminlogin", async (req, res) => {
 
     const admin=await Instructor.findOne({userName:userName})
     if(admin==null){
-      res.sendStatus(404).json("username not found")
+      res.status(404).json({message:"username not found"})
       return
     }
-   bcrypt.compare(password,admin.password).then(
-      isCorrect=>{
-        if(isCorrect){
-          payload={
-            userName:userName,
-            role:"instructor",
-        }
-        jwt.sign(payload,process.env.JWT_SECRET,(err,token)=>{
-          if(err) {
-            console.log(err)
-  
-            return res.json({message:err})
-            
-            
+    else{
+      bcrypt.compare(password,admin.password).then(
+        isCorrect=>{
+          if(isCorrect){
+            payload={
+              userName:userName,
+              role:"instructor",
           }
-          return res.json({message:"Success",token:token,role:"instructor",userName:userName})
-        }) 
-        }
-        else{
-          res.sendStatus(404).json("incorrect password ")
-          return
-
-        }
-             }  
-    )   
+          jwt.sign(payload,process.env.JWT_SECRET,(err,token)=>{
+            if(err) {
+              console.log(err)
+    
+              return res.json({message:err})
+              
+              
+            }
+            return res.json({message:"Success",token:token,role:"instructor",userName:userName})
+          }) 
+          }
+          else{
+            res.status(404).json({message:"incorrect password "})
+            return
+  
+          }
+               }  
+      ) 
+    }
+     
   });
   creationRouter.post("/instructorverify", async (req, res) => {
     const { token} = req.body;
@@ -155,7 +161,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
 
     const admin=await IndividualUser.findOne({userName:userName})
     if(admin==null){
-      res.sendStatus(404).json("username not found")
+      res.status(404).json({message:"username not found"})
       return
     }
    bcrypt.compare(password,admin.password).then(
@@ -178,7 +184,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
         }) 
         }
         else{
-          res.sendStatus(404).json("incorrect password ")
+          res.status(404).json({message:"incorrect password "})
           return
 
         }
@@ -219,7 +225,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
 
     const admin=await CorporateUser.findOne({userName:userName})
     if(admin==null){
-      res.sendStatus(404).json("username not found")
+      res.status(404).json({message:"username not found"})
     }
    bcrypt.compare(password,admin.password).then(
       isCorrect=>{
@@ -239,7 +245,7 @@ creationRouter.post("/adminlogin", async (req, res) => {
         }) 
         }
         else{
-          res.sendStatus(404).json("incorrect password ")
+          res.status(404).json({message:"incorrect password "})
           return
         }
              }  

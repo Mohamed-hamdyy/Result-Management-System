@@ -86,6 +86,9 @@ creationRouter.post("/createCorporateUser", async (req, res) => {
       userName: userName,
       password: password2,
       country:"Morocco",
+      requestedCourses:[],
+      registeredCourses:[],
+
     });
     console.log("User Created Successfully");
   } else {
