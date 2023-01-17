@@ -23,6 +23,7 @@ import { useNavigate } from 'react-router-dom'
 function Allecourses () {
   const [Courses, setCourses] = useState('')
   const [current, setcurrent] = useState('')
+  const [ind, setind] = useState('')
   const navigate = useNavigate()
 
   function handleClick1 () {
@@ -61,7 +62,7 @@ function Allecourses () {
   }, [])
   useEffect(() => {
     Promise.all([
-      fetch('http://localhost:7000/api/adminverify',
+      fetch('http://localhost:7000/api/individualuserverify',
         {
           method: 'POST',
           headers: {
@@ -72,31 +73,9 @@ function Allecourses () {
             token: window.localStorage.getItem('token')
           })
 
-        }),
-      fetch('http://localhost:7000/api/corporateuserverify',
-        {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          },
-
-          body: JSON.stringify({
-            token: window.localStorage.getItem('token')
-          })
-
-        }),
-      fetch('http://localhost:7000/api/instructorverify',
-        {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          },
-
-          body: JSON.stringify({
-            token: window.localStorage.getItem('token')
-          })
-
-        }),
+        })
+    ,
+      
         fetch('http://localhost:7000/api/getcoursesembeddedall',
         {
           method: 'POST',
@@ -111,16 +90,14 @@ function Allecourses () {
         })
 
     ])
-      .then(([resadmin, rescorporate, resinstructor , rescourses]) =>
-        Promise.all([resadmin.json(), rescorporate.json(), resinstructor.json(),rescourses.json()])
+      .then(([resind , rescourses]) =>
+        Promise.all([resind.json(), rescorporate.json(), resinstructor.json(),rescourses.json()])
 
       )
-      .then(([dataadmin, datacorporate, datainstructor,datacourses]) => {
-        setadmin(dataadmin)
-        setcorporate(datacorporate)
-        setinstructor(datainstructor)
+      .then(([dataind,datacourses]) => {
+        setind(dataind)
         setCourses(datacourses)
-        if (admin === 'redirect' && corporate === 'redirect' && instructor === 'redirect') {
+        if (ind === 'redirect') {
           handleClick1()
         }
       })

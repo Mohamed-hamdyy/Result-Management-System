@@ -2,8 +2,7 @@ import React from 'react'
 import './CourseExercises.css'
 import { useNavigate } from 'react-router-dom'
 
-export function CourseExercises (props) {
-  const navigate = useNavigate()
+
 
 export function CourseExercises(props){
 

@@ -22,6 +22,28 @@ function Filtercourses () {
   const [courses, setcourses] = useState('')
   const [titles, settitles] = useState('')
   const navigate = useNavigate()
+  useEffect(() => {
+    fetch('http://localhost:7000/api/instructorverify',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        },
+
+        body: JSON.stringify({
+          token: window.localStorage.getItem('token')
+        })
+
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        if (data === 'redirect') {
+          handleClick1()
+        }
+      })
+  }, [])
   function handleClick21 () {
     window.localStorage.clear()
     navigate('/')
@@ -39,9 +61,9 @@ function Filtercourses () {
 
         body: JSON.stringify({
           userName: window.localStorage.getItem('userName'),
-          pricefrom,
-          priceto,
-          subject
+          pricefrom:pricefrom,
+          priceto:priceto,
+          subject:subject
 
         })
 
@@ -53,6 +75,9 @@ function Filtercourses () {
         setcourses(data)
         console.log(data)
       })
+  }
+  function handleClick1 () {
+    navigate('/')
   }
 
   return (

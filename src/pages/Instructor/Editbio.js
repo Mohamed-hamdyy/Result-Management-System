@@ -13,10 +13,36 @@ import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 function Editbio () {
   const [miniBio, setminiBio] = useState('')
   const [email, setemail] = useState('')
   const navigate = useNavigate()
+  useEffect(() => {
+    fetch('http://localhost:7000/api/instructorverify',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        },
+
+        body: JSON.stringify({
+          token: window.localStorage.getItem('token')
+        })
+
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        if (data === 'redirect') {
+          handleClick1()
+        }
+      })
+  }, [])
+  function handleClick1 () {
+    navigate('/')
+  }
   function handleClick21 () {
     window.localStorage.clear()
     navigate('/')
@@ -35,8 +61,8 @@ function Editbio () {
 
         body: JSON.stringify({
           instructorUsername: window.localStorage.getItem('userName'),
-          miniBio,
-          email
+          miniBio:miniBio,
+          email:email
         })
 
       })

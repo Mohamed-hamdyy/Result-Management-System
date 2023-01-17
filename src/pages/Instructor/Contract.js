@@ -3,10 +3,35 @@ import * as React from 'react'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 function Contract () {
   const navigate = useNavigate()
+  const [instructor, setinstructor] = useState('')
+ 
+  useEffect(() => {
+    fetch('http://localhost:7000/api/instructorverify',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        },
 
+        body: JSON.stringify({
+          token: window.localStorage.getItem('token')
+        })
+
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        if (data === 'redirect') {
+          handleClick1()
+        }
+      })
+  }, [])
   function handleClick1 () {
     navigate('/')
   }

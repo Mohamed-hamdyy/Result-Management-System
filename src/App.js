@@ -1,6 +1,7 @@
 import {BrowserRouter , Routes , Route}  from 'react-router-dom'
   
 import SignIn from './pages/SignIn';
+import Instructorpage from './pages/Instructor/Instructorpage'; 
 import AddAdministrator from './pages/Admin/AddAdministrator';
 import AddInstructor from './pages/Admin/AddInstructor';
 import AddCorporateTrainees from './pages/Admin/AddCorporateTrainees';
@@ -22,39 +23,25 @@ import CoursesTitles from './pages/Instructor/CoursesTitles';
 import Signup from './pages/Signup';
 import Policies from './pages/Policies';
 import Allcourses from './pages/Trainees/AllCourses';
-import Pay from './pages/Individual/Pay';
 import Welcome from './pages/Welcome';
+import MostViewed from './pages/MostViewed';
 import AdminLogin from './pages/Login/AdminLogin';
 import IndividualLogin from './pages/Login/IndividualLogin';
 import InstructorLogin from './pages/Login/InstructorLogin';
 import CorporateLogin from './pages/Login/CorporateLogin';
-import Requests from './pages/Requests';
+import Requests from './pages/Admin/Requests';
 import NestedList from './pages/Admin/Adminpage';
 import Exam from './pages/Exam';
 import InstructorExam from './pages/InstructorExam';
 import Exercise from './components/Exercise'
-import CourseVideo from './pages/Course/CourseVideo';
 import Certificate from './pages/Course/Certificate';
 import CourseSub from './pages/Course/CourseSub';
 import RefundDiv from './components/Refund/RefundDiv';
-
-import InstructorCourses from './pages/InstructorCourses';
-import InstructorCoursesTable from './pages/InstructorCoursesTable';
-import InstructorCoursesSearch from './pages/InstructorCoursesSearch';
 import Ticket from './components/Ticket';
 import CourseVideo from './pages/Course/CourseVideo'
-import Certificate from './pages/Course/Certificate'
-import CourseSub from './pages/Course/CourseSub'
-import TraineeHome from './pages/Trainees/TraineeHome'
 import Allecourses from './pages/Allecourses'
-import TraineeCourse from './pages/Trainees/TraineeCourse'
-import SearchCourses from './pages/Trainees/SearchCourses'
-import Tickets from './pages/Tickets'
-import CourseDetails from './pages/Course/CourseDetails'
-import { red } from '@mui/material/colors'
-
+import Tickets from './pages/Admin/Tickets'
 import TraineeHome from'./pages/Trainees/TraineeHome';
-
 import TraineeCourse from './pages/Trainees/TraineeCourse';
 import SearchCourses from './pages/Trainees/SearchCourses';
 import CourseDetails from './pages/Course/CourseDetails';
@@ -87,7 +74,7 @@ function App() {
           <Route path ="/Certificate" element ={<Certificate />}/>
          
 
-
+          <Route path ="/mostviewed" element ={<MostViewed />}/>
           <Route path ="/addadmin" element ={<AddAdministrator />}/>
           <Route path ="/contract" element ={<Contract />}/>
           <Route path ="/requests" element ={<Requests />}/>
@@ -110,12 +97,10 @@ function App() {
             <Route path='/CourseExercise' element={<Exercise />} />
             <Route path='/TraineeCourse' element={<TraineeCourse />} />
             <Route path='/TraineeHome' element={<TraineeHome />} />
-            <Route path='/AllCourses' element={<AllCourses />} />
             <Route path='/SearchCourse' element={<SearchCourses />} />
             <Route path='/CourseSub' element={<CourseSub />} />
             <Route path='/CourseVideo' element={<CourseVideo />} />
             <Route path='/addadmin' element={<AddAdministrator />} />
-            <Route path='/mostviewed' element={<MostViewed />} />
             <Route path='/contract' element={<Contract />} />
             <Route path='/requests' element={<Requests />} />
             <Route path='/landingpage' element={<LandingPage />} />
@@ -130,7 +115,6 @@ function App() {
           <Route path ="/editbio" element ={<Editbio />}/>
           <Route path ="/signup" element ={<Signup />}/>
           <Route path ="/allcourses" element ={<Allcourses />}/>
-          <Route path ="/pay" element ={<Pay />}/>
           <Route path ="/Policies" element ={<Policies />}/>
           <Route path ="/filtercourses" element ={<Filtercourses />}/>
           <Route path ="/Filtercoursesubjectinstructor" element ={<Filtercoursesubjectinstructor />}/>

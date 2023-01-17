@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Star from '../../components/Star';
+
 
 export function CourseDiv(props) {
      const navigate = useNavigate();

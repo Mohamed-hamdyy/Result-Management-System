@@ -66,7 +66,7 @@ function AddCorporateTrainees () {
 
         body: JSON.stringify({
           userName: username,
-          password
+          password: password
         })
 
       })

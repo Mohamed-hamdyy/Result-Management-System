@@ -17,12 +17,39 @@ function ViewPersonalRatingsReviews () {
   const [userName, setUserName] = useState('')
 
   const navigate = useNavigate()
+  
+  
   function handleClick21 () {
     window.localStorage.clear()
     navigate('/')
   }
   function handleClick22 () {
     if (window.localStorage.getItem('role') === 'individual user') { navigate('/Individualpage') } else if (window.localStorage.getItem('role') === 'admin') { navigate('/adminpage') } else if (window.localStorage.getItem('role') === 'instructor') { navigate('/Instructorpage') } else if (window.localStorage.getItem('role') === 'corporate user') { navigate('/Corporatepage') } else { navigate('/') }
+  }
+  useEffect(() => {
+    fetch('http://localhost:7000/api/instructorverify',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        },
+
+        body: JSON.stringify({
+          token: window.localStorage.getItem('token')
+        })
+
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        if (data === 'redirect') {
+          handleClick1()
+        }
+      })
+  }, [])
+  function handleClick1 () {
+    navigate('/')
   }
 
   useEffect(() => {

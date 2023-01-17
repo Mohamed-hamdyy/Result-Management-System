@@ -21,6 +21,28 @@ function Filtercoursesubjectinstructor () {
   const [data, setdata] = useState('')
 
   const navigate = useNavigate()
+  useEffect(() => {
+    fetch('http://localhost:7000/api/instructorverify',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        },
+
+        body: JSON.stringify({
+          token: window.localStorage.getItem('token')
+        })
+
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        if (data === 'redirect') {
+          handleClick1()
+        }
+      })
+  }, [])
   function handleClick21 () {
     window.localStorage.clear()
     navigate('/')
@@ -39,8 +61,8 @@ function Filtercoursesubjectinstructor () {
 
         body: JSON.stringify({
           instructorUsername: window.localStorage.getItem('userName'),
-          title,
-          subject
+          title:title,
+          subject:subject
 
         })
 
@@ -53,7 +75,9 @@ function Filtercoursesubjectinstructor () {
         console.log(data)
       })
   }
-
+  function handleClick1 () {
+    navigate('/')
+  }
   return (
     <div>
       <div>

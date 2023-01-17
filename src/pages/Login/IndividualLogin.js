@@ -27,7 +27,7 @@ function IndividualLogin () {
   const navigate = useNavigate()
 
   function handleClick1 () {
-    navigate('/Individualpage')
+    navigate('/Traineehome')
   }
 
   const handleSubmit = async (event) => {
