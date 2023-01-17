@@ -96,7 +96,7 @@ creationRouter.post("/createCorporateUser", async (req, res) => {
     const user = await CorporateUser.create({
       userName: userName,
       password: password2,
-      country:"Morocco",
+      country:"Morocco"+userName,
       requestedCourses:[],
       registeredCourses:[],
 
