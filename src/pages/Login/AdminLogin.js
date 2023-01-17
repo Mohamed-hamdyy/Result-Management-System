@@ -19,12 +19,14 @@ function AdminLogin () {
   const [password, setpassword] = useState('')
   const [username, setusername] = useState('')
   const [data, setdata] = useState('')
+  const [incorrectpass, setincorrectpass] = useState('')
+  const [incorrectuser, setincorrectuser] = useState('')
   let token = ''
   let role = ''
   const navigate = useNavigate()
 
   function handleClick1 () {
-    navigate('/')
+    navigate('/Adminpage')
   }
 
   function handleClick21 () {
@@ -61,6 +63,12 @@ function AdminLogin () {
           window.localStorage.setItem('role', role)
           window.localStorage.setItem('id', 'null')
           handleClick1()
+        }
+        else if(data.message === 'username not found'){
+            setincorrectuser("Incorrect Username!")
+        }
+        else{
+              setincorrectpass("Incorect Password!")
         }
       })
   }
@@ -134,6 +142,14 @@ function AdminLogin () {
       <Button variant='contained' color='success' onClick={handleSubmit}>
         Login
       </Button>
+      <br>
+      </br>
+      <h3>
+        {incorrectpass}
+      </h3>
+      <h3>
+        {incorrectuser}
+      </h3>
     </div>
   )
 }

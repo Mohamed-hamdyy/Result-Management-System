@@ -19,6 +19,8 @@ function CorporateLogin () {
   const [password, setpassword] = useState('')
   const [username, setusername] = useState('')
   const [data, setdata] = useState('')
+  const [incorrectpass, setincorrectpass] = useState('')
+  const [incorrectuser, setincorrectuser] = useState('')
   let token = ''
   let role = ''
   let userName = ''
@@ -65,8 +67,14 @@ function CorporateLogin () {
           window.localStorage.setItem('userName', userName)
           handleClick1()
         }
-      })
-  }
+        else if(data.message === 'username not found'){
+          setincorrectuser("Incorrect Username!")
+      }
+      else{
+            setincorrectpass("Incorect Password!")
+      }
+    })
+}
   return (
     <div>
 
@@ -126,6 +134,14 @@ function CorporateLogin () {
       <Button variant='contained' color='success' onClick={handleSubmit}>
         Login
       </Button>
+      <br>
+      </br>
+      <h3>
+        {incorrectpass}
+      </h3>
+      <h3>
+        {incorrectuser}
+      </h3>
     </div>
   )
 }
