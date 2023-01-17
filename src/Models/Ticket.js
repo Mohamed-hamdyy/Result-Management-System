@@ -9,8 +9,9 @@ const ticketSchema = new Schema({
       },
 
     ticketStatus:{
-        type:Boolean,
+        type:String,
         required:true,
+        default:"unseen",
     },
 
     ticketType:{
@@ -19,7 +20,7 @@ const ticketSchema = new Schema({
     },
 
     ticketText:{
-        type:Text,
+        type:String,
     },
 
     courseID: {

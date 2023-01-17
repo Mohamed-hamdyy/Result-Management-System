@@ -12,7 +12,9 @@ const Exercise = require("../Models/Exercise");
 const Discount = require("../Models/Discount");
 const Request = require("../Models/Request");
 
-const bcrypt= require("bcrypt")
+
+const bcrypt= require("bcrypt");
+const Ticket = require("../Models/Ticket");
 
 const creationRouter = express.Router();
 
@@ -46,11 +48,12 @@ creationRouter.post("/getwallet", async (req, res) => {
     
     creationRouter.post("/createrequest", async (req, res) => {
         const {userName,courseID}= req.body    
-        var request = await Request.create({userName:userName,courseID:courseID})
+        var request = await Request.create({userName:userName,CourseID:courseID})
         var user =await CorporateUser.findOne({userName:userName})
         var array= user.requestedCourses
         array.push(courseID)
         var user =await CorporateUser.findOneAndUpdate({userName:userName},{requestedCourses:array})
+        res.json({data:"request made"});
         });
 
 
@@ -88,5 +91,26 @@ creationRouter.post("/getwallet", async (req, res) => {
         res.send(array)
         });
             
+    creationRouter.post("/getalltickets", async (req, res) => {
+        var array = await Ticket.find({})
+        res.send(array)
+        });
+    creationRouter.post("/markaspending", async (req, res) => {
+        var {ticketID} = req.body
+
+        var array = await Ticket.findOneAndUpdate({ticketID:ticketID},{ticketStatus:"pending"})
+        });
+
+    creationRouter.post("/markasresolved", async (req, res) => {
+        var {ticketID} = req.body
+
+        var array = await Ticket.findOneAndUpdate({ticketID:ticketID},{ticketStatus:"resolved"})
+        });
+
+    creationRouter.post("/deleteresolved", async (req, res) => {
+        var {ticketID} = req.body
+
+        var array = await Ticket.deleteMany({ticketStatus:"resolved"})
+        });
 
     module.exports = creationRouter;

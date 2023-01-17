@@ -12,6 +12,7 @@ const Subtitle=require("../Models/Subtitle");
 const Progress=require("../Models/Progress");
 const Request=require("../Models/Request");
 const creationRouter = express.Router();
+const ReqRef=require("../Models/ReqRefund");
 
 creationRouter.use(express.urlencoded({ extended: false }));
 
@@ -85,6 +86,26 @@ creationRoute.get("/getAllcourses",function(req,res){
        
        res.json(result)
    })
+})
+creationRoute.post("/createTicket", async function(req,res){
+   const Tickets= await Ticket.find({});
+   const n =Tickets.length+1; 
+   const ticketID=n+"";
+   const status=req.body.status;
+   const type=req.body.type;
+   const text=req.body.text;
+   const courseId=req.body.courseID;
+
+   var query=  await Ticket.create({
+     ticketID:ticketID,
+     ticketStatus:status,
+     ticketType:type,
+     ticketText:text,
+     courseID:courseId
+
+   
+   });
+  res.json({data:"created"});
 })
 creationRoute.post('/getDetails',function(req,res){
    const userName=req.body.userName;
@@ -167,12 +188,12 @@ creationRoute.post('/addRequest',async function(req,res){
    const courseId=req.body.courseId;
    
  
-   const checkRequest= await Request.find({
+   const checkRequest= await ReqRef.find({
       userName:userName,
       CourseID:courseId
      })
   if(checkRequest.length==0){
-  const userRequest= await Request.create({
+  const userRequest= await ReqRef.create({
    userName:userName,
    CourseID:courseId
   })
@@ -209,6 +230,40 @@ creationRouter.post('/getSubtitleVideo',async function(req,res){
 
 
 });
+creationRouter.post('/getSubtitleVideo',async function(req,res){
+   const subtitleID=req.body.subtitleID;
 
+  const sub=await Subtitle.find({subtitleID:subtitleID});
+
+  res.json(sub[0]);
+
+
+});
+creationRouter.post('/registeredCourse',async function(req,res){
+   const userName=req.body.userName;
+   const courseId=req.body.courseId;
+   const type=req.body.type;
+   var found =false;
+  if(type=="Individual"){
+  const user=await IndividualUser.find({userName:userName});
+   const array=user[0].registeredCourses;
+  for (let i=0;i<array.length;i++){
+     if (array[i]==courseId)
+         found=true;
+  }
+  }
+  else{
+  const user=await CorporateUser.find({userName:userName});
+   const array=user[0].registeredCourses;
+  for (let i=0;i<array.length;i++){
+     if (array[i]==courseId)
+         found=true;
+  }
+  }
+  
+  res.json(found);
+
+
+});
 
 module.exports = creationRouter;
