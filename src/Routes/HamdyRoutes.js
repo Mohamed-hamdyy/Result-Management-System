@@ -13,7 +13,7 @@ const Progress=require("../Models/Progress");
 const Request=require("../Models/Request");
 const creationRouter = express.Router();
 const ReqRef=require("../Models/ReqRefund");
-
+const Exam=require("../Models/Exam");
 creationRouter.use(express.urlencoded({ extended: false }));
 
 
@@ -125,6 +125,16 @@ creationRoute.post('/getExercise',function(req,res){
        res.json(result)
    })
 })
+creationRoute.post('/getExam',function(req,res){
+   const examID=req.body.examID;
+   var query=Exam.findOne({examID:examID});
+   // @ts-ignore
+   query.exec(function(err,result){
+       res.json(result)
+   })
+})
+
+
 creationRoute.post('/createProgress',async function(req,res){
    const userName=req.body.userName;
    const courseId=req.body.courseId;
@@ -265,5 +275,43 @@ creationRouter.post('/registeredCourse',async function(req,res){
 
 
 });
+creationRouter.post("/TraineeMail",async(req,res)=>{
+   const userName=req.body.userName;
+   var user=await IndividualUser.findOne({userName:userName})
+   var userE=user.email;
+   console.log(user);
+
+   if(user!=null){
+       const link = `http://localhost:3000/Certificate/${user.userName}`
+       var transporter = nodemailer.createTransport({
+           service: 'gmail',
+           auth: {
+             user: 'mohamed.hamdyy83@gmail.com',
+             pass: 'dbpgtwmfixruexif'
+           }
+         });
+         
+         var mailOptions = {
+           from: 'mohamed.hamdyy83@gmail.com',
+           to: email,
+           subject: "Course Passed",
+           text: link,
+           Image: src
+         };
+         
+         transporter.sendMail(mailOptions, function(error, info){
+           if (error) {
+             console.log(error);
+           } else {
+             console.log('Email sent: ' );
+           }
+         });
+   }
+   else{
+       res.send("not found")
+   }
+})
+
+
 
 module.exports = creationRouter;
