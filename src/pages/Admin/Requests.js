@@ -64,7 +64,7 @@ function Requests () {
         setrequests(data)
        
       })
-  }, [])
+  },)
 
   const handleSubmit1 = async (event) => {
    

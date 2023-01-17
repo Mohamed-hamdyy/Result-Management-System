@@ -41,7 +41,7 @@ function Tickets () {
         settickets(data)
         console.log(data)
       })
-  }, [])
+  },)
 
   const handleSubmit1 = async (event) => {
     fetch('http://localhost:7000/api/markaspending',
