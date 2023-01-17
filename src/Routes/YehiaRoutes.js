@@ -20,14 +20,28 @@ creationRouter.post("/filtersubjectrating", async (req, res) => {
   const { subject, rating } = req.body;
   var course;
   if (subject == "") {
-    course = await Course.find({ rating: rating });
+    course = await Course.find({});
+    var arr= []
+    for (let index = 0; index < course.length; index++) {
+      if(course[index].rating>=rating){
+        arr.push(course[index])
+      }      
+    }
+    res.json(arr)
   } else if (rating == "") {
     course = await Course.find({ subject: subject });
+    res.json(course);
+
   } else {
-    course = await Course.find({ subject: subject, rating: rating });
+    course = await Course.find({ subject: subject});
+    for (let index = 0; index >= course.length; index++) {
+      if(course[index].rating<rating){
+        arr.push(course[index])
+      }      
+    }
+    res.json(arr)
   }
   
-  res.json(course);
 
 });
 

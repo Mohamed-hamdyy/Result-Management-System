@@ -10,6 +10,8 @@ const individualUser = require("../Models/IndividualUser");
 const Subtitle = require("../Models/Subtitle");
 const Exercise = require("../Models/Exercise");
 const Discount = require("../Models/Discount");
+const GlobalDiscount = require("../Models/GlobalDiscount");
+
 const Request = require("../Models/Request");
 
 
@@ -63,9 +65,10 @@ creationRouter.post("/getwallet", async (req, res) => {
         });
 
     creationRouter.post("/acceptrequest", async (req, res) => {
-        const {userName,courseID}= req.body    
+        const {userName,courseID}= req.body 
+        console.log(userName)   
         var user =await CorporateUser.findOne({userName:userName})
-        var array= user.registeredCourses
+        var array= user.registeredCourses  
         array.push(courseID)
         var array2= user.requestedCourses
         var index=array2.indexOf(courseID)
@@ -112,5 +115,17 @@ creationRouter.post("/getwallet", async (req, res) => {
 
         var array = await Ticket.deleteMany({ticketStatus:"resolved"})
         });
+
+    creationRouter.post("/changeglobal", async (req, res) => {
+        var {percentage}=req.body
+        var array = await GlobalDiscount.find({})
+        if(array.length==1){
+            GlobalDiscount.findOneAndUpdate({discountID:1},{percentage:percentage})
+        }
+        else{
+            GlobalDiscount.create({percentage:percentage,discountID:1})
+        }
+        });
+        
 
     module.exports = creationRouter;

@@ -25,6 +25,8 @@ creationRouter.post("/instructorCourses", async (req, res) => {
   res.json(outputarr);
 });
 
+
+
 // view courses by filtering using username, title, price
 creationRouter.post("/filtercourses", async (req, res) => {
   const { userName, pricefrom, subject ,priceto} = req.body;
