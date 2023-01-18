@@ -10,7 +10,8 @@ const individualUser = require("../Models/IndividualUser");
 const Subtitle = require("../Models/Subtitle");
 const Exercise = require("../Models/Exercise");
 const Discount = require("../Models/Discount");
-const bcrypt= require("bcrypt")
+const bcrypt= require("bcrypt");
+const course = require("../Models/Course");
 
 const creationRouter = express.Router();
 
@@ -175,16 +176,21 @@ creationRouter.post("/createAdmin", async (req, res) => {
 creationRouter.post("/createSubtitle", async (req, res) => {
   const { courseID, title, hours ,videoLink ,description,subtitleID} = req.body;
 
+
+
   myArray = await Subtitle.find({});
   if (myArray.length == 0) {
     const subtitle = await Subtitle.create({
       subtitleID: subtitleID,
       title: title,
       hours: hours,
-      courseID:courseID,
       videoLink:videoLink,
       description:description,
     });
+    var course=await Course.findOne({courseID:courseID})
+    var newarr= course.subtitles
+    newarr.push(subtitleID)
+    await Course.findOneAndUpdate({courseID:courseID},{subtitles:newarr})
     res.json({message:"created sucessfully"})
   } else {
     res.json("subtitle id already used");
