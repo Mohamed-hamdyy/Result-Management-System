@@ -26,13 +26,15 @@ creationRouter.use(express.urlencoded({ extended: false }));
 
 
 creationRouter.post("/payforcourse", async (req, res) => {
-    const {courseID, amount,userName}= req.body
+    const {courseID,userName}= req.body
     const user= await IndividualUser.findOne({userName:userName})
     const usercourses= user.registeredCourses
     usercourses.push(courseID)
     const course= await Course.findOne({courseID:courseID})
     var instructor= await Instructor.findOne({userName:course.instructorUsername})
-    var wallet = instructor.ownedMoney + amount
+
+    var wallet = instructor.ownedMoney + course.price
+   
     instructor= await Instructor.findOneAndUpdate({userName:instructor.userName},{ownedMoney:wallet})
 
 
@@ -65,8 +67,10 @@ creationRouter.post("/getwallet", async (req, res) => {
         });
 
     creationRouter.post("/acceptrequest", async (req, res) => {
-        const {userName,courseID}= req.body 
-        console.log(userName)   
+        const {current}= req.body 
+        var userName=current.split(" ")[1]
+        var courseID=current.split(" ")[0]
+
         var user =await CorporateUser.findOne({userName:userName})
         var array= user.registeredCourses  
         array.push(courseID)
@@ -78,7 +82,9 @@ creationRouter.post("/getwallet", async (req, res) => {
         });
 
     creationRouter.post("/rejectrequest", async (req, res) => {
-        const {userName,courseID}= req.body    
+        const {current}= req.body 
+        var userName=current.split(" ")[1]
+        var courseID=current.split(" ")[0]
         var user =await CorporateUser.findOne({userName:userName})
         var array2= user.requestedCourses
         var index=array2.indexOf(courseID)

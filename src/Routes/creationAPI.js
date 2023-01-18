@@ -10,7 +10,8 @@ const individualUser = require("../Models/IndividualUser");
 const Subtitle = require("../Models/Subtitle");
 const Exercise = require("../Models/Exercise");
 const Discount = require("../Models/Discount");
-const bcrypt= require("bcrypt")
+const bcrypt= require("bcrypt");
+const course = require("../Models/Course");
 
 const creationRouter = express.Router();
 
@@ -18,7 +19,7 @@ creationRouter.use(express.urlencoded({ extended: false }));
 
 // Creating Course and checking that id is unique
 creationRouter.post("/createCourse", async (req, res) => {
-  const { courseID, title, totalHours, price, subject, instructorUsername } =
+  const { courseID, title, totalHours, price, subject, instructorUsername,summary } =
     req.body;
   myArray = await Course.find({
     courseID: courseID,
@@ -32,7 +33,7 @@ creationRouter.post("/createCourse", async (req, res) => {
       subject: subject,
       instructorUsername: instructorUsername,
       discounts:[],
-      summary:"",
+      summary:summary,
       subtitles:[],
       exercises:[],
       examExercises:[],
@@ -96,7 +97,7 @@ creationRouter.post("/createCorporateUser", async (req, res) => {
     const user = await CorporateUser.create({
       userName: userName,
       password: password2,
-      country:"Morocco",
+      country:"Morocco"+userName,
       requestedCourses:[],
       registeredCourses:[],
 
@@ -173,20 +174,26 @@ creationRouter.post("/createAdmin", async (req, res) => {
 });
 
 creationRouter.post("/createSubtitle", async (req, res) => {
-  const { subtitleID, title, hours } = req.body;
+  const { courseID, title, hours ,videoLink ,description,subtitleID} = req.body;
 
-  myArray = await Subtitle.find({
-    subtitleID: subtitleID,
-  });
+
+
+  myArray = await Subtitle.find({});
   if (myArray.length == 0) {
     const subtitle = await Subtitle.create({
       subtitleID: subtitleID,
       title: title,
       hours: hours,
+      videoLink:videoLink,
+      description:description,
     });
-    console.log("subtitle craeted successfully");
+    var course=await Course.findOne({courseID:courseID})
+    var newarr= course.subtitles
+    newarr.push(subtitleID)
+    await Course.findOneAndUpdate({courseID:courseID},{subtitles:newarr})
+    res.json({message:"created sucessfully"})
   } else {
-    console.log("subtitle id already used");
+    res.json("subtitle id already used");
   }
 });
 
