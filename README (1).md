@@ -297,7 +297,70 @@ As an Individual Trainee I should be able to:
 
 ## Code Examples
 
+Node Mailer:
 
+creationRouter.post("/TraineeMail",async(req,res)=>{
+   const userName=req.body.userName;
+   var user=await IndividualUser.findOne({userName:userName})
+   var userE=user.email;
+   console.log(user);
+
+   if(user!=null){
+       const link = `http://localhost:3000/Certificate/${user.userName}`
+       var transporter = nodemailer.createTransport({
+           service: 'gmail',
+           auth: {
+             user: 'mohamed.hamdyy83@gmail.com',
+             pass: 'dbpgtwmfixruexif'
+           }
+         });
+         
+         var mailOptions = {
+           from: 'mohamed.hamdyy83@gmail.com',
+           to: email,
+           subject: "Course Passed",
+           text: link,
+           Image: src
+         };
+         
+         transporter.sendMail(mailOptions, function(error, info){
+           if (error) {
+             console.log(error);
+           } else {
+             console.log('Email sent: ' );
+           }
+         });
+   }
+   else{
+       res.send("not found")
+   }
+})
+
+Verify with Token:
+
+  creationRouter.post("/corporateuserverify", async (req, res) => {
+    const { token} = req.body;
+    var instructor
+    if (token==null){
+      res.json("redirect")
+      return
+    }
+    const tok=token
+    try{
+       instructor=jwt.verify(tok,process.env.JWT_SECRET)
+
+    }
+    catch(e){
+      res.json("redirect")
+      return
+    }
+    if(instructor==null||instructor.role!="corporate user"){
+      res.json("redirect")
+      return
+    }
+    res.json({userName:instructor.userName})
+
+  });
 ## Installation
 
   
@@ -629,7 +692,7 @@ such as: Animations and styling for pages.
   
 
 ## Credits
-
+- MIT
 
 ## License
 - Express docs
