@@ -79,6 +79,12 @@ export default function Instructorpage () {
   function handleClick14 () {
     navigate('/mostviewed')
   }
+  function handleClick15 () {
+    navigate('/createcourse')
+  }
+  function handleClick16 () {
+    navigate('/addsub')
+  }
   const handleClick = () => {
     setOpen(!open)
   }
@@ -104,6 +110,18 @@ export default function Instructorpage () {
           <AddIcon />
         </ListItemIcon>
         <ListItemText primary='Courses Titles' onClick={handleClick1} />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <ListItemText primary='Create Course' onClick={handleClick15} />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <ListItemText primary='Add Subtitle for a Course' onClick={handleClick16} />
       </ListItemButton>
       <ListItemButton>
         <ListItemIcon>

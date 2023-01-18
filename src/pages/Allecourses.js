@@ -55,56 +55,15 @@ function Allecourses () {
         return res.json()
       })
       .then(data => {
-        
+        setCourses(data)
         console.log(data)
         console.log(window.localStorage.getItem('userName'))
       })
   }, [])
-  useEffect(() => {
-    Promise.all([
-      fetch('http://localhost:7000/api/individualuserverify',
-        {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          },
 
-          body: JSON.stringify({
-            token: window.localStorage.getItem('token')
-          })
-
-        })
-    ,
-      
-        fetch('http://localhost:7000/api/getcoursesembeddedall',
-        {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          },
-  
-          body: JSON.stringify({
-          
-          })
-  
-        })
-
-    ])
-      .then(([resind , rescourses]) =>
-        Promise.all([resind.json(), rescorporate.json(), resinstructor.json(),rescourses.json()])
-
-      )
-      .then(([dataind,datacourses]) => {
-        setind(dataind)
-        setCourses(datacourses)
-        if (ind === 'redirect') {
-          handleClick1()
-        }
-      })
-  }, [])
 
   const handleSubmit1 = async (event) => {
-    fetch('http://localhost:7000/api/pay',
+    fetch('http://localhost:7000/api/payforcourse',
       {
         method: 'POST',
         headers: {
@@ -112,7 +71,8 @@ function Allecourses () {
         },
 
         body: JSON.stringify({
-        
+        courseID:current,
+        userName:window.localStorage.getItem('userName')
         })
 
       })
