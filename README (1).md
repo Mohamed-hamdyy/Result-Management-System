@@ -42,6 +42,8 @@ The Project was given to us by Guc's Advanced Computer Lap Department aiming to 
   
 
 . The Project is still in development phase
+-admin adding promotion still not developed
+-instructor cannot see monthly payments
 
 
 
@@ -592,6 +594,58 @@ POST /createDiscount
 
 | `date` | `string` | Valid from|
 
+
+
+POST /addcourserating
+Adds a new course rating.
+
+Body
+
+courseID (required): ID of the course being rated.
+rating (required): Rating being given to the course.
+review: Review being given to the course.
+
+POST /addinstructorrating
+Adds a new instructor rating.
+
+Body
+
+instructorID (required): ID of the instructor being rated.
+rating (required): Rating being given to the instructor.
+review: Review being given to the instructor.
+
+POST /getcoursesembeddedinstructor
+Gets all courses embedded with instructor data.
+
+Body
+
+instructorUsername (required): Instructor username to filter courses by.
+
+POST /getcoursesembeddedall
+Gets all courses embedded with all data.
+
+
+
+
+
+
+POST /getcoursesembeddedCorporate
+Returns all courses registered by a corporate user.
+
+Body
+
+userName: User name of the corporate user.
+
+
+
+POST /getcoursesembeddedIndividual
+Get courses registered by an individual user, along with the discounts and subtitles for each course.
+
+Body
+
+userName: The username of the individual user.
+
+
   - creationRouter.post("/addcourserating",async(req,res)
   - creationRouter.post("/addinstructorrating",async(req,res)
   - creationRouter.post("/getcoursesembeddedinstructor",async(req,res)
@@ -692,7 +746,9 @@ such as: Animations and styling for pages.
   
 
 ## Credits
-- MIT
+https://youtu.be/7CqJlxBYj-M
+https://youtu.be/w3vs4a03y3I
+
 
 ## License
 - Express docs
