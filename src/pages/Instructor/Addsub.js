@@ -16,13 +16,13 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 
-function Createcourse () {
-  const [CourseID, setCourseID] = useState('')
+function Addsub () {
+  const [courseID, setCourseID] = useState('')
+  const [subtitleID, setsubtitleid] = useState('')
+  const [Hours, setHours] = useState('')
   const [title, settitle] = useState('')
-  const [totalHours, settotalHours] = useState('')
-  const [price, setprice] = useState('')
-  const [subject, setsubject] = useState('')
-  const [summary, setsummary] = useState('')
+  const [videolink, setvideolink] = useState('')
+  const [description, setdescription] = useState('')
   const navigate = useNavigate()
   function handleClick21 () {
     window.localStorage.clear()
@@ -58,7 +58,7 @@ function Createcourse () {
   }, [])
 
   const handleSubmit = async (event) => {
-    fetch('http://localhost:7000/api/createCourse',
+    fetch('http://localhost:7000/api/createsubtitle',
       {
         method: 'POST',
         headers: {
@@ -66,13 +66,12 @@ function Createcourse () {
         },
 
         body: JSON.stringify({
-          instructorUsername: window.localStorage.getItem('userName'),
-          courseID: CourseID,
+          courseID: courseID,
           title:title,
-          totalHours:totalHours,
-          price:price,
-          subject:subject,
-          summary:summary
+          hours:Hours,
+          videoLink:videolink,
+          description:description,
+          subtitleID:subtitleID
         })
 
       })
@@ -95,7 +94,7 @@ function Createcourse () {
       <br />
 
       <p1>
-        Enter CourseID
+        Enter SubtitleID
       </p1>
       <Box
         component='form'
@@ -110,13 +109,13 @@ function Createcourse () {
           required
           fullWidth
           name='username'
-          label='CourseID'
+          label='SubtitleID'
           type='username'
           id='username'
           autoComplete='current-username'
-          value={CourseID}
+          value={subtitleID}
           onChange={(e) =>
-            setCourseID(e.target.value)}
+            setsubtitleid(e.target.value)}
         />
 
       </Box>
@@ -147,7 +146,7 @@ function Createcourse () {
 
       </Box>
       <p1>
-        Enter TotalHours
+        Enter Hours
       </p1>
       <Box
         component='form'
@@ -162,18 +161,18 @@ function Createcourse () {
           required
           fullWidth
           name='username'
-          label='TotalHours'
+          label='Hours'
           type='username'
           id='username'
           autoComplete='current-username'
-          value={totalHours}
+          value={Hours}
           onChange={(e) =>
-            settotalHours(e.target.value)}
+            setHours(e.target.value)}
         />
 
       </Box>
       <p1>
-        Enter Price
+        Enter CourseID
       </p1>
       <Box
         component='form'
@@ -188,18 +187,18 @@ function Createcourse () {
           required
           fullWidth
           name='password'
-          label='Price'
+          label='CourseID'
           type='mnnbm'
           id='Price'
           autoComplete='current-password'
-          value={price}
+          value={courseID}
           onChange={(e) =>
-            setprice(e.target.value)}
+            setCourseID(e.target.value)}
         />
 
       </Box>
       <p1>
-        Enter Subject
+        Enter VideoLink
       </p1>
       <Box
         component='form'
@@ -214,18 +213,18 @@ function Createcourse () {
           required
           fullWidth
           name='username'
-          label='Subject'
+          label='VideoLink'
           type='username'
           id='username'
           autoComplete='current-username'
-          value={subject}
+          value={videolink}
           onChange={(e) =>
-            setsubject(e.target.value)}
+            setvideolink(e.target.value)}
         />
 
       </Box>
       <p1>
-        Enter Summary
+        Enter Description
       </p1>
       <Box
         component='form'
@@ -240,13 +239,13 @@ function Createcourse () {
           required
           fullWidth
           name='username'
-          label='Summary'
+          label='Description'
           type='username'
           id='username'
           autoComplete='current-username'
-          value={summary}
+          value={description}
           onChange={(e) =>
-            setsummary(e.target.value)}
+            setdescription(e.target.value)}
         />
 
       </Box>
@@ -258,4 +257,4 @@ function Createcourse () {
   )
 }
 
-export default Createcourse
+export default Addsub

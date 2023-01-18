@@ -31,6 +31,7 @@ import InstructorLogin from './pages/Login/InstructorLogin';
 import CorporateLogin from './pages/Login/CorporateLogin';
 import Requests from './pages/Admin/Requests';
 import NestedList from './pages/Admin/Adminpage';
+import Addsub from './pages/Instructor/Addsub';
 import Exam from './pages/Exam';
 import InstructorExam from './pages/InstructorExam';
 import Exercise from './components/Exercise'
@@ -63,6 +64,7 @@ function App() {
           <Route path ="/IndividualLogin" element ={<IndividualLogin />}/>
           <Route path ="/InstructorLogin" element ={<InstructorLogin />}/>
           <Route path ="/AddInstructor" element ={<AddInstructor />}/>
+          <Route path ="/addsub" element ={<Addsub />}/>
           <Route path ="/AddCorporateTrainees" element ={<AddCorporateTrainees />}/>
           <Route path ="/CourseExercise" element ={<Exercise />}/>
           <Route path ="/TraineeCourse" element ={<TraineeCourse />}/>
