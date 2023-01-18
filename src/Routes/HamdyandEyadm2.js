@@ -100,7 +100,6 @@ creationRouter.post("/getcoursesembeddedall",async(req,res)=>{
         for (let index = 0; index < course.discounts.length; index++) {
             const x= await Discount.findOne({discountID:course.discounts[index]})
             discountsarr.push( await Discount.findOne({discountID:course.discounts[index]}))
-            console.log(x.percentage);
             
         }
         for (let index = 0; index < course.subtitles.length; index++) {
@@ -158,8 +157,7 @@ creationRouter.post("/getcoursesembeddedIndividual",async(req,res)=>{
 
 
 creationRouter.post("/getcoursesembeddedCorporate",async(req,res)=>{
-    const{userName}=req.body;
-
+    const userName=req.body.userName;
     var indviduser= await corporateUser.findOne({userName:userName})
     var coursesarr= indviduser.registeredCourses
     var outputarr=[]

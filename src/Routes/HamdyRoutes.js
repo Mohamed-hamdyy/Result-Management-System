@@ -109,11 +109,21 @@ creationRoute.post("/createTicket", async function(req,res){
 })
 creationRoute.post('/getDetails',function(req,res){
    const userName=req.body.userName;
+   const type=req.body.type;
+   if(type=="individual user"){
    var query=IndividualUser.findOne({userName:userName});
    // @ts-ignore
    query.exec(function(err,result){
        res.json(result)
    })
+}
+else {
+   var query=CorporateUser.findOne({userName:userName});
+   // @ts-ignore
+   query.exec(function(err,result){
+       res.json(result)
+   })
+}
 })
 
 
@@ -254,7 +264,7 @@ creationRouter.post('/registeredCourse',async function(req,res){
    const courseId=req.body.courseId;
    const type=req.body.type;
    var found =false;
-  if(type=="Individual"){
+  if(type=="individual user"){
   const user=await IndividualUser.find({userName:userName});
    const array=user[0].registeredCourses;
   for (let i=0;i<array.length;i++){
