@@ -173,7 +173,7 @@ creationRouter.post("/createAdmin", async (req, res) => {
 });
 
 creationRouter.post("/createSubtitle", async (req, res) => {
-  const { courseID, title, hours } = req.body;
+  const { courseID, title, hours ,videoLink ,description,subtitleID} = req.body;
 
   myArray = await Subtitle.find({});
   if (myArray.length == 0) {
@@ -181,6 +181,9 @@ creationRouter.post("/createSubtitle", async (req, res) => {
       subtitleID: subtitleID,
       title: title,
       hours: hours,
+      courseID:courseID,
+      videoLink:videoLink,
+      description:description,
     });
     console.log("subtitle craeted successfully");
   } else {
