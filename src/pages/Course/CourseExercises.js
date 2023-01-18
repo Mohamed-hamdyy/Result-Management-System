@@ -3,6 +3,7 @@ import './CourseExercises.css'
 import { useNavigate } from 'react-router-dom'
 
 
+
 export function CourseExercises(props){
 
 const navigate =useNavigate()
@@ -25,7 +26,7 @@ return (
       props.course.exercises.map((exe,i)=>{
           return  <div className='row'>
              <h2 className='Exercise'>Exercise {i+1} </h2>
-           {props.reg && <button className="ExeButton" id={exe} onClick={handleExe}>solve</button>}
+            <button className="ExeButton" id={exe} onClick={handleExe}>solve</button>
              </div> 
           }
          )

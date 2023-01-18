@@ -1,6 +1,7 @@
 import {BrowserRouter , Routes , Route}  from 'react-router-dom'
   
 import SignIn from './pages/SignIn';
+import Instructorpage from './pages/Instructor/Instructorpage'; 
 import AddAdministrator from './pages/Admin/AddAdministrator';
 import AddInstructor from './pages/Admin/AddInstructor';
 import AddCorporateTrainees from './pages/Admin/AddCorporateTrainees';
@@ -23,30 +24,29 @@ import Signup from './pages/Signup';
 import Policies from './pages/Policies';
 import Allcourses from './pages/Trainees/AllCourses';
 import Welcome from './pages/Welcome';
+import MostViewed from './pages/MostViewed';
 import AdminLogin from './pages/Login/AdminLogin';
 import IndividualLogin from './pages/Login/IndividualLogin';
 import InstructorLogin from './pages/Login/InstructorLogin';
 import CorporateLogin from './pages/Login/CorporateLogin';
-import Requests from './pages/Requests';
+import Requests from './pages/Admin/Requests';
 import NestedList from './pages/Admin/Adminpage';
+import Addsub from './pages/Instructor/Addsub';
 import Exam from './pages/Exam';
 import InstructorExam from './pages/InstructorExam';
 import Exercise from './components/Exercise'
-import CourseVideo from './pages/Course/CourseVideo';
 import Certificate from './pages/Course/Certificate';
 import CourseSub from './pages/Course/CourseSub';
 import RefundDiv from './components/Refund/RefundDiv';
-import CourseTickets from './pages/Course/CourseTickets';
-
 import Ticket from './components/Ticket';
-import TraineeCourse from './pages/Trainees/TraineeCourse'
-import SearchCourses from './pages/Trainees/SearchCourses'
-import Tickets from './pages/Tickets'
-import CourseDetails from './pages/Course/CourseDetails'
-import { red } from '@mui/material/colors'
-
+import CourseVideo from './pages/Course/CourseVideo'
+import Allecourses from './pages/Allecourses'
+import Tickets from './pages/Admin/Tickets'
 import TraineeHome from'./pages/Trainees/TraineeHome';
-
+import TraineeCourse from './pages/Trainees/TraineeCourse';
+import SearchCourses from './pages/Trainees/SearchCourses';
+import CourseDetails from './pages/Course/CourseDetails';
+import { red } from '@mui/material/colors';
 
 
 
@@ -64,6 +64,7 @@ function App() {
           <Route path ="/IndividualLogin" element ={<IndividualLogin />}/>
           <Route path ="/InstructorLogin" element ={<InstructorLogin />}/>
           <Route path ="/AddInstructor" element ={<AddInstructor />}/>
+          <Route path ="/addsub" element ={<Addsub />}/>
           <Route path ="/AddCorporateTrainees" element ={<AddCorporateTrainees />}/>
           <Route path ="/CourseExercise" element ={<Exercise />}/>
           <Route path ="/TraineeCourse" element ={<TraineeCourse />}/>
@@ -73,26 +74,27 @@ function App() {
           <Route path ="/CourseSub" element ={<CourseSub />}/>
           <Route path ="/CourseVideo" element ={<CourseVideo />}/>
           <Route path ="/Certificate" element ={<Certificate />}/>
-          <Route path ="/AllTickets" element ={<CourseTickets />}/>
+         
 
-
-
+          <Route path ="/mostviewed" element ={<MostViewed />}/>
           <Route path ="/addadmin" element ={<AddAdministrator />}/>
           <Route path ="/contract" element ={<Contract />}/>
           <Route path ="/requests" element ={<Requests />}/>
           <Route path ="/landingpage" element ={<LandingPage />}/>
           <Route path ="/CoursesTitles" element ={<CoursesTitles />}/>
-          <Route path ="/createcourse" element ={<Createcourse />}/> 
+          <Route path ="/createcourse" element ={<Createcourse />}/>
           <Route path ="/coursepreview" element ={<CoursePreview />}/>
           <Route path ="/ticket" element ={<Ticket />}/>
             <Route path='/' element={<Welcome />} />
             <Route path='/adminpage' element={<NestedList />} />
+            <Route path='/instructorpage' element={<Instructorpage />} />
             <Route path='/AdminLogin' element={<AdminLogin />} />
             <Route path='/CorporateLogin' element={<CorporateLogin />} />
             <Route path='/IndividualLogin' element={<IndividualLogin />} />
             <Route path='/InstructorLogin' element={<InstructorLogin />} />
             <Route path='/AddInstructor' element={<AddInstructor />} />
             <Route path='/AddCorporateTrainees' element={<AddCorporateTrainees />} />
+            <Route path='/allecourses' element={<Allecourses />} />
             <Route path='/tickets' element={<Tickets />} />
             <Route path='/CourseExercise' element={<Exercise />} />
             <Route path='/TraineeCourse' element={<TraineeCourse />} />
@@ -112,7 +114,7 @@ function App() {
             <Route path='/signup' element={<Signup />} />
 
           <Route path ="/Editsubtitle" element ={<Editsubtitle />}/>
-          <Route path ="/editbio" element ={<Editbio />}/> 
+          <Route path ="/editbio" element ={<Editbio />}/>
           <Route path ="/signup" element ={<Signup />}/>
           <Route path ="/allcourses" element ={<Allcourses />}/>
           <Route path ="/Policies" element ={<Policies />}/>

@@ -27,8 +27,7 @@ function IndividualLogin () {
   const navigate = useNavigate()
 
   function handleClick1 () {
-    console.log("entered");
-    navigate('/TraineeHome')
+    navigate('/Traineehome')
   }
 
   const handleSubmit = async (event) => {
@@ -53,13 +52,11 @@ function IndividualLogin () {
         token = data.token
         role = data.role
         userName = data.userName
-        
         if (data.message === 'Success') {
           window.localStorage.setItem('token', token)
           window.localStorage.setItem('role', role)
           window.localStorage.setItem('id', 'null')
           window.localStorage.setItem('userName', userName)
-          
           handleClick1()
         }
         else if(data.message === 'username not found'){

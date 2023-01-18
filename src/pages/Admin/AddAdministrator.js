@@ -65,7 +65,7 @@ function AddAdministrator () {
 
         body: JSON.stringify({
           userName: username,
-          password
+          password: password
         })
 
       })

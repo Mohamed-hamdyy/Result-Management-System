@@ -1,9 +1,6 @@
-// 14
-import { useState } from 'react'
-import { useEffect } from 'react'
 import * as React from 'react'
-import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
+
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -15,16 +12,18 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-function AddCorporateTrainees () {
-  const [password, setpassword] = useState('')
-  const [username, setusername] = useState('')
+import { useEffect } from 'react'
 
+function Addsub () {
+  const [courseID, setCourseID] = useState('')
+  const [subtitleID, setsubtitleid] = useState('')
+  const [Hours, setHours] = useState('')
+  const [title, settitle] = useState('')
+  const [videolink, setvideolink] = useState('')
+  const [description, setdescription] = useState('')
   const navigate = useNavigate()
-
-  function handleClick1 () {
-    navigate('/')
-  }
   function handleClick21 () {
     window.localStorage.clear()
     navigate('/')
@@ -32,9 +31,11 @@ function AddCorporateTrainees () {
   function handleClick22 () {
     if (window.localStorage.getItem('role') === 'individual user') { navigate('/Individualpage') } else if (window.localStorage.getItem('role') === 'admin') { navigate('/adminpage') } else if (window.localStorage.getItem('role') === 'instructor') { navigate('/Instructorpage') } else if (window.localStorage.getItem('role') === 'corporate user') { navigate('/Corporatepage') } else { navigate('/') }
   }
-
+  function handleClick1 () {
+    navigate('/')
+  }
   useEffect(() => {
-    fetch('http://localhost:7000/api/adminverify',
+    fetch('http://localhost:7000/api/instructorverify',
       {
         method: 'POST',
         headers: {
@@ -57,7 +58,7 @@ function AddCorporateTrainees () {
   }, [])
 
   const handleSubmit = async (event) => {
-    fetch('http://localhost:7000/api/createCorporateUser',
+    fetch('http://localhost:7000/api/createsubtitle',
       {
         method: 'POST',
         headers: {
@@ -65,8 +66,12 @@ function AddCorporateTrainees () {
         },
 
         body: JSON.stringify({
-          userName: username,
-          password: password
+          courseID: courseID,
+          title:title,
+          hours:Hours,
+          videoLink:videolink,
+          description:description,
+          subtitleID:subtitleID
         })
 
       })
@@ -89,7 +94,7 @@ function AddCorporateTrainees () {
       <br />
 
       <p1>
-        Enter New Username
+        Enter SubtitleID
       </p1>
       <Box
         component='form'
@@ -104,18 +109,18 @@ function AddCorporateTrainees () {
           required
           fullWidth
           name='username'
-          label='username'
+          label='SubtitleID'
           type='username'
           id='username'
           autoComplete='current-username'
-          value={username}
+          value={subtitleID}
           onChange={(e) =>
-            setusername(e.target.value)}
+            setsubtitleid(e.target.value)}
         />
 
       </Box>
       <p1>
-        Change your Password
+        Enter Title
       </p1>
       <Box
         component='form'
@@ -130,13 +135,117 @@ function AddCorporateTrainees () {
           required
           fullWidth
           name='password'
-          label='Password'
-          type='password'
+          label='Title'
+          type='mn,'
           id='password'
           autoComplete='current-password'
-          value={password}
+          value={title}
           onChange={(e) =>
-            setpassword(e.target.value)}
+            settitle(e.target.value)}
+        />
+
+      </Box>
+      <p1>
+        Enter Hours
+      </p1>
+      <Box
+        component='form'
+        sx={{
+          '& > :not(style)': { m: 1, width: '50ch' }
+        }}
+        noValidate
+        autoComplete='off'
+      >
+        <TextField
+          margin='normal'
+          required
+          fullWidth
+          name='username'
+          label='Hours'
+          type='username'
+          id='username'
+          autoComplete='current-username'
+          value={Hours}
+          onChange={(e) =>
+            setHours(e.target.value)}
+        />
+
+      </Box>
+      <p1>
+        Enter CourseID
+      </p1>
+      <Box
+        component='form'
+        sx={{
+          '& > :not(style)': { m: 1, width: '50ch' }
+        }}
+        noValidate
+        autoComplete='off'
+      >
+        <TextField
+          margin='normal'
+          required
+          fullWidth
+          name='password'
+          label='CourseID'
+          type='mnnbm'
+          id='Price'
+          autoComplete='current-password'
+          value={courseID}
+          onChange={(e) =>
+            setCourseID(e.target.value)}
+        />
+
+      </Box>
+      <p1>
+        Enter VideoLink
+      </p1>
+      <Box
+        component='form'
+        sx={{
+          '& > :not(style)': { m: 1, width: '50ch' }
+        }}
+        noValidate
+        autoComplete='off'
+      >
+        <TextField
+          margin='normal'
+          required
+          fullWidth
+          name='username'
+          label='VideoLink'
+          type='username'
+          id='username'
+          autoComplete='current-username'
+          value={videolink}
+          onChange={(e) =>
+            setvideolink(e.target.value)}
+        />
+
+      </Box>
+      <p1>
+        Enter Description
+      </p1>
+      <Box
+        component='form'
+        sx={{
+          '& > :not(style)': { m: 1, width: '50ch' }
+        }}
+        noValidate
+        autoComplete='off'
+      >
+        <TextField
+          margin='normal'
+          required
+          fullWidth
+          name='username'
+          label='Description'
+          type='username'
+          id='username'
+          autoComplete='current-username'
+          value={description}
+          onChange={(e) =>
+            setdescription(e.target.value)}
         />
 
       </Box>
@@ -148,31 +257,4 @@ function AddCorporateTrainees () {
   )
 }
 
-export default AddCorporateTrainees
-
-// function Copyright(props) {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://mui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
-// const theme = createTheme();
-
-// export default function SignUp() {
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     const data = new FormData(event.currentTarget);
-//     console.log({
-//       userName: data.get('username'),
-//       password: data.get('password'),
-//     });
-//   };
-
-// }
+export default Addsub

@@ -65,7 +65,7 @@ function AddInstructor () {
 
         body: JSON.stringify({
           userName: username,
-          password
+          password: password
         })
 
       })

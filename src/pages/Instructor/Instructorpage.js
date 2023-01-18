@@ -13,12 +13,38 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 import StarBorder from '@mui/icons-material/StarBorder'
 import AddIcon from '@mui/icons-material/Add'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function Instructorpage () {
   const [open, setOpen] = React.useState(false)
   const [open2, setOpen2] = React.useState(false)
   const [open3, setOpen3] = React.useState(false)
   const navigate = useNavigate()
+  useEffect(() => {
+    fetch('http://localhost:7000/api/instructorverify',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        },
+
+        body: JSON.stringify({
+          token: window.localStorage.getItem('token')
+        })
+
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        if (data === 'redirect') {
+          handleClick100()
+        }
+      })
+  }, [])
+  function handleClick100 () {
+    navigate('/')
+  }
 
   function handleClick1 () {
     navigate('/CoursesTitles')
@@ -53,6 +79,12 @@ export default function Instructorpage () {
   function handleClick14 () {
     navigate('/mostviewed')
   }
+  function handleClick15 () {
+    navigate('/createcourse')
+  }
+  function handleClick16 () {
+    navigate('/addsub')
+  }
   const handleClick = () => {
     setOpen(!open)
   }
@@ -78,6 +110,18 @@ export default function Instructorpage () {
           <AddIcon />
         </ListItemIcon>
         <ListItemText primary='Courses Titles' onClick={handleClick1} />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <ListItemText primary='Create Course' onClick={handleClick15} />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <ListItemText primary='Add Subtitle for a Course' onClick={handleClick16} />
       </ListItemButton>
       <ListItemButton>
         <ListItemIcon>

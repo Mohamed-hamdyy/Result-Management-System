@@ -13,10 +13,36 @@ import ExpandMore from '@mui/icons-material/ExpandMore'
 import StarBorder from '@mui/icons-material/StarBorder'
 import AddIcon from '@mui/icons-material/Add'
 import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function NestedList () {
   const [open, setOpen] = React.useState(false)
   const navigate = useNavigate()
+  function handleClick100 () {
+    navigate('/')
+  }
+  useEffect(() => {
+    fetch('http://localhost:7000/api/adminverify',
+      {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        },
+
+        body: JSON.stringify({
+          token: window.localStorage.getItem('token')
+        })
+
+      })
+      .then(res => {
+        return res.json()
+      })
+      .then(data => {
+        if (data === 'redirect') {
+          handleClick100()
+        }
+      })
+  }, [])
 
   function handleClick1 () {
     navigate('/')
@@ -25,16 +51,16 @@ export default function NestedList () {
     navigate('/')
   }
   function handleClick3 () {
-    navigate('/')
+    navigate('/Requests')
   }
   function handleClick4 () {
-    navigate('/')
+    navigate('/Tickets')
   }
   function handleClick5 () {
-    navigate('/')
+    navigate('/Promotion')
   }
   function handleClick6 () {
-    navigate('/')
+    navigate('/Refund')
   }
   function handleClick7 () {
     navigate('/AddInstructor')
@@ -65,13 +91,25 @@ export default function NestedList () {
         <ListItemIcon>
           <AddIcon />
         </ListItemIcon>
-        <ListItemText primary='Sent mail' />
+        <ListItemText primary='Refunds'onClick={handleClick6} />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <ListItemText primary='Promotion'onClick={handleClick5} />
+      </ListItemButton>
+      <ListItemButton>
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <ListItemText primary='Tickets'onClick={handleClick4}/>
       </ListItemButton>
       <ListItemButton>
         <ListItemIcon>
           <DraftsIcon />
         </ListItemIcon>
-        <ListItemText primary='Drafts' />
+        <ListItemText primary='Requests' onClick={handleClick3}/>
       </ListItemButton>
       <ListItemButton>
         <ListItemIcon>

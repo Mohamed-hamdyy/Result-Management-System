@@ -28,54 +28,7 @@ function Forgetpass () {
     if (window.localStorage.getItem('role') === 'individual user') { navigate('/Individualpage') } else if (window.localStorage.getItem('role') === 'admin') { navigate('/adminpage') } else if (window.localStorage.getItem('role') === 'instructor') { navigate('/Instructorpage') } else if (window.localStorage.getItem('role') === 'corporate user') { navigate('/Corporatepage') } else { navigate('/') }
   }
 
-  useEffect(() => {
-    Promise.all([
-      fetch('http://localhost:7000/api/adminverify',
-        {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          },
-
-          body: JSON.stringify({
-            token: window.localStorage.getItem('token')
-          })
-
-        }),
-      fetch('http://localhost:7000/api/corporateuserverify',
-        {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          },
-
-          body: JSON.stringify({
-            token: window.localStorage.getItem('token')
-          })
-
-        }),
-      fetch('http://localhost:7000/api/instructorverify',
-        {
-          method: 'POST',
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          },
-
-          body: JSON.stringify({
-            token: window.localStorage.getItem('token')
-          })
-
-        })
-    ])
-      .then(([resadmin, rescorporate, resinstructor]) =>
-        Promise.all([resadmin.json(), rescorporate.json(), resinstructor.json()])
-
-      )
-      .then(([dataadmin, datacorporate, datainstructor]) => {
-
-      })
-  }, [])
-
+ 
   const handleSubmit = async (event) => {
     fetch('http://localhost:7000/api/userforgetpassword',
       {
