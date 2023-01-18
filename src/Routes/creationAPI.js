@@ -185,9 +185,9 @@ creationRouter.post("/createSubtitle", async (req, res) => {
       videoLink:videoLink,
       description:description,
     });
-    console.log("subtitle craeted successfully");
+    res.json({message:"created sucessfully"})
   } else {
-    console.log("subtitle id already used");
+    res.json("subtitle id already used");
   }
 });
 
