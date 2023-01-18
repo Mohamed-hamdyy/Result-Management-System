@@ -21,7 +21,6 @@ export function CourseSub(props){
               
         })
       });
-          console.log(a);
           const json = await response.json()
           return json;
       }
@@ -29,10 +28,9 @@ export function CourseSub(props){
   useEffect(() => {
     async function getThesub () {
       setSub(await (getsubtitles(array)))
-      // console.log(Course);
     }
     getThesub()
-  }, [])
+  }, [sub])
 
    
 

@@ -21,13 +21,12 @@ export function TraineeCourse(){
     const [Ind,setInd]=useState(false);
     const [Cor,setCor]=useState(false);
     const [type,setType]=useState(localStorage.getItem('role'));
-    const [registered,setRegistered]=useState(true);
+    const [registered,setRegistered]=useState(false);
     
 
     const handleType=()=>{
        if(type=="individual user"){
          setInd(true);
-         console.log(Ind);
        }
        else {
          setCor(true);
@@ -104,12 +103,14 @@ export function TraineeCourse(){
    }
    async function getR(){
      
-     // setRegistered(await (fetchRegistered(user,id,type)));
+      setRegistered(await (fetchRegistered(user,id,type)));
    }
    getTheCourse();
-   getTheProgress();
    getR();
    handleType();
+
+  if(registered)
+   getTheProgress();
 
    },[Course]);
 
@@ -158,8 +159,8 @@ export function TraineeCourse(){
        <div className='row'>
         
        
-        { Ind && Course && <RefundDiv user={user} course={id}/>}
-        {Cor && Course && <Access user={user} course={id}/>}
+        { registered && Ind && Course && <RefundDiv user={user} course={id}/>}
+        {!registered && Cor && Course && <Access user={user} course={id}/>}
         </div> </div>}
         
         { Progress && Progress.data.p==100 && <div>

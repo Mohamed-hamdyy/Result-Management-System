@@ -11,6 +11,8 @@ export function TraineeHome () {
   const navigate = useNavigate()
   const [courses, setCourses] = useState([])
   const [details, setDetails] = useState('')
+  const[user,setUser]=useState(localStorage.getItem('userName'));
+  const [type,setType]=useState(localStorage.getItem('role'));
 
   const [countryNumber, setCountryNumber] = useState()
   const handleCountryNumber = (x) => {
@@ -40,8 +42,26 @@ export function TraineeHome () {
          const json = await response.json()
          return json;
      }
+     const getCourses2= async (user)=>{
+      const response = await fetch('http://localhost:7000/api/getcoursesembeddedCorporate',{
+        method:"POST",
+        headers:{
+           "content-type":"application/json; charset=UTF-8"
+    
+    
+        },
+        body:JSON.stringify({
+           userName:user
+           
+    
+    
+        })
+      });
+          const json = await response.json()
+          return json;
+      }
 
-  const getDetails = async (user) => {
+  const getDetails = async (user,b) => {
     const response = await fetch('http://localhost:7000/api/getDetails', {
       method: 'POST',
       headers: {
@@ -49,8 +69,8 @@ export function TraineeHome () {
 
       },
       body: JSON.stringify({
-        userName: user
-
+        userName: user,
+        type:b
       })
     })
     const json = await response.json()
@@ -59,12 +79,20 @@ export function TraineeHome () {
 
   useEffect(() => {
     async function getCoursess () {
-      setCourses((await getCourses('ahmedyo2001')))
+      setCourses((await getCourses(user)))
     }
     async function getDetailss () {
-      setDetails(await getDetails('ahmedyo2001'))
+      setDetails(await getDetails(user,type))
     }
-    getCoursess()
+    async function getCoursess2 () {
+      setCourses(await getCourses2(user))
+    }
+
+    if(type=="individual user")
+        getCoursess()
+    else 
+        getCoursess2()
+
     getDetailss()
   },[courses,details] );
 
@@ -81,7 +109,7 @@ export function TraineeHome () {
       </div>
       <div className='mainDetailsTrainee'>
         <div className='homeCoursesTrainee'>
-          {courses.map((course) => <CourseDiv course={course} country={0} Details={true}/>)}
+          {courses.map((course) => <CourseDiv course={course} country={0} Details={type=="individual user"}/>)}
 
         </div>
 

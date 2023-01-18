@@ -26,13 +26,11 @@ function CourseVideo () {
     })
   });
       const json = await response.json()
-      console.log(json);
       return json;
   }
   useEffect(()=>{
     async function getThesubt(){
      setSubtitle( await (getSub(subId) ));
-     console.log(subtitle);
       }
       getThesubt(); 
 

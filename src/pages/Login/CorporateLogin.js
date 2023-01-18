@@ -27,7 +27,7 @@ function CorporateLogin () {
   const navigate = useNavigate()
 
   function handleClick1 () {
-    navigate('/addadmin')
+    navigate('/TraineeHome')
   }
 
   function handleClick21 () {
