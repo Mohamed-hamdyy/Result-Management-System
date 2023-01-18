@@ -107,3 +107,17 @@ font-weight: 600;
 font-size: 30px;
 color:blueviolet;
 }
+.rowHomeTrainee{
+display:flex;
+flex-direction: row;
+
+}
+.buttonAll{
+width:10vw;
+height: 7vh;
+margin-left: 10vw;
+border-radius: 10px;
+margin-top: 6vh;
+
+
+}

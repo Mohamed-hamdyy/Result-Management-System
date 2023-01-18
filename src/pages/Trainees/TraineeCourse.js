@@ -17,13 +17,24 @@ export function TraineeCourse(){
     const [id,setid]= useState(localStorage.getItem("NavCourseId"));
     const [Course,setCourse]=useState();
     const [Progress,setProgress]=useState();
-    const[user,setUser]=useState("ahmedyo2001");
-    const [Ind,setInd]=useState(true);
+    const[user,setUser]=useState(localStorage.getItem('userName'));
+    const [Ind,setInd]=useState(false);
     const [Cor,setCor]=useState(false);
-    const [type,setType]=useState("Individual");
+    const [type,setType]=useState(localStorage.getItem('role'));
     const [registered,setRegistered]=useState(true);
-   
     
+
+    const handleType=()=>{
+       if(type=="individual user"){
+         setInd(true);
+         console.log(Ind);
+       }
+       else {
+         setCor(true);
+       }
+
+    }
+
 
     const getCourse= async (a)=>{
       const response = await fetch('http://localhost:7000/api/filtercoursebyid',{
@@ -98,6 +109,7 @@ export function TraineeCourse(){
    getTheCourse();
    getTheProgress();
    getR();
+   handleType();
 
    },[Course]);
 
