@@ -1,79 +1,44 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const courseSchema = new Schema({
-  courseID: {
-    type: String,
-    required: true,
-    unique: true,
-  },
 
-  title: {
-    type: String,
-    required: true,
-  },
-  totalHours: {
-    type: Number,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-  subject: {
-    type: String,
-    required: true,
-  },
-  instructorUsername: {
-    type: String,
-    required: true,
-  },
-  discounts: [
-    {
-      type: Number,
-    },
-  ],
-  summary: {
-    type: String,
-  },
+const CourseSchema = new Schema({
+  courseId: {
+        type: Number,
+        required: true,
+        unique: true,
 
-  subtitles: [
-    {
-      type: Number,
-    },
-  ],
-  exercises: [
-    {
-      type: Number,
-    },
-  ],
-  examExercises: [
-    {
-      type: Number,
-    },
-  ],
-  exams: [
-    {
-      type: Number,
-    },
-  ],
+      },
+    code: {
+        type: String,
+        required: true,
+        unique: true,
+      },
 
-  preview: {
-    type: String,
-  },
-  rating: {
-    type: Number,
-  },
-  numOfRatings: {
-    type: Number,
-  },
+    name:{
+        required: true,
+        type:String,
+ 
+    },
+    hours:{
+        required: true,
+        type:String,
+    },
+    quizNo:{
+        required: true,
+        type:String,
+    },
+    quizesWeight:{
+        type:String,
+    },
+    ExamsWeight:{
+        type:String,
+    },
+    AssignWeight:{
+        type:String,
+    },
   
-  review: [
-    {
-      type: Number,
-    },
-  ],
-});
+})
 
-const course = mongoose.model("course", courseSchema);
-module.exports = course;
+const Course = mongoose.model('Courses', CourseSchema);
+module.exports = Course;

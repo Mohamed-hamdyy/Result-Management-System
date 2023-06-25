@@ -4,15 +4,9 @@ var bodyParser = require('body-parser')
 var cors = require('cors')
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
-const Course = require("../Models/Course");
-const Instructor = require("../Models/Instructor");
-const CorporateUser = require("../Models/CorporateUser");
-const IndividualUser = require("../Models/IndividualUser");
 const Admin = require("../Models/Admin");
-const individualUser = require("../Models/IndividualUser");
 const bcrypt= require("bcrypt")
-const instructor = require("../Models/Instructor")
-
+const User=require("../Models/Users");
 
 const creationRouter = express.Router();
 
@@ -23,31 +17,34 @@ creationRouter.use(bodyParser.json())
 creationRouter.use(cors())
 
 
-creationRouter.post("/adminlogin", async (req, res) => {
+creationRouter.post("/Userlogin", async (req, res) => {
 
-    const { userName, password} = req.body;
+    const  userName = req.body.userName;
+    const password=req.body.password;
 
-    const admin=await Admin.findOne({userName:userName})
-    if(admin==null){
+    const someUser=await User.findOne({userName:userName})
+    if(someUser==null){
        res.json({message:"username not found"}).status(404)
       
     }
     else{
-      bcrypt.compare(password,admin.password).then(
+      bcrypt.compare(password,someUser.password).then(
         isCorrect=>{
           if(isCorrect){
             payload={
               userName:userName,
-              role:"admin"
+              role:someUser.role
           }
-          jwt.sign(payload,process.env.JWT_SECRET,(err,token)=>{
+          jwt.sign(payload,process.env.JWT_SECRET,{
+            expiresIn: "2h",
+          },(err,token)=>{
             if(err) {
               console.log(err)
     
                res.json({message:err})
                return
             }
-             res.json({message:"Success",token:token,role:"admin"})
+             res.json({message:"Success",token:token,role:someUser.role,email:someUser.email})
              return
           }) 
           }
@@ -64,28 +61,29 @@ creationRouter.post("/adminlogin", async (req, res) => {
   });
 
 
-  creationRouter.post("/adminverify", async (req, res) => {
-    const { token} = req.body;
-    var instructor;
+  creationRouter.post("/verifyUser", async (req, res) => {
+    const  token = req.body.token;
+    const role=req.body.role;
+
+    var User;
     if (token==null){
-      res.json("redirect")
+      res.json({message: "redirect"})
       return
     }
     const tok=token
     try{
-       instructor=jwt.verify(tok,process.env.JWT_SECRET)
+       User=jwt.verify(tok,process.env.JWT_SECRET)
 
     }
     catch(e){
-      res.json("redirect")
+      res.json({message:"redirect"})
       return
     }
-    if(instructor==null||instructor.role!="admin"){
-      console.log(instructor.role)
-      res.json("redirect")
+    if(User==null || User.role!=role){
+      res.json({message:"redirect"})
       return
     }else{
-      res.json("stay")
+      res.json({message:"stay"})
     }
 
 
@@ -93,188 +91,6 @@ creationRouter.post("/adminlogin", async (req, res) => {
   
 
 
-  creationRouter.post("/instructorlogin", async (req, res) => {
-
-    const { userName, password} = req.body;
-
-    const admin=await Instructor.findOne({userName:userName})
-    if(admin==null){
-      res.status(404).json({message:"username not found"})
-      return
-    }
-    else{
-      bcrypt.compare(password,admin.password).then(
-        isCorrect=>{
-          if(isCorrect){
-            payload={
-              userName:userName,
-              role:"instructor",
-          }
-          jwt.sign(payload,process.env.JWT_SECRET,(err,token)=>{
-            if(err) {
-              console.log(err)
-    
-              return res.json({message:err})
-              
-              
-            }
-            return res.json({message:"Success",token:token,role:"instructor",userName:userName})
-          }) 
-          }
-          else{
-            res.status(404).json({message:"incorrect password "})
-            return
-  
-          }
-               }  
-      ) 
-    }
-     
-  });
-  creationRouter.post("/instructorverify", async (req, res) => {
-    const { token} = req.body;
-    var instructor
-    if (token==null){
-      res.json("redirect")
-      return
-    }
-    const tok=token
-    try{
-       instructor=jwt.verify(tok,process.env.JWT_SECRET)
-
-    }
-    catch(e){
-      res.json("redirect")
-      return
-    }
-    if(instructor==null||instructor.role!="instructor"){
-      res.json("redirect")
-      return
-    }
-    res.json({userName:instructor.userName})
-
-  });
-
-  creationRouter.post("/individualuserlogin", async (req, res) => {
-
-    const { userName, password} = req.body;
-
-    const admin=await IndividualUser.findOne({userName:userName})
-    if(admin==null){
-      res.status(404).json({message:"username not found"})
-      return
-    }
-   bcrypt.compare(password,admin.password).then(
-      isCorrect=>{
-        if(isCorrect){
-          payload={
-            userName:userName,
-            role:"individual user",
-            id:admin.userName
-        }
-        jwt.sign(payload,process.env.JWT_SECRET,(err,token)=>{
-          if(err) {
-            console.log(err)
-  
-             res.json({message:err})
-             return
-          }
-           res.json({message:"Success",token:token,role:"individual user",userName:userName})
-           return
-        }) 
-        }
-        else{
-          res.status(404).json({message:"incorrect password "})
-          return
-
-        }
-             }  
-    )   
-  });
-
-  creationRouter.post("/individualuserverify", async (req, res) => {
-    const { token} = req.body;
-    var instructor
-    if (token==null){
-      res.json("redirect")
-      return
-    }
-    const tok=token
-    try{
-       instructor=jwt.verify(tok,process.env.JWT_SECRET)
-
-    }
-    catch(e){
-      res.json("redirect")
-      return
-    }
-
-    if(instructor==null||instructor.role!="individual user"){
-      res.json("redirect")
-      return
-    }
-    res.json({userName:instructor.userName})
-    return
-
-  });
-
-
-  creationRouter.post("/corporateuserlogin", async (req, res) => {
-
-    const { userName, password} = req.body;
-
-    const admin=await CorporateUser.findOne({userName:userName})
-    if(admin==null){
-      res.status(404).json({message:"username not found"})
-    }
-   bcrypt.compare(password,admin.password).then(
-      isCorrect=>{
-        if(isCorrect){
-          payload={
-            userName:userName,
-            role:"corporate user",
-            id:admin.userName
-        }
-        jwt.sign(payload,process.env.JWT_SECRET,(err,token)=>{
-          if(err) {
-            console.log(err)
-  
-            return res.json({message:err})
-          }
-          return res.json({message:"Success",token:token,role:"corporate user",userName:userName})
-        }) 
-        }
-        else{
-          res.status(404).json({message:"incorrect password "})
-          return
-        }
-             }  
-    )   
-  });
-
-  creationRouter.post("/corporateuserverify", async (req, res) => {
-    const { token} = req.body;
-    var instructor
-    if (token==null){
-      res.json("redirect")
-      return
-    }
-    const tok=token
-    try{
-       instructor=jwt.verify(tok,process.env.JWT_SECRET)
-
-    }
-    catch(e){
-      res.json("redirect")
-      return
-    }
-    if(instructor==null||instructor.role!="corporate user"){
-      res.json("redirect")
-      return
-    }
-    res.json({userName:instructor.userName})
-
-  });
 
 
 
