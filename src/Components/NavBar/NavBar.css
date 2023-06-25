@@ -1,0 +1,54 @@
+.nav{
+width:100%;
+background-color:#042A2B;
+height:10vh;
+flex-direction: row;
+display: flex;
+}
+.RmsText{
+color:white;
+padding-left: 5px;
+font-family: times;
+
+
+}
+.Headers{
+    padding-left: 10px;
+  text-align: center;
+  padding-left: 7vw;
+  color:White;
+
+
+}
+.Headers{
+  padding-left: 10px;
+text-align: center;
+padding-left: 7vw;
+color:crimson;
+
+}
+.Headers2{
+    padding-left: 10px;
+  color:White;
+  font-family: times;
+
+}
+.navLeft{
+width:35vw;
+flex-direction: row;
+display: flex;
+
+}
+.navMid{
+width:35vw;
+flex-direction: row;
+display: flex;
+margin-left: 20vw;
+}
+.navRight{
+    width:35vw;
+    flex-direction: row;
+display: flex;
+margin-left: 25vw;
+
+}
