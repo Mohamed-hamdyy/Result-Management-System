@@ -1,0 +1,499 @@
+.wholeRemoveCourse{
+    height:95vh;
+    width:99.7%;
+    background-color: #0499f2;
+    background-image: linear-gradient(315deg, #0499f2 0%, #26f596 74%);
+    border-color: #042A2B;
+    border-style: groove;
+
+
+}
+.QuizOnlyInserted{
+padding-left: 8vw;;
+    font-weight: 700;
+color: white;
+font-family: times;
+
+
+}
+.QuizOnlyInserted2{
+    padding-left: 10vw;;
+        font-weight: 700;
+    color: white;
+    font-family: times;
+
+    
+    }
+.wholeAddGrade{
+    height:95vh;
+    width:99.7%;
+
+    background: linear-gradient(91.9deg, rgb(93, 248, 219) 27.8%, rgb(33, 228, 246) 67%);
+    border-color: whitesmoke;
+    border-style: groove;
+
+
+}
+.wholeRemoveCourse2{
+    height:85vh;
+    width:99.7%;
+    background-color: #0499f2;
+    background-image: linear-gradient(315deg, #0499f2 0%, #26f596 74%);
+    border-color: #042A2B;
+    border-style: groove;
+
+
+}
+.wholeRemoveCourse4{
+    height:auto;
+    width:99.7%;
+    background: linear-gradient(91.9deg, rgb(93, 248, 219) 27.8%, rgb(33, 228, 246) 67%);
+    border-color:whitesmoke;
+    border-style: groove;
+    padding-bottom: 7vh;
+
+
+}
+.wholeRemoveCourse3{
+    height:110vh;
+    width:99.7%;
+    background: linear-gradient(91.9deg, rgb(93, 248, 219) 27.8%, rgb(33, 228, 246) 67%);
+    border-color:whitesmoke;
+    border-style: groove;
+
+
+}
+.wholeRemoveCourse33{
+    height:110vh;
+    width:99.7%;
+    background-color: #f1dfd1;
+    background-image: linear-gradient(315deg, #f1dfd1 0%, #f6f0ea 74%);
+        border-color:whitesmoke;
+    border-style: groove;
+
+
+}
+.RemoveDiv{
+    margin-left: 25vw;
+    margin-top: 6vh;
+width:45vw;
+height:50vh;
+border-color:whitesmoke ;
+border-style: groove;
+border-radius: 20px;
+background-color: #d3d3d3;
+background-image: linear-gradient(315deg, #d3d3d3 0%, #7bed9f 74%);
+
+}
+.AddGradeDiv{
+    margin-left: 25vw;
+    margin-top: 6vh;
+width:45vw;
+height:50vh;
+border-color:whitesmoke ;
+border-style: groove;
+border-radius: 20px;
+background-color: #f9f9f9;
+background-image: linear-gradient(315deg, #f9f9f9 0%, #02a388 74%);
+
+}
+.RemoveDiv2{
+    margin-left: 25vw;
+    margin-top: 6vh;
+width:45vw;
+height:55vh;
+border-color:#06A77D ;
+border-style: groove;
+border-radius: 20px;
+background-color: #06A77D;
+
+
+}
+.RemoveDiv3{
+    margin-left: 25vw;
+    margin-top: 6vh;
+width:45vw;
+height:80vh;
+border-color:whitesmoke ;
+border-style: groove;
+border-radius: 20px;
+background-color: #f9f9f9;
+background-image: linear-gradient(315deg, #f9f9f9 0%, #02a388 74%);
+
+}.RemoveDiv33{
+    margin-left: 25vw;
+    margin-top: 6vh;
+width:45vw;
+height:80vh;
+border-color:whitesmoke ;
+border-style: groove;
+border-radius: 20px;
+background-color: #d3d3d3;
+background-image: linear-gradient(315deg, #d3d3d3 0%, #7bed9f 74%);
+
+}
+
+.RemoveDiv3Final{
+    margin-left: 25vw;
+    margin-top: 6vh;
+width:45vw;
+height:85vh;
+border-color:whitesmoke ;
+border-style: groove;
+border-radius: 20px;
+background-color: #f9f9f9;
+background-image: linear-gradient(315deg, #f9f9f9 0%, #02a388 74%);
+
+}
+.RemoveDiv4{
+    margin-left: 25vw;
+    margin-top: 6vh;
+width:45vw;
+height:auto;
+background-color: #f9f9f9;
+background-image: linear-gradient(315deg, #f9f9f9 0%, #02a388 74%);
+border-style: groove;
+border-radius: 20px;
+padding-bottom: 5vh;
+border-color:whitesmoke ;
+
+
+}
+.RemoveDiv44{
+    margin-left: 25vw;
+    margin-top: 6vh;
+width:52vw;
+height:auto;
+border-color:whitesmoke ;
+border-style: groove;
+border-radius: 20px;
+background-color: #f9f9f9;
+background-image: linear-gradient(315deg, #f9f9f9 0%, #02a388 74%);
+padding-bottom: 5vh;
+
+}
+.FuncHeader1{
+    display:flex;
+    flex-direction: row;
+    width:100%;
+    
+    
+    }
+    .FuncHeader11Inst{
+        display:flex;
+        flex-direction: row;
+        width:100%;
+        margin-top: 4vh;
+        margin-bottom: 4vh;
+        
+        }
+    .FuncHeader11{
+        display:flex;
+        flex-direction: row;
+        width:100%;
+        height:10vh;
+        padding-top: 1vh;;
+        
+        
+        }
+        .FuncHeader15{
+            display:flex;
+            flex-direction: row;
+            width:100%;
+            height:7vh;
+            padding-top: 1vh;;
+            
+            
+            }
+    .FuncHeader1Text{
+        color: white;
+        padding-left: 5px;
+        font-family: times;
+
+    
+    }
+    .FuncHeader11Text{
+        color: white;
+        padding-left: 20px;
+        padding-right: 40px;
+        font-weight: 700;
+        font-family: times;
+
+    }
+  
+    .FuncHeader11TextQ{
+        color: white;
+        padding-left: 10px;
+        padding-right: 20px;
+        font-weight: 700;
+        font-family: times;
+
+    }
+    .FuncHeader11TextExam{
+        color: white;
+        padding-left: 3vw;
+        padding-right: 40px;
+        font-weight: 700;
+        font-family: times;
+
+    }
+    .FuncHeader11TextW{
+        color: white;
+        padding-left: 10vw;
+        padding-right: 40px;
+        font-weight: 700;
+        font-family: times;
+
+    }
+    .FuncHeader11TextStu{
+        color: white;
+        padding-left: 20px;
+        width: 30%;
+        font-weight: 700;
+        font-family: times;
+
+    }
+    .FuncHeader11TextM{
+        color: white;
+        padding-left: 20px;
+        padding-right: 40px;
+        font-weight: 700;
+        text-decoration: underline;
+        font-family: times;
+
+    }
+    .FuncHeader11TextMM{
+        color: white;
+        padding-left: 10.5vw;
+        padding-right: 31px;
+        font-weight: 700;
+        text-decoration: underline;
+        font-family: times;
+
+    }
+    .FuncHeader11TextMM2{
+        color: white;
+        padding-left:8vw;
+        padding-right: 40px;
+        font-weight: 700;
+        text-decoration: underline;
+        font-family: times;
+
+    }
+    .FuncHeader11TextN{
+        color: white;
+        padding-left: 9vw;
+        padding-right: 40px;
+        font-weight: 700;
+        font-family: times;
+
+    }
+    .FuncHeader15Text{
+        color: white;
+        padding-left: 60px;
+        padding-right: 40px;
+        font-weight: 700;
+        font-family: times;
+
+    }
+    .Input1{
+    width:17vw;
+    height:7vh;
+    border-radius: 10px;
+    border-color:whitesmoke;
+    border-style:groove;
+    padding-left: 4vw;
+    
+    }
+    
+    
+    .Input2{
+        width:5vw;
+        height:7vh;
+        border-radius: 10px;
+        border-color:whitesmoke;
+        border-style:groove;
+    padding-left: 2vw;    
+        
+        }
+        .Input3{
+            position: relative;
+            margin-left: 8.5vw;
+            width:5vw;
+            height:7vh;
+            border-radius: 10px;
+            border-color: brown;
+            border-style:groove;
+            padding-left: 2vw;
+       
+            
+            }   .Input4{
+                position: relative;
+                margin-left: 8.5vw;
+                width:5vw;
+                height:7vh;
+                border-radius: 10px;
+                border-color: brown;
+                border-style:groove;
+                padding-left: 3.5vw;
+           
+                
+                }
+                .Input4Exam{
+                    position: relative;
+                    margin-left: 5vw;
+                    width:5vw;
+                    height:7vh;
+                    border-radius: 10px;
+                    border-color: brown;
+                    border-style:groove;
+                    padding-left: 3.5vw;
+               
+                    
+                    }
+.adminHeader{
+    text-align: center;
+    color:#06A77D;
+    font-family: times;
+
+    
+    
+    }
+    .PanelText{
+    text-decoration: underline;
+    color: #06A77D;
+    display: flex;
+    flex-direction: row;
+    font-family: times;
+
+    
+    
+    }
+    
+.confirmDiv{
+    margin-top: 10vh;
+    height:50vh;
+    width:40vw;
+    border-style: groove;
+    border-radius: 10px;
+    background-color:#06A77D;
+
+
+
+}
+    
+.confirmDivv{
+    margin-top: 10vh;
+    height:50vh;
+    width:40vw;
+    border-style: groove;
+    border-radius: 10px;
+    background-color:#06A77D;
+
+
+
+}
+.confirmDivInst{
+    margin-top: 10vh;
+    height:50vh;
+    width:40vw;
+    border-style: groove;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    background-image: linear-gradient(315deg, #f9f9f9 0%, #02a388 74%);
+
+
+}
+.confirmDiv2{
+    margin-top: 10vh;
+    height:50vh;
+    width:40vw;
+    border-style: groove;
+    border-radius: 10px;
+    background-color:red;
+
+
+
+}
+.dropDown{
+width: 8vw;
+background-color: aliceblue;
+
+}
+.dropDownExam{
+    width: 8vw;
+    background-color: aliceblue;
+    margin-left: 7vw;
+    }
+
+
+
+.confirmtitleDiv{
+
+    width: 100%;
+    height:18%;
+    border-radius: 10px;
+
+}
+.confirmButtonsDiv{
+    width: 100%;
+    height:26.5%;
+    background-color:aliceblue;
+
+
+}
+.confirmTextDiv{
+    width: 100%;
+    height:40%;
+    background-color: aliceblue;
+    font-family: times;
+
+
+
+}
+.confirmTitleText{
+padding-top: 2.3vh;
+text-align: center;
+color:aliceblue;
+font-weight:700;
+font-size:2.2vw;
+font-family: times;
+
+}
+.confirmTextDiv11{
+    color:#06A77D;
+    padding-top: 10px;
+    padding-left: 20px;
+    font-weight: 600;
+    font-size: 1.8vw;
+    font-family: times;
+
+
+}
+.confirmTextDiv11Login{
+    color:indigo;
+    padding-top: 10px;
+    padding-left: 20px;
+    font-weight: 600;
+    font-size: 1.8vw;
+    font-family: times;
+
+
+
+}
+.confirmTextDiv11Inst{
+    color:teal;
+    padding-top: 10px;
+    padding-left: 20px;
+    font-weight: 600;
+    font-size: 1.8vw;
+    font-family: times;
+
+
+}
+.rowbutt{
+display: flex;
+flex-direction: row;
+
+
+}

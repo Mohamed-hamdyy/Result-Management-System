@@ -1,0 +1,103 @@
+ 
+
+
+.WholeHome{
+
+    height:99vh;
+    background: url('../../images/backHome3.jpg') no-repeat;
+    background-size: 100%;
+    border-radius: 5px;
+    border-color:whitesmoke;
+    border-style: groove;
+
+
+
+}
+.WholeHomeLogin{
+
+   height:70vh;
+   background-color: white;
+
+ 
+
+
+}
+.WholeHomeRegister{
+
+   height:87vh;
+background-color: white;
+   border-radius: 5px;
+ 
+
+
+
+}
+.WholeHomeFinal{
+
+   height:99vh;
+   background: url('../../images/backHome3.jpg') no-repeat;
+   background-size: 100%;
+   border-radius: 3px;
+   border-color:whitesmoke;
+   border-style: groove;
+
+
+
+}
+.homeText{
+    text-align: center;
+    margin-top: 20vh;
+    font-family: times;
+
+
+}
+.titleText{
+color:white;
+font-weight: 700;
+font-size: 40px;
+font-family: times;
+
+
+}
+.QuoteText{
+    color:white;
+    font-weight: 300;
+    font-size: 20px;
+    font-style: italic;
+    font-family: times;
+
+    
+    }
+ .Descrip{
+    text-align: center;
+    width: 30%;
+    margin-left: 33vw;;
+    background-color:darkcyan;
+    border-radius: 10px;
+    border-color: whitesmoke;
+    border-style: groove;
+    margin-top: 2vh;;
+    padding-right: 0.3vw;
+    padding-left: 0.3vw;
+    /* padding-bottom: 0.5vh;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw; */
+
+ }
+ .DText{
+    color:white;
+    font-weight: 400;
+    font-size: 20px;
+    font-style: italic;
+    font-family: times;
+
+
+ } 
+ .DTextFinal{
+    color:white;
+    font-weight: 400;
+    font-size: 20px;
+    font-family: times;
+
+ }     
+ 
