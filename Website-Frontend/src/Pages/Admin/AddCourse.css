@@ -1,0 +1,163 @@
+.wholeAddCourse{
+    
+height:100vh;
+width:99.7%;
+background-color: #0499f2;
+background-image: linear-gradient(315deg, #0499f2 0%, #26f596 74%);
+border-color: #042A2B;
+border-style: groove;
+}
+
+
+.adminHeader{
+    text-align: center;
+    color:#06A77D;
+    font-family: times;
+
+    
+    
+    }
+    .dropDown2{
+        width: 30vw;
+        background-color:aliceblue;
+        
+        }
+    .PanelText{
+    text-decoration: underline;
+    color: #06A77D;
+    display: flex;
+    flex-direction: row;
+    font-family: times;
+
+    
+    
+    }
+
+.addCourseDiv{
+    margin-left: 25vw;
+    margin-top: 6vh;
+width:45vw;
+height:50vh;
+border-color:whitesmoke;
+border-style: groove;
+border-radius: 20px;
+background-color: #d3d3d3;
+background-image: linear-gradient(315deg, #d3d3d3 0%, #7bed9f 74%);
+
+}
+.FuncHeader1{
+display:flex;
+flex-direction: row;
+width:100%;
+
+
+}
+.FuncHeader11{
+    display:flex;
+    flex-direction: row;
+    width:100%;
+    height:10vh;
+    padding-top: 1vh;;
+    
+    
+    }
+.FuncHeader1Text{
+    color: white;
+    padding-left: 5px;
+    font-family: times;
+
+
+}
+.FuncHeader11Text{
+    color: white;
+    padding-left: 20px;
+    padding-right: 40px;
+    font-weight: 700;
+    font-family: times;
+
+}
+.Input1{
+width:17vw;
+height:7vh;
+border-radius: 10px;
+border-color: brown;
+border-style:groove;
+
+
+}
+
+
+.Input2{
+    width:5vw;
+    height:7vh;
+    border-radius: 10px;
+    border-color: brown;
+    border-style:groove;
+    
+    
+    }
+
+.confirmDiv{
+    margin-top: 10vh;
+    height:50vh;
+    width:40vw;
+    border-style: groove;
+    border-radius: 10px;
+    background-color:#06A77D;
+   
+
+
+}
+.confirmDivFinal{
+    margin-top: 10vh;
+    height:50vh;
+    width:40vw;
+    border-style: groove;
+    border-radius: 10px;
+    background-color: #d3d3d3;
+    background-image: linear-gradient(315deg, #d3d3d3 0%, #7bed9f 74%);
+
+
+}
+.confirmtitleDiv{
+
+    width: 100%;
+    height:18%;
+    border-radius: 10px;
+
+}
+.confirmButtonsDiv{
+    width: 100%;
+    height:26.5%;
+    background-color:aliceblue;
+
+
+}
+.confirmTextDiv{
+    width: 100%;
+    height:40%;
+    background-color: aliceblue;
+    font-family: times;
+
+
+
+}
+.confirmTitleText{
+padding-top: 2.3vh;
+text-align: center;
+color:aliceblue;
+font-weight:700;
+font-size:2.2vw;
+font-family: times;
+
+}
+.confirmTextDiv1{
+    color:#06A77D;
+    padding-top: 10px;
+    padding-left: 20px;
+    font-weight: 600;
+    font-size: 1.8vw;
+    font-family: times;
+
+
+}
